@@ -1,5 +1,5 @@
 'use client';
-import { type HTMLAttributes, useEffect, useRef, useState } from 'react';
+import { type HTMLAttributes, useEffect, useRef } from 'react';
 
 interface Star {
   radius: number;
@@ -154,7 +154,7 @@ export const BackgroundStars = (props: HTMLAttributes<HTMLCanvasElement>) => {
         ctx.moveTo(star.pos.x, star.pos.y);
         ctx.lineTo(mouseRef.current.x, mouseRef.current.y);
         ctx.strokeStyle = '#ddd';
-        ctx.lineWidth = 0.1;
+        ctx.lineWidth = 0.15;
         ctx.stroke();
       }
 

@@ -1,15 +1,15 @@
 'use client';
 
+import { HeroSection } from '@components/section-hero';
 import { BackgroundStars } from '@components/background-stars';
 
 export default function Page(): JSX.Element {
   return (
-    <main className="min-h-screen relative">
-      <div className="relative z-10">
-        <h1 className="">GALAXYDIANE</h1>
-        <div className="w-full h-32 bg-white"></div>
+    <main className="min-h-screen h-fit relative">
+      <div className="h-full relative z-10">
+        <HeroSection />
+        <HeroSection />
       </div>
-      <BackgroundStars className="absolute top-0 left-0 w-full h-full" />
     </main>
   );
 }
