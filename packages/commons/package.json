@@ -4,7 +4,9 @@
   "files": [
     "dist"
   ],
-  "exports": {},
+  "exports": {
+    "./cn": "./src/cn.ts"
+  },
   "license": "MIT",
   "scripts": {
     "lint": "eslint src/",

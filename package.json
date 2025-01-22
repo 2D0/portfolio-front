@@ -17,5 +17,9 @@
   "engines": {
     "node": ">=18"
   },
-  "name": "with-tailwind"
+  "name": "with-tailwind",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
