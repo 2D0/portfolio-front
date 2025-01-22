@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { Card } from "@repo/ui/card";
+import Image from 'next/image';
+import { Card } from '@repo/ui/card';
 
 function Gradient({
   conic,
@@ -13,39 +13,39 @@ function Gradient({
   return (
     <span
       className={`absolute mix-blend-normal will-change-[filter] rounded-[100%] ${
-        small ? "blur-[32px]" : "blur-[75px]"
-      } ${conic ? "bg-glow-conic" : ""} ${className}`}
+        small ? 'blur-[32px]' : 'blur-[75px]'
+      } ${conic ? 'bg-glow-conic' : ''} ${className}`}
     />
   );
 }
 
 const LINKS = [
   {
-    title: "Docs",
-    href: "https://turbo.build/repo/docs",
-    description: "Find in-depth information about Turborepo features and API.",
+    title: 'Docs',
+    href: 'https://turbo.build/repo/docs',
+    description: 'Find in-depth information about Turborepo features and API.',
   },
   {
-    title: "Learn",
-    href: "https://turbo.build/repo/docs/handbook",
-    description: "Learn more about monorepos with our handbook.",
+    title: 'Learn',
+    href: 'https://turbo.build/repo/docs/handbook',
+    description: 'Learn more about monorepos with our handbook.',
   },
   {
-    title: "Templates",
-    href: "https://turbo.build/repo/docs/getting-started/from-example",
-    description: "Choose from over 15 examples and deploy with a single click.",
+    title: 'Templates',
+    href: 'https://turbo.build/repo/docs/getting-started/from-example',
+    description: 'Choose from over 15 examples and deploy with a single click.',
   },
   {
-    title: "Deploy",
-    href: "https://vercel.com/new",
+    title: 'Deploy',
+    href: 'https://vercel.com/new',
     description:
-      "Instantly deploy your Turborepo to a shareable URL with Vercel.",
+      'Instantly deploy your Turborepo to a shareable URL with Vercel.',
   },
 ];
 
 export default function Page(): JSX.Element {
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen p-24">
+    <main className="flex flex-col items-center justify-between min-h-screen p-24  bg-gradient-to-t from-[#030504] to-[#2D315C]">
       <div className="z-10 items-center justify-between w-full max-w-5xl font-mono text-sm lg:flex">
         <p className="fixed top-0 left-0 flex justify-center w-full px-4 pt-8 pb-6 border-b bg-gradient-to-b backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
           examples/with-tailwind -&nbsp;
@@ -58,7 +58,7 @@ export default function Page(): JSX.Element {
             rel="noopener noreferrer"
             target="_blank"
           >
-            By{" "}
+            By{' '}
             <Image
               alt="Vercel Logo"
               className="invert"
