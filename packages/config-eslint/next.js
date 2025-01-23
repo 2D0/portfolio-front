@@ -47,6 +47,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     'react/function-component-definition': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
+    'react/function-component-definition': 'off',
     'react/jsx-sort-props': 'off',
     'react/no-array-index-key': 'off',
   },

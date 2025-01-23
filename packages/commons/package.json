@@ -5,7 +5,8 @@
     "dist"
   ],
   "exports": {
-    "./cn": "./src/cn.ts"
+    "./cn": "./src/cn.ts",
+    "./hooks/*": "./src/hooks/*"
   },
   "license": "MIT",
   "scripts": {

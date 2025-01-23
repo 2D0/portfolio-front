@@ -1,40 +1,48 @@
 import { type HTMLAttributes } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { BackgroundStars } from './background-stars';
+import { motion, useScroll } from 'framer-motion';
+import { cn } from '@repo/commons/cn';
+import { cantique } from '@/public/fonts';
+import { BackgroundStars } from '@components/background-stars';
+import { AnimationLetter } from '@components/animation-letter';
 
-const letters = 'GALAXYDIANE'.split('');
+const topLetters = 'FRONTEND'.split('');
+const bottomLetters = 'DIANE'.split('');
+
 export const HeroSection = (props: HTMLAttributes<HTMLDivElement>) => {
   const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 3]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   return (
-    <div
+    <section
       {...props}
       className="w-full h-screen flex items-center justify-center relative"
     >
       <motion.div
-        style={{
-          scale,
-          opacity,
-        }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center"
+        className={cn(
+          cantique.className,
+          'absolute text-6xl leading-loose text-center',
+        )}
       >
-        {letters.map((char, index) => (
-          <motion.span
+        {topLetters.map((char, index) => (
+          <AnimationLetter
             key={`${char}${index}`}
-            custom={index}
-            className="animated-letter text-6xl"
-            style={{
-              rotate,
-            }}
-          >
-            {char}
-          </motion.span>
+            scrollYProgress={scrollYProgress}
+            index={index}
+            char={char}
+            total={topLetters.length}
+          />
+        ))}
+        <br />
+        {bottomLetters.map((char, index) => (
+          <AnimationLetter
+            key={`${char}${index}`}
+            scrollYProgress={scrollYProgress}
+            index={index}
+            char={char}
+            total={bottomLetters.length}
+          />
         ))}
       </motion.div>
       <BackgroundStars className="w-screen h-screen" />
-    </div>
+    </section>
   );
 };

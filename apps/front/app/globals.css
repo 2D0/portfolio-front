@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 215, 215, 215;
+  --foreground-rgb: 235, 235, 235;
   --background-start-rgb: 3, 5, 4;
   --background-end-rgb: 45, 49, 92;
 }
@@ -23,63 +23,6 @@ body {
   background-position-x: center;
   background-repeat: no-repeat;
 }
-.ping-quick {
-  @apply block rounded-full;
-  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-.ping {
-  @apply block rounded-full;
-  animation: ping 3s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-.light-star {
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.animated-letter {
-  display: inline-block;
-  transform-origin: center;
-  transition:
-    transform 1s ease-out,
-    opacity 1s ease-out;
-}
-
-.animated-letter.outward {
-  transform: translate(
-      calc(var(--random-x, 0) * 100px),
-      calc(var(--random-y, 0) * 100px)
-    )
-    rotate(calc(var(--random-angle, 0) * 360deg));
-  opacity: 0;
-}
-
-.animated-letter.inward {
-  transform: translate(0, 0) rotate(0);
-  opacity: 1;
-}
-
-@keyframes ping {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  25% {
-    transform: scale(2);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  75% {
-    transform: scale(2);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+body > main {
+  @apply px-4 w-full max-w-full sm:max-w-5xl md:max-w-7xl mx-auto;
 }

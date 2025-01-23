@@ -69,30 +69,6 @@ export const BackgroundStars = (props: HTMLAttributes<HTMLCanvasElement>) => {
       mouseRef.current.y = event.clientY - rect.top;
     };
 
-    // window.addEventListener('resize', resizeCanvas);
-    // canvas.addEventListener('mousemove', event => {
-    //   const rect = canvas.getBoundingClientRect();
-    //   //   setMouse({ x: event.clientX - rect.left, y: event.clientY - rect.top });
-    //   mouse.x = event.clientX - rect.left;
-    //   mouse.y = event.clientY - rect.top;
-    // });
-    // resizeCanvas();
-
-    // const numStars =
-    //   (Math.min(window.innerWidth, window.innerHeight) /
-    //     Math.max(window.innerWidth, window.innerHeight)) *
-    //   300;
-
-    // for (let i = 0; i < numStars; i++) {
-    //   stars.push(createStar());
-    // }
-
-    const drawBackground = () => {
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    };
-
     const drawStar = (star: Star) => {
       ctx.fillStyle = '#a1a1a1';
       ctx.beginPath();
@@ -178,7 +154,6 @@ export const BackgroundStars = (props: HTMLAttributes<HTMLCanvasElement>) => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      drawBackground();
       stars.forEach(drawStar);
       requestAnimationFrame(animate);
     };
