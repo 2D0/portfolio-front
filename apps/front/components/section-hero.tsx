@@ -3,7 +3,7 @@ import { motion, useScroll } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 import { cantique } from '@/public/fonts';
 import { BackgroundStars } from '@components/background-stars';
-import { AnimationLetter } from '@components/animation-letter';
+import { AnimationLetter } from '@components/letter-spin';
 
 const topLetters = 'FRONTEND'.split('');
 const bottomLetters = 'DIANE'.split('');

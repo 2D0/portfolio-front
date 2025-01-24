@@ -1,5 +1,6 @@
-import type { CareerMap } from '@/interface';
+import Link from 'next/link';
 import { StackBadge } from './stack-badge';
+import type { CareerMap } from '@/interface';
 
 interface CareerBlockProps {
   text: CareerMap;
@@ -7,8 +8,12 @@ interface CareerBlockProps {
 
 export const CareerBlock = ({ text }: CareerBlockProps) => {
   return (
-    <div className="grid grid-rows-[max-content_max-content_max-content_max-content_1fr] gap-2 bg-white bg-opacity-10 p-4 rounded-lg border border-white border-opacity-20">
-      <div className="flex items-end gap-2 mb-2  py-1 px-2 rounded-md border border-white border-opacity-20 bg-black bg-opacity-60">
+    <Link
+      href={text.href}
+      target="_blank"
+      className="grid grid-rows-[max-content_max-content_max-content_max-content_1fr] gap-2 w-full h-full bg-white bg-opacity-10 p-4 rounded-lg border border-white border-opacity-20 hover:transform hover:-translate-y-1 transition-transform duration-300"
+    >
+      <div className="flex items-end gap-2 py-1 px-2 rounded-md border border-white border-opacity-20 bg-black bg-opacity-60">
         <h4 className="text-xl font-bold">{text.name}</h4>
         <p className="text-gray-300">{text.position}</p>
       </div>
@@ -38,6 +43,6 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
           </li>
         ))}
       </ul>
-    </div>
+    </Link>
   );
 };

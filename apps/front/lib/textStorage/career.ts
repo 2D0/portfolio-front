@@ -1,6 +1,9 @@
+import { CareerMap } from '@/interface';
+
 export const CareerList = [
   {
     name: '하이퍼 커뮤니티',
+    href: 'https://2d0.notion.site/2bac18a8bfff4116a0be1dfcdc33b52c?pvs=4',
     position: '프론트 개발자',
     scope: ['프론트 개발', '퍼블리싱', 'UI/UX 디자인'],
     startDate: '2024.04',
@@ -14,6 +17,7 @@ export const CareerList = [
   },
   {
     name: '(주)유니버스',
+    href: 'https://2d0.notion.site/184c46f44b9f80bbb123c6db829a15b6?pvs=4',
     position: '프론트 개발자',
     scope: ['프론트 개발', '퍼블리싱'],
     startDate: '2023.10',
@@ -27,7 +31,7 @@ export const CareerList = [
       'TypeScript',
       'Styled Components',
       'SCSS',
-      'Tailwind CSS',
+      'TailwindCSS',
       'Figma',
     ],
     work: [
@@ -38,6 +42,7 @@ export const CareerList = [
   },
   {
     name: '(주)잇팩',
+    href: 'https://2d0.notion.site/71e1e40e15dc49a68d0ce974894f6fe9?pvs=4',
     position: '퍼블리셔',
     scope: ['퍼블리싱', 'UI/UX 디자인'],
     startDate: '2023.05',
@@ -51,6 +56,7 @@ export const CareerList = [
   },
   {
     name: '시안',
+    href: 'https://2d0.notion.site/e02b6b2602fe4247aa39810459207f93?pvs=4',
     position: '프론트 개발자',
     scope: ['프론트 개발', '퍼블리싱'],
     startDate: '2022.09',
@@ -63,6 +69,7 @@ export const CareerList = [
   },
   {
     name: '시간여행티비',
+    href: 'https://2d0.notion.site/2cd1dbe50fad4851b1674857a77abc1e?pvs=4',
     position: '퍼블리셔',
     scope: ['퍼블리싱', 'UI/UX 디자인'],
     startDate: '2022.03',
@@ -75,6 +82,7 @@ export const CareerList = [
   },
   {
     name: '위즈메이드',
+    href: 'https://2d0.notion.site/d255be43e4ea4000a0c34cacc4f8c3e6?pvs=4',
     position: '퍼블리셔',
     scope: ['퍼블리싱', 'UI/UX 디자인'],
     startDate: '2021.06',
@@ -87,6 +95,7 @@ export const CareerList = [
   },
   {
     name: '아이디자인닷컴',
+    href: 'https://2d0.notion.site/be72a1d3fe00475cbaff3a7de9e942f7?pvs=4',
     position: '퍼블리셔',
     scope: ['퍼블리싱'],
     startDate: '2020.11',
@@ -98,4 +107,4 @@ export const CareerList = [
       '배너 및 상세 페이지 제작',
     ],
   },
-];
+] as CareerMap[];

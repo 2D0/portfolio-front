@@ -48,11 +48,12 @@ export const BackgroundStars = (props: HTMLAttributes<HTMLCanvasElement>) => {
     };
 
     const resizeCanvas = () => {
+      const rect = canvas.getBoundingClientRect();
       const previousWidth = canvas.width;
       const previousHeight = canvas.height;
 
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = rect.width;
+      canvas.height = rect.height;
 
       stars.forEach(star => {
         star.pos.x = (star.pos.x / previousWidth) * canvas.width;

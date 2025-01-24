@@ -1,15 +1,26 @@
 import { useRef, type HTMLAttributes } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { BackgroundStars } from '@components/background-stars';
-import type { CareerMap } from '@/interface';
-import { CareerBlock } from './career-block';
 import { useInView } from 'react-intersection-observer';
+import { cn } from '@repo/commons/cn';
+import { BackgroundStars } from '@components/background-stars';
+import { cantique } from '@/public/fonts';
+import { CareerBlock } from './career-block';
+import { WaveLetter } from './letter-wave';
+import type { CareerMap } from '@/interface';
 
 interface CareerSectionProps extends HTMLAttributes<HTMLDivElement> {
   textMap: CareerMap[];
 }
 
+const letters = 'Work History'.split('');
+
 export const CareerSection = ({ textMap, ...props }: CareerSectionProps) => {
+  const titleRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: titleRef,
+    offset: ['start end', 'end start'],
+  });
+  const x = useTransform(scrollYProgress, [0, 0.25, 1], ['50vw', '0vw', '0vw']);
   const { ref, inView } = useInView({
     threshold: 0.3,
   });
@@ -17,10 +28,26 @@ export const CareerSection = ({ textMap, ...props }: CareerSectionProps) => {
   return (
     <section
       {...props}
-      ref={ref}
-      className="w-full min-h-screen h-fit py-10 flex justify-center relative"
+      className="grid place-items-center gap-20 w-full min-h-screen h-fit pb-10 relative"
     >
-      <ul className="grid grid-cols-2 gap-4">
+      <div className="h-72" />
+      <motion.h2
+        ref={titleRef}
+        className={cn(cantique.className, 'text-6xl')}
+        style={{
+          x,
+        }}
+      >
+        {letters.map((letter, index) => (
+          <WaveLetter
+            key={`${letter}-${index}`}
+            scrollYProgress={scrollYProgress}
+            index={index}
+            char={letter}
+          />
+        ))}
+      </motion.h2>
+      <ul ref={ref} className="grid grid-cols-2 gap-4">
         {textMap.map((text, index) => (
           <motion.li
             key={text.name}
@@ -32,7 +59,7 @@ export const CareerSection = ({ textMap, ...props }: CareerSectionProps) => {
           </motion.li>
         ))}
       </ul>
-      <BackgroundStars className="absolute -z-10 w-screen h-fit" />
+      <BackgroundStars className="absolute -z-10 w-screen h-full" />
     </section>
   );
 };
