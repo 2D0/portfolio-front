@@ -1,6 +1,6 @@
 import { useRef, type HTMLAttributes } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ImageBox } from '@repo/ui/components/image-box.tsx';
+import { ImageBox } from '@repo/ui/components';
 import { BackgroundStars } from '@components/background-stars';
 
 export const InfoSection = (props: HTMLAttributes<HTMLDivElement>) => {

@@ -29,7 +29,7 @@ export const CareerList = [
       'Supabase',
       'JavaScript',
       'TypeScript',
-      'Styled Components',
+      'StyledComponents',
       'SCSS',
       'TailwindCSS',
       'Figma',

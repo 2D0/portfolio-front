@@ -97,10 +97,10 @@ vue는 CSR 프레임워크이기 때문에 SEO 검색엔진에 노출되지 않�
   이외에도 clsx 라이브러리를 활용하여 동적인 클래스들을 tailwind에 머지 하여 사용할 수 있도록 합니다.`,
     },
     {
-      name: 'Styled Components',
+      name: 'StyledComponents',
       title: 'props 데이터를 활용하여 스타일 구현 가능',
       desc: `component를 pascal case로 작명 후 템플릿 리터럴을 사용해 css style을 등록한 뒤 page에서 component를 import 하여 사용합니다.
-  page에서 styled components로 props 전달하는 방식은 일반 component에 전달하는 방법과 동일하며
+  page에서 StyledComponents로 props 전달하는 방식은 일반 component에 전달하는 방법과 동일하며
   템플릿 리터럴 속 스콥과({}) 달러 사인($)을 사용해 props를 전달받은 뒤 state에 따라 스타일이 바뀌도록 연출합니다.`,
     },
     {

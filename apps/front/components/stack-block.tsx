@@ -2,6 +2,8 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@repo/commons/cn';
 import { montserrat } from '@/public/fonts';
 import { StackMap } from '@/interface';
+import { Icon } from '@repo/ui/components';
+import type { Stack } from '@repo/ui/interface';
 
 const stackBadgeVariants = cva('text-2xl font-bold', {
   variants: {
@@ -33,10 +35,19 @@ const stackBadgeVariants = cva('text-2xl font-bold', {
 
 export const StackBlock = ({ text }: { text: StackMap }) => {
   return (
-    <div className="w-full h-fit py-2 px-4 rounded-md border-white border border-opacity-20 whitespace-nowrap bg-black">
+    <div className="grid grid-cols-[max-content_1fr] items-center gap-x-3 gap-y-1 w-full h-fit p-3 rounded-md border-white border border-opacity-20 whitespace-nowrap bg-white bg-opacity-10">
+      <div className="grid place-content-center w-14 h-14 rounded-full overflow-hidden row-span-2 bg-black bg-opacity-60 border border-white border-opacity-40">
+        <Icon
+          name={text.name as Stack}
+          width={28}
+          height={28}
+          alt={text.name}
+        />
+      </div>
       <h3
         className={cn(
           stackBadgeVariants({ variant: text.name }),
+          'text-blue-200',
           montserrat.className,
         )}
       >
