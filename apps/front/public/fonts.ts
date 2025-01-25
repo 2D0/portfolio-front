@@ -1,4 +1,4 @@
-import { Montserrat, Orbit } from 'next/font/google';
+import { Montserrat, Gowun_Dodum } from 'next/font/google';
 import localFont from 'next/font/local';
 
 export const cantique = localFont({ src: '../app/fonts/Cantique.otf' });
@@ -6,7 +6,7 @@ export const montserrat = Montserrat({
   weight: '500',
   subsets: ['latin'],
 });
-export const orbit = Orbit({
+export const gowunDodum = Gowun_Dodum({
   weight: '400',
   subsets: ['latin'],
 });

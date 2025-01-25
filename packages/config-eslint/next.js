@@ -50,5 +50,6 @@ module.exports = {
     'react/function-component-definition': 'off',
     'react/jsx-sort-props': 'off',
     'react/no-array-index-key': 'off',
+    camelcase: 'off',
   },
 };

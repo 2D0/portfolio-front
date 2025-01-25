@@ -24,7 +24,7 @@ const imageVariants = cva('relative overflow-hidden', {
       transparent: 'bg-transparent',
     },
     border: {
-      default: 'border border-gray-300',
+      default: 'border border-white border-opacity-20',
       primary: 'border border-primary',
       destructive: 'border border-destructive',
     },

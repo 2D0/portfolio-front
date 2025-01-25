@@ -1,4 +1,4 @@
-import { StackMap } from '@/interface';
+import type { StackMap } from '@/interface';
 
 export const StackList = {
   language: [

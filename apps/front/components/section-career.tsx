@@ -4,17 +4,17 @@ import { useInView } from 'react-intersection-observer';
 import { cn } from '@repo/commons/cn';
 import { BackgroundStars } from '@components/background-stars';
 import { cantique } from '@/public/fonts';
-import { CareerBlock } from './career-block';
-import { WaveLetter } from './letter-wave';
+import { CareerBlock } from './block-career';
+import { LetterWave } from './letter-wave';
 import type { CareerMap } from '@/interface';
 
-interface CareerSectionProps extends HTMLAttributes<HTMLDivElement> {
+interface SectionCareerProps extends HTMLAttributes<HTMLDivElement> {
   textMap: CareerMap[];
 }
 
 const letters = 'Work History'.split('');
 
-export const CareerSection = ({ textMap, ...props }: CareerSectionProps) => {
+export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
   const titleRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: titleRef,
@@ -39,7 +39,7 @@ export const CareerSection = ({ textMap, ...props }: CareerSectionProps) => {
         }}
       >
         {letters.map((letter, index) => (
-          <WaveLetter
+          <LetterWave
             key={`${letter}-${index}`}
             scrollYProgress={scrollYProgress}
             index={index}

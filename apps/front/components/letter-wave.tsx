@@ -2,19 +2,19 @@ import { HTMLAttributes } from 'react';
 import { motion, useTransform, type MotionValue } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 
-interface AnimationLetterProps
+interface LetterSpinProps
   extends Pick<HTMLAttributes<HTMLSpanElement>, 'className'> {
   scrollYProgress: MotionValue<number>;
   char: string;
   index: number;
 }
 
-export const WaveLetter = ({
+export const LetterWave = ({
   scrollYProgress,
   char,
   index,
   className,
-}: AnimationLetterProps) => {
+}: LetterSpinProps) => {
   const waveOffset = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, 0]);
   const rotate = useTransform(
     waveOffset,

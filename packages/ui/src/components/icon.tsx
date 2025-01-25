@@ -15,7 +15,7 @@ export const Icon = (props: IconProps) => {
   const IconSourceMap: Record<IconProps['name'], string> = {
     GitHub: require('./../images/icons/ico-github.svg'),
     Notion: require('./../images/icons/ico-notion.svg'),
-    // Youtube require('./../images/icons/ico-youtube.svg'),
+    Youtube: require('./../images/icons/ico-youtube.svg'),
     Moon: require('./../images/icons/ico-moon.svg'),
     JavaScript: require('./../images/icons/stacks/JavaScript.svg'),
     TypeScript: require('./../images/icons/stacks/TypeScript.svg'),

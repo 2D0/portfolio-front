@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ImageBox } from '@repo/ui/components';
 import { BackgroundStars } from '@components/background-stars';
 
-export const InfoSection = (props: HTMLAttributes<HTMLDivElement>) => {
+export const SectionInfo = (props: HTMLAttributes<HTMLDivElement>) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -40,11 +40,11 @@ export const InfoSection = (props: HTMLAttributes<HTMLDivElement>) => {
             imagePorps={{
               src: '/images/source/char-diane.png',
               alt: 'char-diane',
-              width: 480,
-              height: 480,
+              width: 400,
+              height: 400,
             }}
             rounded="none"
-            className="relative w-[400px] h-fit"
+            className="relative w-[400px] h-[400px]"
           />
         </motion.div>
         <motion.ul

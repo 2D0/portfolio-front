@@ -1,7 +1,7 @@
 import './globals.css';
 import '@repo/ui/styles.css';
 import type { Metadata } from 'next';
-import { orbit } from '@/public/fonts';
+import { gowunDodum } from '@/public/fonts';
 import { Navigation } from '@components/navigation';
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <body className={orbit.className}>
+      <body className={gowunDodum.className}>
         <Navigation />
         {children}
       </body>

@@ -3,12 +3,12 @@ import { motion, useScroll } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 import { cantique } from '@/public/fonts';
 import { BackgroundStars } from '@components/background-stars';
-import { AnimationLetter } from '@components/letter-spin';
+import { LetterSpin } from '@components/letter-spin';
 
 const topLetters = 'FRONTEND'.split('');
 const bottomLetters = 'DIANE'.split('');
 
-export const HeroSection = (props: HTMLAttributes<HTMLDivElement>) => {
+export const SectionHero = (props: HTMLAttributes<HTMLDivElement>) => {
   const { scrollYProgress } = useScroll();
 
   return (
@@ -23,7 +23,7 @@ export const HeroSection = (props: HTMLAttributes<HTMLDivElement>) => {
         )}
       >
         {topLetters.map((char, index) => (
-          <AnimationLetter
+          <LetterSpin
             key={`${char}${index}`}
             scrollYProgress={scrollYProgress}
             index={index}
@@ -33,7 +33,7 @@ export const HeroSection = (props: HTMLAttributes<HTMLDivElement>) => {
         ))}
         <br />
         {bottomLetters.map((char, index) => (
-          <AnimationLetter
+          <LetterSpin
             key={`${char}${index}`}
             scrollYProgress={scrollYProgress}
             index={index}

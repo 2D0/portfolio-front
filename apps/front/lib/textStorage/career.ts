@@ -1,4 +1,4 @@
-import { CareerMap } from '@/interface';
+import type { CareerMap } from '@/interface';
 
 export const CareerList = [
   {
@@ -8,7 +8,7 @@ export const CareerList = [
     scope: ['프론트 개발', '퍼블리싱', 'UI/UX 디자인'],
     startDate: '2024.04',
     endDate: '재직중',
-    stack: ['Next.js14', 'Supabase', 'TypeScript', 'Tailwind CSS', 'Figma'],
+    stack: ['Next.js14', 'Supabase', 'TypeScript', 'TailwindCSS', 'Figma'],
     work: [
       '홈페이지 및 랜딩 페이지 UI 개발',
       '로아챗 컴포넌트 UI 개발',

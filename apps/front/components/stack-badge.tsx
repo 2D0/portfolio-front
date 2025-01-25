@@ -14,7 +14,7 @@ const stackBadgeVariants = cva(
         Turborepo: 'bg-[#FE778E]',
         JavaScript: 'bg-[#F3DB86]',
         TypeScript: 'bg-[#74A7FF]',
-        'Styled Components': 'bg-[#FFC0AD]',
+        StyledComponents: 'bg-[#FFC0AD]',
         SCSS: 'bg-[#CFFFEE]',
         TailwindCSS: 'bg-[#C770FD]',
         Figma: 'bg-[#FFAED5]',
@@ -24,10 +24,16 @@ const stackBadgeVariants = cva(
         jQuery: 'bg-[#E5B885]',
         GitHub: 'bg-[#FFB1BE]',
         Jira: 'bg-[#B0C9FF]',
+        Cafe24Module: 'bg-[#F4D87C]',
         'Nuxt.js': 'bg-[#1DCA5F]',
-        '프론트 개발': 'bg-gray-400 text-white',
-        퍼블리싱: 'bg-gray-500 text-white',
-        'UI/UX 디자인': 'bg-gray-600 text-white',
+        '기획 및 총괄': 'bg-gray-800 text-white',
+        '백엔드 개발': 'bg-gray-600 text-white',
+        '프론트 개발': 'bg-gray-500 text-white',
+        퍼블리싱: 'bg-gray-600 text-white',
+        'UI/UX 디자인': 'bg-gray-700 text-white',
+      },
+      size: {
+        sm: 'text-sm py-0.5 px-1 rounded-sm',
       },
     },
   },
@@ -35,13 +41,14 @@ const stackBadgeVariants = cva(
 
 export const StackBadge = ({
   variant,
+  size,
   className,
 }: VariantProps<typeof stackBadgeVariants> &
   Pick<React.HTMLAttributes<HTMLDivElement>, 'className'>) => {
   return (
     <div
       className={cn(
-        stackBadgeVariants({ variant }),
+        stackBadgeVariants({ variant, size }),
         montserrat.className,
         className,
       )}

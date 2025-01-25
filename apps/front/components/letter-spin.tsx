@@ -2,7 +2,7 @@ import { HTMLAttributes } from 'react';
 import { motion, useTransform, type MotionValue } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 
-interface AnimationLetterProps
+interface LetterSpinProps
   extends Pick<HTMLAttributes<HTMLSpanElement>, 'className'> {
   scrollYProgress: MotionValue<number>;
   char: string;
@@ -10,13 +10,13 @@ interface AnimationLetterProps
   total: number;
 }
 
-export const AnimationLetter = ({
+export const LetterSpin = ({
   scrollYProgress,
   char,
   index,
   total,
   className,
-}: AnimationLetterProps) => {
+}: LetterSpinProps) => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 3]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);

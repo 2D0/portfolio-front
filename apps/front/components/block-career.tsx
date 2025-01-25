@@ -38,9 +38,7 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
       </ul>
       <ul className="p-2 rounded-md border border-white border-opacity-20 bg-black bg-opacity-60">
         {text.work.map(work => (
-          <li key={work} className="">
-            {work}
-          </li>
+          <li key={work}>{work}</li>
         ))}
       </ul>
     </Link>

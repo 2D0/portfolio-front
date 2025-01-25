@@ -2,26 +2,26 @@ import type { ImageProps } from 'next/image';
 
 export type RoundSizes = 'full' | 'lg' | 'md' | 'none';
 export type IconSizes = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-type Stack =
+export type IconStack =
   | 'Next.js14'
   | 'React'
   | 'Vue'
   | 'Supabase'
   | 'Turborepo'
-  | 'JavaScript'
   | 'TypeScript'
-  | 'StyledComponents'
-  | 'SCSS'
-  | 'TailwindCSS'
-  | 'Figma'
-  | 'PHP'
+  | 'JavaScript'
   | 'HTML'
   | 'CSS'
+  | 'StyledComponents'
+  | 'TailwindCSS'
+  | 'SCSS'
+  | 'Figma'
   | 'jQuery'
   | 'GitHub'
-  | 'Jira'
-  | 'Nuxt.js';
-export type IconNames = 'GitHub' | 'Notion' | 'Moon' | Stack;
+  | 'Jira';
+
+export type Stack = Stack | 'PHP' | 'Nuxt.js' | 'Cafe24Module';
+export type IconNames = 'Youtube' | 'Notion' | 'Moon' | IconStack;
 
 export type IconSizeOptions =
   | { size: IconSizes; width?: never; height?: never }
