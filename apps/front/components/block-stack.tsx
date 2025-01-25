@@ -77,7 +77,7 @@ export const StackBlock = ({ text }: { text: StackMap }) => {
 
   return (
     <div
-      className="grid grid-cols-[max-content_1fr] items-center gap-x-3 gap-y-1 w-full h-fit p-3 relative rounded-md border-white border border-opacity-20 whitespace-nowrap bg-white bg-opacity-10"
+      className="grid grid-cols-[max-content_1fr] items-center gap-x-3 gap-y-1 w-full h-fit p-3 relative rounded-xl border-white border border-opacity-20 whitespace-nowrap bg-white bg-opacity-10"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => {
         setIsVisiable(true);

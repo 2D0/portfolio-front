@@ -51,5 +51,6 @@ module.exports = {
     'react/jsx-sort-props': 'off',
     'react/no-array-index-key': 'off',
     camelcase: 'off',
+    '@typescript-eslint/no-unsafe-return': 'off',
   },
 };

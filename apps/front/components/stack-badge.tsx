@@ -33,7 +33,7 @@ const stackBadgeVariants = cva(
         'UI/UX 디자인': 'bg-gray-700 text-white',
       },
       size: {
-        sm: 'text-sm py-0.5 px-1 rounded-sm',
+        sm: 'text-sm py-0.5 px-1',
       },
     },
   },
