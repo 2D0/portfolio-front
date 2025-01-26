@@ -12,7 +12,7 @@ interface SectionCareerProps extends HTMLAttributes<HTMLDivElement> {
   textMap: CareerMap[];
 }
 
-const letters = 'Work History'.split('');
+const letters = 'WORK HISTORY'.split('');
 
 export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
   const titleRef = useRef<HTMLDivElement>(null);

@@ -13,6 +13,7 @@ export const Icon = (props: IconProps) => {
   const { name, size, width, height, ...ohterProps } = props;
   const iconSize = IconSizeMap[size ?? 'lg'];
   const IconSourceMap: Record<IconProps['name'], string> = {
+    Global: require('./../images/icons/ico-global.svg'),
     GitHub: require('./../images/icons/ico-github.svg'),
     Notion: require('./../images/icons/ico-notion.svg'),
     Youtube: require('./../images/icons/ico-youtube.svg'),

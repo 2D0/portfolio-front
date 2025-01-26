@@ -12,7 +12,8 @@
     "./interface": "./src/interface.d.ts",
     "./styles.css": "./dist/index.css",
     "./card": "./src/card.tsx",
-    "./components": "./src/components/index.ts"
+    "./components": "./src/components/index.ts",
+    "./images/*": "./src/components/images/*"
   },
   "license": "MIT",
   "scripts": {
@@ -37,7 +38,10 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.2.2",
     "@repo/commons": "workspace:*",
-    "class-variance-authority": "^0.7.1"
+    "@uiw/react-codemirror": "^4.23.7",
+    "class-variance-authority": "^0.7.1",
+    "esbuild-wasm": "^0.24.2"
   }
 }

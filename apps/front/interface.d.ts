@@ -35,3 +35,11 @@ export interface ProjectMap {
   imageName: string;
   scope: ProjectScope[];
 }
+
+export type CodeName = 'input' | 'test';
+interface CodeType {
+  name: string;
+  code: string;
+}
+
+export type CodeListType = Record<CodeName, CodeType[]>;

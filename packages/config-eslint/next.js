@@ -52,5 +52,6 @@ module.exports = {
     'react/no-array-index-key': 'off',
     camelcase: 'off',
     '@typescript-eslint/no-unsafe-return': 'off',
+    '@typescript-eslint/no-confusing-void-expression': 'off',
   },
 };

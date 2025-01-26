@@ -14,7 +14,7 @@ interface SectionStackProps extends HTMLAttributes<HTMLDivElement> {
   textMap: Record<string, StackMap[]>;
 }
 
-const letters = 'Stack'.split('');
+const letters = 'STACK'.split('');
 
 export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
   const [stackType, setStackType] = useState<StackType>('language');
@@ -99,7 +99,7 @@ export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
           <ul className="grid gap-4">
             {textMap[stackType].map((text, index) => (
               <motion.li
-                key={text.name}
+                key={`${text.name}-${index}`}
                 initial={{ opacity: 0, x: 50 }}
                 animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
                 transition={{ duration: 0.5, delay: 0.2 * index }}

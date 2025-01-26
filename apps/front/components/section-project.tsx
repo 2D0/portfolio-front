@@ -15,7 +15,10 @@ interface SectionProjectProps extends HTMLAttributes<HTMLDivElement> {
 const letters = 'PROJECT'.split('');
 
 export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
-  const [stack, setStack] = useState<ProjectMap['stack'] | string>('All');
+  const [stack, setStack] = useState<ProjectMap['stack'] | string>(
+    'All Stacks',
+  );
+  const [slected, setSelected] = useState<boolean>(false);
   const titleRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: titleRef,
@@ -27,7 +30,7 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
   });
 
   const filterText =
-    stack === 'All'
+    stack === 'All Stacks'
       ? textMap
       : textMap.filter(text => text.stack.includes(stack));
 
@@ -59,62 +62,55 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
             />
           ))}
         </motion.h2>
-        {/* <select
-          onChange={e => {
-            setStack(e.target.value as ProjectMap['stack'] | 'All');
-          }}
-        >
-          {['All', ...[...new Set(textMap.map(text => text.stack).flat())]].map(
-            stack => (
-              <option key={stack} value={stack}>
-                {stack}
-              </option>
-            ),
-          )}
-          <option value="all">All</option>
-          <option value="Next.js14">Next.js14</option>
-          <option value="React">React</option>
-          <option value="Vue">Vue</option>
-          <option value="JavaScript">JavaScript</option>
-          <option value="TypeScript">TypeScript</option>
-          <option value="Supabase">Supabase</option>
-          <option value="Turborepo">Turborepo</option>
-          <option value="TailwindCSS">TailwindCSS</option>
-          <option value="StyledComponents">StyledComponents</option>
-          <option value="SCSS">StyledComponents</option>
-        </select> */}
-        <div>
-          <input type="text" value={stack} />
-          <ul className="flex gap-2">
-            {['All', ...setText].map(stackName => (
-              <li key={String(stackName)} value={stackName}>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setStack(stackName);
-                  }}
-                  className={cn(
-                    stack === stackName ? 'bg-blue-500' : 'bg-blue-300',
-                  )}
-                >
-                  {stackName}
-                </button>
-              </li>
+        <div className="flex flex-col gap-5">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <button
+              type="button"
+              className="flex justify-between items-center w-40 h-8 px-2 rounded-md !bg-white !bg-opacity-20 border border-white border-opacity-20"
+              onClick={() => setSelected(!slected)}
+            >
+              {stack}
+              <i className="block w-2.5 h-[1.5px] relative before:block before:content-[''] before:w-full before:h-full before:absolute before:left-[3px] before:rounded-full before:rotate-[-45deg] before:bg-[#EBEBEB] after:block after:content-[''] after:w-full after:h-full after:absolute after:right-[3px] after:rounded-full after:rotate-[45deg] after:bg-[#EBEBEB]" />
+            </button>
+            <ul
+              className={cn(
+                slected ? 'h-60 mt-1' : 'h-0',
+                'flex flex-col gap-1 w-40 overflow-y-auto absolute z-10 rounded-md transition-All Stacks duration-200 bg-black bg-opacity-80',
+              )}
+            >
+              {['All Stacks', ...setText].map(stackName => (
+                <li key={String(stackName)} value={stackName}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setStack(stackName);
+                      setSelected(false);
+                    }}
+                    className="w-full h-7 px-2 text-left hover:bg-blue-200 hover:text-black"
+                  >
+                    {stackName}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+          <ul className="grid grid-cols-3 gap-4">
+            {filterText.map((text, index) => (
+              <motion.li
+                key={text.name}
+                initial={{ opacity: 0, y: -50 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
+                transition={{ duration: 0.5, delay: 0.4 * index }}
+              >
+                <BlockProject text={text} />
+              </motion.li>
             ))}
           </ul>
         </div>
-        <ul className="grid grid-cols-3 gap-4">
-          {filterText.map((text, index) => (
-            <motion.li
-              key={text.name}
-              initial={{ opacity: 0, y: -50 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-              transition={{ duration: 0.5, delay: 0.4 * index }}
-            >
-              <BlockProject text={text} />
-            </motion.li>
-          ))}
-        </ul>
       </div>
       <BackgroundStars className="absolute -z-10 w-screen h-full" />
     </section>

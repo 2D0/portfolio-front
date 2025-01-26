@@ -62,7 +62,7 @@ export const ProjectList = [
     imageUrl:
       'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2Fe04c7166-2dda-4147-9ee5-e997ae3c4cfa%2Fimage.png/size/w=450?exp=1737882459&sig=gxSyN876xFh0l2XyvRjvZrtVSrwYB4r1Y-90qQihScw',
     imageName: 'hyper-site',
-    scope: ['프론트 개발'],
+    scope: ['프론트 개발', 'UI/UX 디자인'],
   },
   {
     name: '우주',

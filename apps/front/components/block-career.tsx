@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { StackBadge } from './stack-badge';
+import { BlockContainer } from './block-code-view-container';
 import type { CareerMap } from '@/interface';
 
 interface CareerBlockProps {
@@ -8,10 +9,11 @@ interface CareerBlockProps {
 
 export const CareerBlock = ({ text }: CareerBlockProps) => {
   return (
-    <Link
+    <BlockContainer
       href={text.href}
       target="_blank"
-      className="grid grid-rows-[max-content_max-content_max-content_max-content_1fr] gap-2 w-full h-full bg-white bg-opacity-10 p-4 rounded-xl border border-white border-opacity-20 hover:transform hover:-translate-y-1 transition-transform duration-300"
+      className="grid grid-rows-[max-content_max-content_max-content_max-content_1fr] gap-2 hover:transform hover:-translate-y-1 transition-transform duration-300"
+      variants={{ height: 'fit' }}
     >
       <div className="flex items-end gap-2 py-1 px-2 rounded-lg border border-white border-opacity-20 bg-black bg-opacity-60">
         <h4 className="text-xl font-bold">{text.name}</h4>
@@ -41,6 +43,6 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
           <li key={work}>{work}</li>
         ))}
       </ul>
-    </Link>
+    </BlockContainer>
   );
 };
