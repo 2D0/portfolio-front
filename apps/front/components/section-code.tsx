@@ -14,7 +14,7 @@ import {
   CheckboxGroup,
   Icon,
 } from '@repo/ui/components';
-import { BlockContainer } from './block-code-view-container';
+import { BlockContainer } from './block-container';
 
 interface SectionCodekProps extends HTMLAttributes<HTMLDivElement> {
   textMap: CodeListType;

@@ -1,7 +1,6 @@
-import type { Stack } from '@repo/ui/interface';
+import type { Stack, IconStack } from '@repo/ui/interface';
 
 type Scope = '프론트 개발' | '백엔드 개발' | '퍼블리싱' | 'UI/UX 디자인';
-
 type ProjectScope = Exclude<Scope, '퍼블리싱'> | '기획 및 총괄' | '백엔드 개발';
 
 export interface CareerMap {
@@ -11,12 +10,12 @@ export interface CareerMap {
   scope: Scope[];
   startDate: string;
   endDate: string;
-  stack: Stack[];
+  stack: IconStack[];
   work: string[];
 }
 
 export interface StackMap {
-  name: Stack;
+  name: IconStack | 'PHP' | Exclude<Scope, '백엔드 개발'>;
   title: string;
   desc: string;
 }
@@ -30,7 +29,7 @@ export interface ProjectMap {
   endDate: string;
   period: string;
   desc: string;
-  stack: Stack[];
+  stack: IconStack[];
   imageUrl: string;
   imageName: string;
   scope: ProjectScope[];

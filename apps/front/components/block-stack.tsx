@@ -3,8 +3,9 @@ import { cva } from 'class-variance-authority';
 import { cn } from '@repo/commons/cn';
 import { montserrat } from '@/public/fonts';
 import { Icon } from '@repo/ui/components';
+import { BlockContainer } from './block-container';
 import type { StackMap } from '@/interface';
-import type { Stack } from '@repo/ui/interface';
+import type { IconStack } from '@repo/ui/interface';
 
 const stackBadgeVariants = cva('text-2xl font-bold', {
   variants: {
@@ -16,7 +17,7 @@ const stackBadgeVariants = cva('text-2xl font-bold', {
       Turborepo: 'text-[#FE778E]',
       JavaScript: 'text-[#F3DB86]',
       TypeScript: 'text-[#74A7FF]',
-      'Styled Components': 'text-[#FFC0AD]',
+      StyledComponents: 'text-[#FFC0AD]',
       SCSS: 'text-[#CFFFEE]',
       TailwindCSS: 'text-[#C770FD]',
       Figma: 'text-[#FFAED5]',
@@ -76,8 +77,9 @@ export const StackBlock = ({ text }: { text: StackMap }) => {
   };
 
   return (
-    <div
-      className="grid grid-cols-[max-content_1fr] items-center gap-x-3 gap-y-1 w-full h-fit p-3 relative rounded-xl border-white border border-opacity-20 whitespace-nowrap bg-white bg-opacity-10"
+    <BlockContainer
+      className="grid grid-cols-[max-content_1fr] items-center gap-x-3 gap-y-1 w-full relative whitespace-nowrap"
+      variants={{ height: 'fit', padding: 'md' }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => {
         setIsVisiable(true);
@@ -88,7 +90,7 @@ export const StackBlock = ({ text }: { text: StackMap }) => {
     >
       <div className="grid place-content-center w-14 h-14 rounded-full overflow-hidden row-span-2 bg-black bg-opacity-60 border border-white border-opacity-40">
         <Icon
-          name={text.name as Stack}
+          name={text.name as IconStack}
           width={28}
           height={28}
           alt={text.name}
@@ -117,6 +119,6 @@ export const StackBlock = ({ text }: { text: StackMap }) => {
           {text.desc}
         </div>
       ) : null}
-    </div>
+    </BlockContainer>
   );
 };

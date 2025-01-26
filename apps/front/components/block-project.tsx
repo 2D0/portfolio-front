@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { cn } from '@repo/commons/cn';
 import { montserrat } from '@/public/fonts';
 import { StackBadge } from './stack-badge';
-import type { ProjectMap } from '@/interface';
+import { BlockContainer } from './block-container';
 import { ImageBox } from '@repo/ui/components';
+import type { ProjectMap } from '@/interface';
 
 interface BlockProjectProps {
   text: ProjectMap;
@@ -11,7 +12,12 @@ interface BlockProjectProps {
 
 export const BlockProject = ({ text }: BlockProjectProps) => {
   return (
-    <div className="grid grid-rows-[max-content_max-content_max-content_max-content_auto_max-content_max-content] gap-4 h-full p-4 rounded-xl border border-white border-opacity-20 bg-black bg-opacity-60">
+    <BlockContainer
+      variants={{
+        variant: 'black',
+      }}
+      className="grid grid-rows-[max-content_max-content_max-content_max-content_auto_max-content_max-content] gap-4"
+    >
       <ImageBox
         imagePorps={{
           src: text.imageUrl,
@@ -66,6 +72,6 @@ export const BlockProject = ({ text }: BlockProjectProps) => {
           Go Detail
         </Link>
       </div>
-    </div>
+    </BlockContainer>
   );
 };

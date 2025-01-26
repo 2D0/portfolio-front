@@ -20,7 +20,7 @@ export type IconStack =
   | 'GitHub'
   | 'Jira';
 
-export type Stack = Stack | 'PHP' | 'Nuxt.js' | 'Cafe24Module';
+export type Stack = IconStack | 'PHP' | 'Nuxt.js' | 'Cafe24Module';
 export type IconNames = 'Youtube' | 'Notion' | 'Moon' | 'Global' | IconStack;
 
 export type IconSizeOptions =

@@ -55,7 +55,6 @@ const containerVariants = cva('w-full border', {
 });
 
 export const BlockContainer = ({
-  children,
   className,
   variants,
   ...props
