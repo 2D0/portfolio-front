@@ -13,7 +13,7 @@ const TypeVariants = cva('block w-5 h-5 border border-gray', {
         "grid place-content-center rounded-full before:content-[''] before:w-2.5 before:h-2.5 before:rounded-full before:bg-gray-300",
     },
     checked: {
-      true: 'before:bg-white after:bg-white bg-blue-500',
+      true: 'before:bg-white after:bg-white bg-purple-500',
       false: '',
     },
     defaultVariants: {
@@ -25,8 +25,8 @@ const TypeVariants = cva('block w-5 h-5 border border-gray', {
 const LabelVariants = cva('border-2', {
   variants: {
     variant: {
-      default: 'border-blue-400 hover:bg-blue-300',
-      primary: 'border-purple-500 hover:bg-purple-400',
+      default: 'border-purple-500 hover:bg-purple-400',
+      primary: 'border-blue-400 hover:bg-blue-300',
       destructive: 'border-red-500 hover:bg-red-400',
       disabled: 'border-gray-400 hover:bg-gray-300',
     },
@@ -59,12 +59,12 @@ const LabelVariants = cva('border-2', {
     {
       checked: true,
       variant: 'default',
-      className: 'bg-blue-500',
+      className: 'bg-purple-500',
     },
     {
       checked: true,
       variant: 'primary',
-      className: 'bg-purple-500',
+      className: 'bg-blue-500',
     },
     {
       checked: true,

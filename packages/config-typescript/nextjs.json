@@ -8,11 +8,11 @@
     "declarationMap": false,
     "incremental": true,
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["es2019", "dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "resolveJsonModule": true,
     "strict": true,
-    "target": "es5"
+    "target": "es2019"
   },
   "include": ["src", "next-env.d.ts"],
   "exclude": ["node_modules"]

@@ -20,7 +20,7 @@ export type IconStack =
   | 'GitHub'
   | 'Jira';
 
-export type Stack = IconStack | 'PHP' | 'Nuxt.js' | 'Cafe24Module';
+export type Stack = IconStack | 'PHP' | 'Nuxt.js' | 'Cafe24Module' | 'Vercel';
 export type IconNames = 'Youtube' | 'Notion' | 'Moon' | 'Global' | IconStack;
 
 export type IconSizeOptions =
@@ -57,3 +57,43 @@ export type TypeProps = InputProps & {
   labelProps?: never;
 };
 export type InputBoxPorps = TypeProps | LabelProps;
+
+export interface ParagraphContent {
+  type: 'text';
+  text: string;
+  marks?: Array<{
+    type: string;
+    attrs?: { color?: string };
+  }>;
+}
+
+export interface ImageContent {
+  type: 'image';
+  attrs: {
+    src: string;
+    alt?: string;
+    title?: string;
+  };
+}
+
+export interface ParagraphType {
+  type: 'paragraph';
+  content: Array<ParagraphContent>;
+}
+
+export interface ImageType {
+  type: 'image';
+  attrs: {
+    src: string;
+    alt?: string;
+    title?: string;
+  };
+}
+
+export type PostContentType = ParagraphType | ImageType;
+
+export interface PostType {
+  id?: number;
+  type: string;
+  content: Array<PostContentType>;
+}

@@ -24,7 +24,7 @@ const containerVariants = cva('w-full border', {
   variants: {
     variant: {
       default: 'bg-white bg-opacity-20',
-      black: 'bg-black bg-opacity-60',
+      black: 'bg-black bg-opacity-80',
     },
     border: {
       default: 'border-white border-opacity-20',

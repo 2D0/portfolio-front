@@ -6,19 +6,20 @@ import { BackgroundStars } from '@components/background-stars';
 import { cantique } from '@/public/fonts';
 import { BlockProject } from './block-project';
 import { LetterWave } from './letter-wave';
+import type { Stack } from '@repo/ui/interface';
 import type { ProjectMap } from '@/interface';
+import { SelectBox } from '@repo/ui/components';
 
 interface SectionProjectProps extends HTMLAttributes<HTMLDivElement> {
   textMap: ProjectMap[];
 }
+type SetText = Stack | 'All Stacks';
 
 const letters = 'PROJECT'.split('');
 
 export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
-  const [stack, setStack] = useState<ProjectMap['stack'] | string>(
-    'All Stacks',
-  );
-  const [slected, setSelected] = useState<boolean>(false);
+  const [stack, setStack] = useState<Stack | 'All Stacks'>('All Stacks');
+  const [selected, setSelected] = useState<boolean>(false);
   const titleRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: titleRef,
@@ -34,9 +35,10 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
       ? textMap
       : textMap.filter(text => text.stack.includes(stack));
 
-  const setText = Array.from(
-    new Set<string>(textMap.map(text => text.stack).flat()),
-  );
+  const setText: SetText[] = [
+    'All Stacks',
+    ...Array.from(new Set<Stack>(textMap.map(text => text.stack).flat())),
+  ];
 
   return (
     <section
@@ -68,35 +70,13 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <button
-              type="button"
-              className="flex justify-between items-center w-40 h-8 px-2 rounded-md !bg-white !bg-opacity-20 border border-white border-opacity-20"
-              onClick={() => setSelected(!slected)}
-            >
-              {stack}
-              <i className="block w-2.5 h-[1.5px] relative before:block before:content-[''] before:w-full before:h-full before:absolute before:left-[3px] before:rounded-full before:rotate-[-45deg] before:bg-[#EBEBEB] after:block after:content-[''] after:w-full after:h-full after:absolute after:right-[3px] after:rounded-full after:rotate-[45deg] after:bg-[#EBEBEB]" />
-            </button>
-            <ul
-              className={cn(
-                slected ? 'h-60 mt-1' : 'h-0',
-                'flex flex-col gap-1 w-40 overflow-y-auto absolute z-10 rounded-md transition-All Stacks duration-200 bg-black bg-opacity-80',
-              )}
-            >
-              {['All Stacks', ...setText].map(stackName => (
-                <li key={String(stackName)} value={stackName}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setStack(stackName);
-                      setSelected(false);
-                    }}
-                    className="w-full h-7 px-2 text-left hover:bg-blue-200 hover:text-black"
-                  >
-                    {stackName}
-                  </button>
-                </li>
-              ))}
-            </ul>
+            <SelectBox<Stack | 'All Stacks'>
+              textMap={setText}
+              name={stack}
+              setName={setStack}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </motion.div>
           <ul className="grid grid-cols-3 gap-4">
             {filterText.map((text, index) => (

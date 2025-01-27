@@ -6,6 +6,6 @@ module.exports = {
     appDir: true,
   },
   images: {
-    domains: ['img.notionusercontent.com'],
+    domains: ['img.notionusercontent.com', 'github.com'],
   },
 };

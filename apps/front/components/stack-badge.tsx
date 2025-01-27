@@ -12,6 +12,7 @@ const stackBadgeVariants = cva(
         Vue: 'bg-[#D0F386]',
         Supabase: 'bg-[#7BD78A]',
         Turborepo: 'bg-[#FE778E]',
+        Vercel: 'bg-[#E9FFCF]',
         JavaScript: 'bg-[#F3DB86]',
         TypeScript: 'bg-[#74A7FF]',
         StyledComponents: 'bg-[#FFC0AD]',

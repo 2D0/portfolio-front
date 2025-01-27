@@ -1,4 +1,4 @@
-import type { Stack, IconStack } from '@repo/ui/interface';
+import type { Stack, IconStack, PostType } from '@repo/ui/interface';
 
 type Scope = '프론트 개발' | '백엔드 개발' | '퍼블리싱' | 'UI/UX 디자인';
 type ProjectScope = Exclude<Scope, '퍼블리싱'> | '기획 및 총괄' | '백엔드 개발';
@@ -10,7 +10,7 @@ export interface CareerMap {
   scope: Scope[];
   startDate: string;
   endDate: string;
-  stack: IconStack[];
+  stack: Stack[];
   work: string[];
 }
 
@@ -29,16 +29,31 @@ export interface ProjectMap {
   endDate: string;
   period: string;
   desc: string;
-  stack: IconStack[];
+  stack: Stack[];
   imageUrl: string;
   imageName: string;
   scope: ProjectScope[];
 }
 
-export type CodeName = 'input' | 'test';
+export type CodeName =
+  | 'Component'
+  | 'Next.js14'
+  | 'Atomic System'
+  | 'Custom Hook1'
+  | 'Custom Hook2';
 interface CodeType {
   name: string;
   code: string;
 }
+interface CodeList {
+  codeMap: CodeType[];
+  stack: Stack[];
+  view?: boolean;
+}
 
-export type CodeListType = Record<CodeName, CodeType[]>;
+export type CodeListType = Record<CodeName, CodeList>;
+
+export interface PostFetchReturnType {
+  posts: PostType[];
+  total: number;
+}

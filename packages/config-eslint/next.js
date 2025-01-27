@@ -53,5 +53,6 @@ module.exports = {
     camelcase: 'off',
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-confusing-void-expression': 'off',
+    '@typescript-eslint/array-type': 'off',
   },
 };

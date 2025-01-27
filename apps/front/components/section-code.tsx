@@ -3,27 +3,55 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { cva } from 'class-variance-authority';
 import { cn } from '@repo/commons/cn';
-import { BackgroundStars } from '@components/background-stars';
-import { cantique, montserrat } from '@/public/fonts';
-import { LetterWave } from './letter-wave';
-import type { CodeListType, CodeName } from '@/interface';
 import {
   CodeEditor,
   RadioGroup,
   InputTab,
   CheckboxGroup,
   Icon,
+  SelectBox,
 } from '@repo/ui/components';
+import { BackgroundStars } from '@components/background-stars';
+import { cantique, montserrat } from '@/public/fonts';
+import { LetterWave } from './letter-wave';
 import { BlockContainer } from './block-container';
+import {
+  useTimer,
+  useDate,
+  type FormatTimeReturnType,
+  type DateReturnType,
+  type TimerProps,
+  type TimerReturnType,
+  useFormatTime,
+} from '@repo/commons/hooks';
+import type { CodeListType, CodeName } from '@/interface';
+import { ViewComponent, ViewInfinitScroll, ViewTimer } from './block-code-view';
 
 interface SectionCodekProps extends HTMLAttributes<HTMLDivElement> {
   textMap: CodeListType;
 }
 
 const letters = 'CODE LOGIC'.split('');
+const codeNameList = [
+  'Component',
+  'Next.js14',
+  'Atomic System',
+  'Custom Hook1',
+  'Custom Hook2',
+];
 
 export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
-  const [codeName, setCodeName] = useState<CodeName>('input');
+  const [codeName, setCodeName] = useState<CodeName>('Component');
+  const [selected, setSelected] = useState<boolean>(false);
+  const [switchTimerMode, setSwitchTimerMode] =
+    useState<TimerProps['timerMode']>('STOPWATCH');
+  const { hours }: DateReturnType = useDate();
+  const [itemData, setItemData] = useState<number>(hours);
+  const { eighteenHours }: FormatTimeReturnType = useFormatTime(itemData);
+  const { time, timerHandler }: TimerReturnType = useTimer({
+    timerMode: switchTimerMode,
+    timeValue: eighteenHours,
+  });
 
   const titleRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -72,15 +100,28 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
             />
           ))}
         </motion.h2>
-        <article
-          ref={ref}
-          className="grid grid-rows-[max-content_1fr] gap-8 w-full"
-        >
-          <div className="grid grid-cols-2 gap-2 w-full">
-            {textMap[codeName].map(text => (
+        <div className="flex flex-col gap-5">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <SelectBox<CodeName>
+              textMap={codeNameList}
+              name={codeName}
+              setName={setCodeName}
+              selected={selected}
+              setSelected={setSelected}
+              height="h-40"
+            />
+          </motion.div>
+          <article
+            ref={ref}
+            className="grid grid-rows-[max-content_1fr] gap-4 w-full"
+          >
+            <div>
               <BlockContainer
-                key={text.name}
-                variants={{ variant: 'black' }}
+                variants={{ height: 'fit', variant: 'black' }}
                 className="flex flex-col gap-2 pt-2"
               >
                 <h4
@@ -89,89 +130,80 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
                     'leading-none text-center text-lg text-blue-200',
                   )}
                 >
-                  {text.name}
+                  Code Stack
                 </h4>
-                <CodeEditor value={text.code} />
+                <BlockContainer
+                  variants={{
+                    height: 'fit',
+                    border: 'none',
+                    padding: 'sm',
+                    rounded: 'md',
+                  }}
+                  className="flex justify-center space-x-8 max-h-96 overflow-y-auto"
+                >
+                  {textMap[codeName].stack.map(stack => (
+                    <span
+                      key={stack}
+                      className={cn(
+                        montserrat.className,
+                        'leading-none text-md',
+                      )}
+                    >
+                      {stack}
+                    </span>
+                  ))}
+                </BlockContainer>
               </BlockContainer>
-            ))}
-          </div>
-          <div>
-            <BlockContainer
-              className="flex justify-center space-x-8 max-h-96 overflow-y-auto"
-              variants={{ height: 'fit' }}
-            >
-              <div className="flex flex-col space-y-4">
-                <CheckboxGroup
-                  name="기본체크박스"
-                  className="flex gap-2"
-                  allSelect={{
-                    position: 'top',
-                    children: (
-                      <>
-                        <Icon name="Global" size="md" alt="인풋" />
-                        기본 체크박스 전체선택
-                      </>
-                    ),
+            </div>
+            {textMap[codeName].view ? (
+              <BlockContainer
+                variants={{ height: 'fit', variant: 'black' }}
+                className="flex flex-col gap-2 pt-2"
+              >
+                <h4
+                  className={cn(
+                    montserrat.className,
+                    'leading-none text-center text-lg text-blue-200',
+                  )}
+                >
+                  View Run Code
+                </h4>
+                <BlockContainer
+                  variants={{
+                    height: 'fit',
+                    border: 'none',
+                    padding: 'sm',
+                    rounded: 'md',
                   }}
+                  className="flex justify-center space-x-8 max-h-96 overflow-y-auto"
                 >
-                  <InputTab value="사과" checked>
-                    사과
-                  </InputTab>
-                  <InputTab value="배">배</InputTab>
-                  <InputTab value="바나나" checked>
-                    바나나
-                  </InputTab>
-                </CheckboxGroup>
-                <CheckboxGroup
-                  name="버튼체크박스"
-                  className="flex gap-2"
-                  allSelect={{
-                    position: 'top',
-                    children: (
-                      <>
-                        <Icon name="Global" size="md" alt="인풋" />
-                        버튼 체크박스 전체선택
-                      </>
-                    ),
-                    labelProps: {},
-                  }}
-                  labelProps
+                  {codeName === 'Component' ? <ViewComponent /> : null}
+                  {codeName === 'Custom Hook1' ? <ViewTimer /> : null}
+                  {codeName === 'Custom Hook2' ? <ViewInfinitScroll /> : null}
+                </BlockContainer>
+              </BlockContainer>
+            ) : null}
+            <div className="grid grid-cols-2 gap-4 w-full">
+              {textMap[codeName].codeMap.map(text => (
+                <BlockContainer
+                  key={`${codeName}-${text.name}`}
+                  variants={{ variant: 'black' }}
+                  className="flex flex-col gap-2 pt-2"
                 >
-                  <InputTab value="사과">사과</InputTab>
-                  <InputTab value="배" checked>
-                    배
-                  </InputTab>
-                  <InputTab value="바나나">바나나</InputTab>
-                </CheckboxGroup>
-              </div>
-              <div className="flex flex-col space-y-4">
-                <RadioGroup
-                  name="기본라디오"
-                  selectvalue="전체"
-                  className="flex gap-2"
-                >
-                  <InputTab value="전체">전체</InputTab>
-                  <InputTab value="하트">❤️ 하트</InputTab>
-                  <InputTab value="병아리">🐥 병아리</InputTab>
-                  <InputTab value="별">⭐️ 별</InputTab>
-                </RadioGroup>
-                <RadioGroup
-                  name="버튼라디오"
-                  selectvalue="전체"
-                  className="flex gap-2"
-                  labelProps={{
-                    variant: 'disabled',
-                  }}
-                >
-                  <InputTab value="전체">전체</InputTab>
-                  <InputTab value="하트">❤️ 하트</InputTab>
-                  <InputTab value="병아리">🐥 병아리</InputTab>
-                  <InputTab value="별">⭐️ 별</InputTab>
-                </RadioGroup>
-              </div>
-            </BlockContainer>
-          </div>
-        </article>
+                  <h4
+                    className={cn(
+                      montserrat.className,
+                      'leading-none text-center text-lg text-blue-200',
+                    )}
+                  >
+                    {text.name}
+                  </h4>
+                  <CodeEditor value={text.code} height="400px" />
+                </BlockContainer>
+              ))}
+            </div>
+          </article>
+        </div>
       </div>
       <BackgroundStars className="absolute -z-10 w-screen h-full" />
     </section>
