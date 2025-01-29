@@ -26,9 +26,6 @@ importers:
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
-      '@tanstack/react-query':
-        specifier: ^5.64.2
-        version: 5.64.2(react@18.2.0)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -133,21 +130,12 @@ importers:
 
   packages/commons:
     dependencies:
-      '@tanstack/react-query':
-        specifier: ^5.64.2
-        version: 5.64.2(react@18.2.0)
-      '@tanstack/react-virtual':
-        specifier: ^3.11.2
-        version: 3.11.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
       react:
         specifier: ^18.2.0
         version: 18.2.0
-      react-intersection-observer:
-        specifier: ^9.15.1
-        version: 9.15.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.6.0
@@ -205,9 +193,6 @@ importers:
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
-      esbuild-wasm:
-        specifier: ^0.24.2
-        version: 0.24.2
       next:
         specifier: ^14.2.23
         version: 14.2.23(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -553,23 +538,6 @@ packages:
 
   '@swc/helpers@0.5.5':
     resolution: {integrity: sha512-KGYxvIOXcceOAbEk4bi/dVLEK9z8sZ0uBB3Il5b1rhfClSpcX0yfRO0KmTkqR2cnQDymwLB+25ZyMzICg/cm/A==}
-
-  '@tanstack/query-core@5.64.2':
-    resolution: {integrity: sha512-hdO8SZpWXoADNTWXV9We8CwTkXU88OVWRBcsiFrk7xJQnhm6WRlweDzMD+uH+GnuieTBVSML6xFa17C2cNV8+g==}
-
-  '@tanstack/react-query@5.64.2':
-    resolution: {integrity: sha512-3pakNscZNm8KJkxmovvtZ4RaXLyiYYobwleTMvpIGUoKRa8j8VlrQKNl5W8VUEfVfZKkikvXVddLuWMbcSCA1Q==}
-    peerDependencies:
-      react: ^18 || ^19
-
-  '@tanstack/react-virtual@3.11.2':
-    resolution: {integrity: sha512-OuFzMXPF4+xZgx8UzJha0AieuMihhhaWG0tCqpp6tDzlFwOmNBPYMuLOtMJ1Tr4pXLHmgjcWhG6RlknY2oNTdQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-
-  '@tanstack/virtual-core@3.11.2':
-    resolution: {integrity: sha512-vTtpNt7mKCiZ1pwU9hfKPhpdVO2sVzFQsxoVBGtOSHxlrRRzYr8iQ2TlwbAcRYCcEiZ9ECAM8kBzH0v2+VzfKw==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -1085,11 +1053,6 @@ packages:
   es-to-primitive@1.2.1:
     resolution: {integrity: sha512-QCOllgZJtaUo9miYBcLChTUaHNjJF3PYs1VidD7AwiEj1kYxKeQTctLAezAOH5ZKRH0g2IgPn6KwB4IT8iRpvA==}
     engines: {node: '>= 0.4'}
-
-  esbuild-wasm@0.24.2:
-    resolution: {integrity: sha512-03/7Z1gD+ohDnScFztvI4XddTAbKVmMEzCvvkBpQdWKEXJ+73dTyeNrmdxP1Q0zpDMFjzUJwtK4rLjqwiHbzkw==}
-    engines: {node: '>=18'}
-    hasBin: true
 
   escalade@3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
@@ -2964,21 +2927,6 @@ snapshots:
       '@swc/counter': 0.1.3
       tslib: 2.6.3
 
-  '@tanstack/query-core@5.64.2': {}
-
-  '@tanstack/react-query@5.64.2(react@18.2.0)':
-    dependencies:
-      '@tanstack/query-core': 5.64.2
-      react: 18.2.0
-
-  '@tanstack/react-virtual@3.11.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@tanstack/virtual-core': 3.11.2
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-
-  '@tanstack/virtual-core@3.11.2': {}
-
   '@types/json-schema@7.0.15': {}
 
   '@types/json5@0.0.29': {}
@@ -3607,8 +3555,6 @@ snapshots:
       is-callable: 1.2.7
       is-date-object: 1.0.5
       is-symbol: 1.0.4
-
-  esbuild-wasm@0.24.2: {}
 
   escalade@3.1.1: {}
 

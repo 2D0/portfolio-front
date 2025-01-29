@@ -30,7 +30,7 @@ export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
       {...props}
       className="grid place-items-center gap-20 w-full min-h-screen h-fit pb-10 relative"
     >
-      <div className="h-72" />
+      <div className="h-24" />
       <motion.h2
         ref={titleRef}
         className={cn(cantique.className, 'text-6xl')}
@@ -47,18 +47,29 @@ export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
           />
         ))}
       </motion.h2>
-      <ul ref={ref} className="grid grid-cols-2 gap-4">
-        {textMap.map((text, index) => (
-          <motion.li
-            key={text.name}
-            initial={{ opacity: 0, y: -50 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-            transition={{ duration: 0.5, delay: 0.2 * index }}
-          >
-            <CareerBlock text={text} />
-          </motion.li>
-        ))}
-      </ul>
+      <article className="flex flex-col gap-2">
+        <motion.p
+          className="text-right"
+          initial={{ opacity: 0, x: 50 }}
+          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          블록을 클릭해 보세요.
+        </motion.p>
+        <ul ref={ref} className="grid grid-cols-2 gap-4">
+          {textMap.map((text, index) => (
+            <motion.li
+              key={text.name}
+              initial={{ opacity: 0, y: -50 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
+              transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
+            >
+              <CareerBlock text={text} />
+            </motion.li>
+          ))}
+        </ul>
+      </article>
+      <div className="h-48" />
       <BackgroundStars className="absolute -z-10 w-screen h-full" />
     </section>
   );

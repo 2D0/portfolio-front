@@ -46,9 +46,15 @@ export const BlockProject = ({ text }: BlockProjectProps) => {
           <StackBadge key={scope} variant={scope} size="sm" />
         ))}
       </ul>
-      <div className="bg-[#363636] p-2 rounded-md">
+      <BlockContainer
+        variants={{
+          padding: 'sm',
+          rounded: 'md',
+          border: 'none',
+        }}
+      >
         <p>{text.desc}</p>
-      </div>
+      </BlockContainer>
       <div className="flex gap-1 flex-wrap">
         {text.stack.map(stack => (
           <StackBadge key={stack} variant={stack} size="sm" />

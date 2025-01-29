@@ -1,12 +1,6 @@
 import { useState } from 'react';
-import {
-  RadioGroup,
-  InputTab,
-  CheckboxGroup,
-  Icon,
-  InfinityScrollContainer,
-  PostBox,
-} from '@repo/ui/components';
+import { RadioGroup, InputTab, CheckboxGroup, Icon } from '@repo/ui/components';
+import { cn } from '@repo/commons/cn';
 import {
   useTimer,
   useDate,
@@ -16,7 +10,8 @@ import {
   type TimerReturnType,
   useFormatTime,
 } from '@repo/commons/hooks';
-import type { PostType } from '@repo/ui/interface';
+import { IconChangeProvider, useIconChange } from '@/contexts/icon.context';
+import type { IconNames } from '@repo/ui/interface';
 
 export const ViewComponent = () => {
   return (
@@ -123,34 +118,49 @@ export const ViewTimer = () => {
   );
 };
 
-const fetchData = async (
-  pageParam: number,
-  limit: number,
-): Promise<{ rows: Array<PostType>; hasMore: boolean }> => {
-  try {
-    const res = await fetch(`/api/posts?page=${pageParam}&limit=${limit}`);
-    if (!res.ok) throw new Error(`Failed to fetch posts: ${res.status}`);
-    const { posts, hasMore } = (await res.json()) as {
-      posts: Array<PostType>;
-      hasMore: boolean;
-    };
-
-    return { rows: posts, hasMore: hasMore };
-  } catch (error) {
-    return { rows: [], hasMore: false };
-  }
+export const ViewContext = () => {
+  return (
+    <div className="grid place-items-center gap-4">
+      <IconChangeProvider>
+        <DisplayData />
+      </IconChangeProvider>
+    </div>
+  );
 };
 
-export const ViewInfinitScroll = () => {
+const IconMap: Array<IconNames> = ['React', 'Vue', 'TypeScript', 'JavaScript'];
+const DisplayData = () => {
+  const { icon } = useIconChange();
+
   return (
-    <InfinityScrollContainer<PostType>
-      limit={2}
-      fetchData={fetchData}
-      queryKey={'posts'}
-      className="w-full max-w-[600px] h-[600px] p-4 rounded-2xl bg-back-section"
-      maxPages={10}
-    >
-      {(item, ref) => <PostBox ref={ref} postContent={item} />}
-    </InfinityScrollContainer>
+    <>
+      <div className="w-20 h-20 grid place-items-center bg-white bg-opacity-20 border border-white border-opacity-20 rounded-md">
+        <Icon name={icon} size="xl" alt="인풋" />
+      </div>
+      <IconButtons iconMap={IconMap} />
+    </>
+  );
+};
+
+export const IconButtons = ({ iconMap }: { iconMap: Array<IconNames> }) => {
+  const { icon, setIcon } = useIconChange();
+
+  return (
+    <ul className="flex gap-2">
+      {iconMap.map(iconName => (
+        <li key={iconName}>
+          <button
+            type="button"
+            onClick={() => setIcon(iconName)}
+            className={cn(
+              'px-2 py-1 text-black rounded-md',
+              icon === iconName ? '!bg-blue-300' : '!bg-gray-200',
+            )}
+          >
+            {iconName}
+          </button>
+        </li>
+      ))}
+    </ul>
   );
 };

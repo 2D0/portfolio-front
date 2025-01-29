@@ -88,7 +88,7 @@ export const StackBlock = ({ text }: { text: StackMap }) => {
         setIsVisiable(false);
       }}
     >
-      <div className="grid place-content-center w-14 h-14 rounded-full overflow-hidden row-span-2 bg-black bg-opacity-60 border border-white border-opacity-40">
+      <div className="grid place-content-center w-14 h-14 rounded-full overflow-hidden row-span-2 bg-black !bg-opacity-60 border border-white border-opacity-40">
         <Icon
           name={text.name as IconStack}
           width={28}

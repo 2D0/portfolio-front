@@ -600,7 +600,7 @@ export const FormSnsLogin = ({
     ],
     stack: ['React', 'TypeScript', 'StyledComponents'],
   },
-  'Custom Hook1': {
+  'Custom Hook': {
     codeMap: [
       {
         name: 'page.tsx',
@@ -797,157 +797,166 @@ export const useFormatTime = (time: number): FormatTimeReturnType => {
     stack: ['Next.js14', 'TypeScript', 'Turborepo'],
     view: true,
   },
-  'Custom Hook2': {
+  Context: {
     codeMap: [
       {
-        name: 'useDebounce.tsx',
-        code: `"use client";
-import { useCallback, useRef } from "react";
+        name: 'icon.context.tsx',
+        code: `'use client';
+import { createContext, useContext, useState } from 'react';
+import type { IconNames } from '@repo/ui/interface';
 
-export const useDebounce = <T extends (...args: unknown[]) => void>(
-  callback: T,
-  delay: number,
-): ((...args: Parameters<T>) => void) => {
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+interface IconChangeContextType {
+  icon: IconNames;
+  setIcon: React.Dispatch<React.SetStateAction<IconNames>>;
+}
 
-  return useCallback(
-    (...args: Parameters<T>) => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+const IconChangeContext = createContext<IconChangeContextType | null>(null);
 
-      timeoutRef.current = setTimeout(() => {
-        callback(...args);
-      }, delay);
-    },
-    [callback, delay],
+export const IconChangeProvider = ({
+  children,
+}: Readonly<{ children: React.ReactNode }>) => {
+  const [icon, setIcon] = useState<IconChangeContextType['icon']>('React');
+
+  return (
+    <IconChangeContext.Provider value={{ icon, setIcon }}>
+      {children}
+    </IconChangeContext.Provider>
   );
+};
+
+export const useIconChange = () => {
+  const constext = useContext(IconChangeContext);
+
+  if (!constext)
+    throw new Error('useIconChange must be used within a IconChangeProvider');
+
+  return constext;
 };
 `,
       },
       {
-        name: 'useInfiniteScroll.tsx',
-        code: `"use client";
-import { useCallback, useEffect, useRef } from "react";
-import { useInfiniteQuery, type QueryKey } from "@tanstack/react-query";
-import { useInView } from "react-intersection-observer";
-import {
-  useVirtualizer,
-  type VirtualizerOptions,
-} from "@tanstack/react-virtual";
-import { useDebounce } from "@hooks/useDebounce";
+        name: 'page.tsx',
+        code: `'use client';
+import { IconChangeProvider, useIconChange } from '@/contexts/icon.context';
+import { Icon } from '@repo/ui/components';
+import { IconButtons } from '@components/block-code-view';
+import type { IconNames } from '@repo/ui/interface';
 
-interface InfiniteScrollOptions<T>
-  extends Pick<
-    VirtualizerOptions<HTMLDivElement, HTMLDivElement>,
-    "overscan" | "gap"
-  > {
-  queryKey: QueryKey;
-  fetchData: (
-    pageParam: number,
-    limit: number,
-  ) => Promise<{ rows: Array<T>; hasMore: boolean }>;
-  limit: number;
-  maxPages?: number;
-  debounceDelay?: number;
-  refSize?: number;
-  dynamicHeight?: boolean;
+export default function Page(): JSX.Element {
+  return (
+    <main>
+      <div className="grid place-items-center gap-4">
+        <IconChangeProvider>
+          <DisplayData />
+        </IconChangeProvider>
+      </div>
+    </main>
+  );
 }
 
-export const useInfiniteScroll = <T,>({
-  queryKey,
-  fetchData,
-  limit,
-  overscan,
-  gap,
-  debounceDelay = 500,
-  maxPages,
-  refSize = 800,
-  dynamicHeight = false,
-}: InfiniteScrollOptions<T>) => {
-  const sizeRef = useRef<number>(refSize);
-  const parentRef = useRef<HTMLDivElement | null>(null);
+const IconMap: Array<IconNames> = ['React', 'Vue', 'TypeScript', 'JavaScript'];
+const DisplayData = () => {
+  const { icon } = useIconChange();
 
-  const { ref: bottomRef, inView: inViewBottom } = useInView({
-    threshold: 1,
-  });
-
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    hasPreviousPage,
-    isFetchingNextPage,
-    isFetchingPreviousPage,
-  } = useInfiniteQuery({
-    queryKey: queryKey,
-    queryFn: async ({ pageParam = 1 }) => fetchData(pageParam, limit ?? 10),
-    getNextPageParam: (lastPage, allPages) =>
-      (!maxPages || allPages.length < maxPages) && lastPage.hasMore
-        ? allPages.length + 1
-        : undefined,
-    initialPageParam: 1,
-  });
-  const items = data ? data.pages.flatMap((page) => page.rows) : [];
-
-  const virtualizer = useVirtualizer({
-    count: items.length + (hasNextPage ? 1 : 0),
-    getScrollElement: () => parentRef.current,
-    estimateSize: () => sizeRef.current,
-    overscan,
-    gap,
-  });
-
-  const measureElement = useCallback(
-    (element: HTMLElement | null, index: number) => {
-      if (element) {
-        const height = element.getBoundingClientRect().height;
-        const virtualItems = virtualizer.getVirtualItems();
-        const virtualItem = virtualItems.find((item) => item.index === index);
-
-        if (dynamicHeight && virtualItem && virtualItem.size !== height) {
-          Promise.resolve().then(() => {
-            element.setAttribute("data-index", index.toString());
-            virtualizer.measureElement(element);
-          });
-        } else if (sizeRef.current === refSize) {
-          sizeRef.current = height;
-          virtualizer.measure();
-        }
-      }
-    },
-    [dynamicHeight, virtualizer],
+  return (
+    <>
+      <div className="w-20 h-20 grid place-items-center bg-white bg-opacity-20 border border-white border-opacity-20 rounded-md">
+        <Icon name={icon} size="xl" alt={icon} />
+      </div>
+      <IconButtons iconMap={IconMap} />
+    </>
   );
+};`,
+      },
+      {
+        name: 'IconButtons.tsx',
+        code: `'use client';
+import { useIconChange } from '@/contexts/icon.context';
+import { cn } from '@repo/commons/cn';
+import type { IconNames } from '@repo/ui/interface';
 
-  const debouncedFetchData = useDebounce(
-    useCallback(() => {
-      if (inViewBottom && hasNextPage && !isFetchingNextPage) {
-        fetchNextPage();
-      }
-    }, [inViewBottom, hasNextPage, isFetchingNextPage, fetchNextPage]),
-    debounceDelay,
+export const IconButtons = ({ iconMap }: { iconMap: Array<IconNames> }) => {
+  const { icon, setIcon } = useIconChange();
+
+  return (
+    <ul className="flex gap-2">
+      {iconMap.map(iconName => (
+        <li key={iconName}>
+          <button
+            type="button"
+            onClick={() => setIcon(iconName)}
+            className={cn(
+              'px-2 py-1 text-black rounded-md',
+              icon === iconName ? '!bg-blue-300' : '!bg-gray-200',
+            )}
+          >
+            {iconName}
+          </button>
+        </li>
+      ))}
+    </ul>
   );
+};`,
+      },
+      {
+        name: 'Icon.tsx',
+        code: `import Image from 'next/image';
+import type { IconProps } from '@repo/ui/interface';
 
-  useEffect(() => {
-    debouncedFetchData();
-  }, [debouncedFetchData, inViewBottom]);
-
-  return {
-    parentRef,
-    virtualizer,
-    items,
-    hasNextPage,
-    hasPreviousPage,
-    isFetchingNextPage,
-    isFetchingPreviousPage,
-    bottomRef,
-    measureElement,
-  };
+const IconSizeMap = {
+  sm: 12,
+  md: 16,
+  lg: 20,
+  xl: 40,
+  '2xl': 50,
 };
-`,
+
+export const Icon = (props: IconProps) => {
+  const { name, size, width, height, ...ohterProps } = props;
+  const iconSize = IconSizeMap[size ?? 'lg'];
+  const IconSourceMap: Record<IconProps['name'], string> = {
+    Global: require('./../images/icons/ico-global.svg'),
+    GitHub: require('./../images/icons/ico-github.svg'),
+    Notion: require('./../images/icons/ico-notion.svg'),
+    Youtube: require('./../images/icons/ico-youtube.svg'),
+    Moon: require('./../images/icons/ico-moon.svg'),
+    JavaScript: require('./../images/icons/stacks/JavaScript.svg'),
+    TypeScript: require('./../images/icons/stacks/TypeScript.svg'),
+    jQuery: require('./../images/icons/stacks/jQuery.svg'),
+    HTML: require('./../images/icons/stacks/HTML.svg'),
+    CSS: require('./../images/icons/stacks/CSS.svg'),
+    Figma: require('./../images/icons/stacks/Figma.svg'),
+    Jira: require('./../images/icons/stacks/Jira.svg'),
+    React: require('./../images/icons/stacks/React.svg'),
+    SCSS: require('./../images/icons/stacks/SCSS.svg'),
+    StyledComponents: require('./../images/icons/stacks/StyledComponents.png'),
+    Supabase: require('./../images/icons/stacks/Supabase.svg'),
+    TailwindCSS: require('./../images/icons/stacks/TailwindCSS.svg'),
+    Turborepo: require('./../images/icons/stacks/Turborepo.svg'),
+    Vue: require('./../images/icons/stacks/Vue.svg'),
+    'Next.js14': require('./../images/icons/stacks/Next.js14.svg'),
+  };
+
+  return (
+    <Image
+      src={IconSourceMap[name]}
+      {...(size
+        ? {
+            width: iconSize,
+            height: iconSize,
+          }
+        : { width, height })}
+      {...ohterProps}
+      style={{
+        width: size ? iconSize : width,
+        height: size ? iconSize : height,
+      }}
+    />
+  );
+};`,
       },
     ],
-    stack: ['Next.js14', 'TypeScript'],
+    stack: ['Next.js14', 'TypeScript', 'Context', 'TailwindCSS'],
     view: true,
   },
 } as CodeListType;

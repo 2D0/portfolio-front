@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import type { HTMLAttributes } from 'react';
 import { motion, useTransform, type MotionValue } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 

@@ -24,7 +24,7 @@ const containerVariants = cva('w-full border', {
   variants: {
     variant: {
       default: 'bg-white bg-opacity-20',
-      black: 'bg-black bg-opacity-80',
+      black: 'bg-black !bg-opacity-60',
     },
     border: {
       default: 'border-white border-opacity-20',
@@ -42,6 +42,7 @@ const containerVariants = cva('w-full border', {
     rounded: {
       default: 'rounded-xl',
       md: 'rounded-md',
+      lg: 'rounded-lg',
       none: 'rounded-none',
     },
   },

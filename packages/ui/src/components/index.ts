@@ -5,5 +5,3 @@ export * from './radio-group';
 export * from './checkbox-group';
 export * from './input-tab';
 export * from './select-box';
-export * from './infinity-scroll-container';
-export * from './post-box';

@@ -47,7 +47,7 @@ export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
 
   return (
     <section {...props} className="flex flex-col w-full h-fit relative">
-      <div className="h-72" />
+      <div className="h-24" />
       <div className="flex flex-col gap-20 min-h-screen pb-10">
         <motion.h2
           ref={titleRef}
@@ -65,51 +65,61 @@ export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
             />
           ))}
         </motion.h2>
-        <article
-          ref={ref}
-          className="grid grid-cols-[max-content_1fr] gap-8 w-full"
-        >
-          <div className="h-fit relative">
-            <span className={cn(stackTypeVariants({ variant: stackType }))} />
-            {Object.keys(textMap).map(text => (
-              <div key={text} className="border-l border-slate-500 pl-4">
-                <input
-                  type="radio"
-                  name="stack"
-                  id={text}
-                  checked={text === stackType}
-                  onChange={() => {
-                    setStackType(text as StackType);
-                  }}
-                  hidden
-                />
-                <label
-                  htmlFor={text}
-                  className={cn(
-                    montserrat.className,
-                    'flex items-center h-14 px-4 text-xl cursor-pointer transition-all duration-200',
-                    text === stackType ? 'text-blue-200' : 'text-slate-400',
-                  )}
+        <article ref={ref} className="flex flex-col gap-2">
+          <motion.p
+            className="text-right"
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            블록에 마우스를 올려보세요.
+          </motion.p>
+          <div className="grid grid-cols-[max-content_1fr] gap-8 w-full">
+            <div className="h-fit relative">
+              <span className={cn(stackTypeVariants({ variant: stackType }))} />
+              {Object.keys(textMap).map(text => (
+                <div key={text} className="border-l border-slate-500 pl-4">
+                  <input
+                    type="radio"
+                    name="stack"
+                    id={text}
+                    checked={text === stackType}
+                    onChange={() => {
+                      setStackType(text as StackType);
+                    }}
+                    hidden
+                  />
+                  <label
+                    htmlFor={text}
+                    className={cn(
+                      montserrat.className,
+                      'flex items-center h-14 px-4 text-xl cursor-pointer transition-all duration-200',
+                      text === stackType ? 'text-blue-200' : 'text-slate-400',
+                    )}
+                  >
+                    {text}
+                  </label>
+                </div>
+              ))}
+            </div>
+            <ul className="grid gap-4">
+              {textMap[stackType].map((text, index) => (
+                <motion.li
+                  key={`${text.name}-${index}`}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={
+                    inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }
+                  }
+                  transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
                 >
-                  {text}
-                </label>
-              </div>
-            ))}
+                  <StackBlock text={text} />
+                </motion.li>
+              ))}
+            </ul>
           </div>
-          <ul className="grid gap-4">
-            {textMap[stackType].map((text, index) => (
-              <motion.li
-                key={`${text.name}-${index}`}
-                initial={{ opacity: 0, x: 50 }}
-                animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-                transition={{ duration: 0.5, delay: 0.2 * index }}
-              >
-                <StackBlock text={text} />
-              </motion.li>
-            ))}
-          </ul>
         </article>
       </div>
+      <div className="h-48" />
       <BackgroundStars className="absolute -z-10 w-screen h-full" />
     </section>
   );

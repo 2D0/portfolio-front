@@ -41,13 +41,12 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
   ];
 
   return (
-    <section
-      ref={ref}
-      {...props}
-      className="flex flex-col w-full h-fit relative"
-    >
-      <div className="h-72" />
-      <div className="grid place-items-center gap-20 min-h-screen pb-10">
+    <section {...props} className="flex flex-col w-full h-fit relative">
+      <div className="h-24" />
+      <div
+        ref={ref}
+        className="grid place-items-center gap-20 min-h-screen pb-10"
+      >
         <motion.h2
           ref={titleRef}
           className={cn(cantique.className, 'text-6xl')}
@@ -84,7 +83,7 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
                 key={text.name}
                 initial={{ opacity: 0, y: -50 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-                transition={{ duration: 0.5, delay: 0.4 * index }}
+                transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
               >
                 <BlockProject text={text} />
               </motion.li>
@@ -92,6 +91,7 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
           </ul>
         </div>
       </div>
+      <div className="h-48" />
       <BackgroundStars className="absolute -z-10 w-screen h-full" />
     </section>
   );

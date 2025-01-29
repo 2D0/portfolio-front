@@ -3,7 +3,7 @@ import '@repo/ui/styles.css';
 import type { Metadata } from 'next';
 import { gowunDodum } from '@/public/fonts';
 import { Navigation } from '@components/navigation';
-import { ProviderLayout } from './provider.layout';
+import { NavChangeProvider } from '@/contexts/nav.context';
 
 export const metadata: Metadata = {
   title: 'Create Turborepo',
@@ -17,12 +17,18 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <ProviderLayout>
-        <body className={gowunDodum.className}>
-          <Navigation />
-          {children}
-        </body>
-      </ProviderLayout>
+      <NavChangeProvider>
+        <DisplayContent>{children}</DisplayContent>
+      </NavChangeProvider>
     </html>
   );
 }
+
+const DisplayContent = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <body className={gowunDodum.className}>
+      <Navigation />
+      {children}
+    </body>
+  );
+};

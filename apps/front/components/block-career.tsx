@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { StackBadge } from './stack-badge';
 import { BlockContainer } from './block-container';
 import type { CareerMap } from '@/interface';
@@ -14,10 +13,18 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
       target="_blank"
       className="grid grid-rows-[max-content_max-content_max-content_max-content_1fr] gap-2 hover:transform hover:-translate-y-1 transition-transform duration-300"
     >
-      <div className="flex items-end gap-2 py-1 px-2 rounded-lg border border-white border-opacity-20 bg-black bg-opacity-60">
+      <BlockContainer
+        variants={{
+          height: 'fit',
+          variant: 'black',
+          padding: 'sm',
+          rounded: 'lg',
+        }}
+        className="flex items-end gap-2"
+      >
         <h4 className="text-xl font-bold">{text.name}</h4>
         <p className="text-gray-300">{text.position}</p>
-      </div>
+      </BlockContainer>
       <ul className="flex gap-2 flex-wrap">
         {text.scope.map(scope => (
           <li key={scope}>
@@ -25,11 +32,17 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
           </li>
         ))}
       </ul>
-      <div className="flex py-1 px-2 rounded-lg border border-white border-opacity-20 whitespace-nowrap bg-black bg-opacity-60">
-        <span>
-          {text.startDate} ~ {text.endDate}
-        </span>
-      </div>
+
+      <BlockContainer
+        variants={{
+          height: 'fit',
+          variant: 'black',
+          padding: 'sm',
+          rounded: 'lg',
+        }}
+      >
+        {text.startDate} ~ {text.endDate}
+      </BlockContainer>
       <ul className="flex gap-2 flex-wrap">
         {text.stack.map(stack => (
           <li key={stack}>
@@ -37,11 +50,17 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
           </li>
         ))}
       </ul>
-      <ul className="p-2 rounded-lg border border-white border-opacity-20 bg-black bg-opacity-60">
+      <BlockContainer
+        variants={{
+          variant: 'black',
+          padding: 'sm',
+          rounded: 'lg',
+        }}
+      >
         {text.work.map(work => (
-          <li key={work}>{work}</li>
+          <p key={work}>{work}</p>
         ))}
-      </ul>
+      </BlockContainer>
     </BlockContainer>
   );
 };

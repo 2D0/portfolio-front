@@ -38,10 +38,9 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@codemirror/lang-javascript": "^6.2.2",
     "@repo/commons": "workspace:*",
+    "@codemirror/lang-javascript": "^6.2.2",
     "@uiw/react-codemirror": "^4.23.7",
-    "class-variance-authority": "^0.7.1",
-    "esbuild-wasm": "^0.24.2"
+    "class-variance-authority": "^0.7.1"
   }
 }

@@ -7,22 +7,17 @@ import {
   useTransform,
   type MotionValue,
 } from 'framer-motion';
+import { useNavEvent } from '@/contexts/nav.context';
+import { NavList } from '@/lib/textStorage/navigation';
 
 export const Navigation = () => {
-  const { scrollY } = useScroll();
-  const blurValue: MotionValue<string> = useTransform(
-    scrollY,
-    [0, 100],
-    ['0px', '10px'],
-  );
+  const { selectName, setSelectName, setNavScroll } = useNavEvent();
 
   return (
     <motion.header
-      className="fixed top-0 left-0 w-full"
-      style={{
-        backdropFilter: blurValue,
-        WebkitBackdropFilter: blurValue,
-      }}
+      className={cn(
+        'fixed top-0 left-0 w-full z-30 bg-transparent backdrop-blur-md',
+      )}
     >
       <nav className="flex items-center justify-end w-full h-16 px-4">
         <ul
@@ -31,11 +26,23 @@ export const Navigation = () => {
             'flex items-center justify-between space-x-4',
           )}
         >
-          <li>IT’S ME</li>
-          <li>STACK</li>
-          <li>PROJECT</li>
-          <li>CODE LOGIC</li>
-          <li>PICK ME</li>
+          {NavList.map(nav => (
+            <li key={nav}>
+              <button
+                type="button"
+                className={cn(
+                  selectName === nav ? 'text-blue-200' : 'text-gray-500',
+                  'cursor-pointer transition-all duration-300',
+                )}
+                onClick={() => {
+                  setSelectName(nav);
+                  setNavScroll(nav);
+                }}
+              >
+                {nav}
+              </button>
+            </li>
+          ))}
         </ul>
       </nav>
     </motion.header>
