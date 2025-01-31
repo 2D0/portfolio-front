@@ -1,20 +1,19 @@
-import React, { useRef, useState, type HTMLAttributes } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useState, type HTMLAttributes } from 'react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { montserrat } from '@/public/fonts';
 import { cn } from '@repo/commons/cn';
-import { CodeEditor, SelectBox } from '@repo/ui/components';
+import { CodeEditor, Pagination, SelectBox } from '@repo/ui/components';
 import { BackgroundStars } from '@components/background-stars';
-import { cantique, montserrat } from '@/public/fonts';
-import { LetterWave } from './letter-wave';
+import { BlockTitle } from './block-title';
 import { BlockContainer } from './block-container';
 import { ViewComponent, ViewContext, ViewTimer } from './block-code-view';
-import type { CodeListType, CodeName } from '@/interface';
+import type { CodeListType, CodeName, CodeType } from '@/interface';
+import { useGetPageItems } from '@repo/commons/hooks';
 
 interface SectionCodekProps extends HTMLAttributes<HTMLDivElement> {
   textMap: CodeListType;
 }
-
-const letters = 'CODE LOGIC'.split('');
 const codeNameList = [
   'Component',
   'Next.js14',
@@ -26,13 +25,10 @@ const codeNameList = [
 export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
   const [codeName, setCodeName] = useState<CodeName>('Component');
   const [selected, setSelected] = useState<boolean>(false);
-
-  const titleRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: titleRef,
-    offset: ['start end', 'end start'],
+  const { page, setPage, getPageItems, unit } = useGetPageItems<CodeType>({
+    unit: 1,
+    itemList: textMap[codeName].codeMap,
   });
-  const x = useTransform(scrollYProgress, [0, 0.25, 1], ['50vw', '0vw', '0vw']);
   const { ref, inView } = useInView({
     threshold: 0.3,
   });
@@ -40,23 +36,8 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
   return (
     <section {...props} className="flex flex-col w-full h-fit relative">
       <div className="h-24" />
-      <div className="flex flex-col gap-20 min-h-screen pb-10">
-        <motion.h2
-          ref={titleRef}
-          className={cn(cantique.className, 'text-6xl text-center')}
-          style={{
-            x,
-          }}
-        >
-          {letters.map((letter, index) => (
-            <LetterWave
-              key={`${letter}-${index}`}
-              scrollYProgress={scrollYProgress}
-              index={index}
-              char={letter}
-            />
-          ))}
-        </motion.h2>
+      <div className="flex flex-col gap-10 sm:gap-20 min-h-screen pb-10">
+        <BlockTitle title="CODE LOGIC" />
         <div className="flex flex-col gap-5">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -69,17 +50,19 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
               setName={setCodeName}
               selected={selected}
               setSelected={setSelected}
+              onClick={() => setPage(0)}
               height="h-40"
             />
           </motion.div>
           <article
             ref={ref}
-            className="grid grid-rows-[max-content_1fr] gap-4 w-full"
+            className="grid grid-cols-1 grid-rows-[max-content_1fr] gap-4 w-full"
           >
             <motion.div
               initial={{ opacity: 0, y: -50 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
               transition={{ duration: 0.5, delay: 0.4 }}
+              className="w-full"
             >
               <BlockContainer
                 variants={{ height: 'fit', variant: 'black' }}
@@ -100,7 +83,7 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
                     padding: 'sm',
                     rounded: 'md',
                   }}
-                  className="flex justify-center space-x-8 max-h-96 overflow-y-auto"
+                  className="flex items-center justify-center gap-x-8 gap-y-2 flex-wrap"
                 >
                   {textMap[codeName].stack.map(stack => (
                     <span
@@ -141,7 +124,7 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
                       padding: 'sm',
                       rounded: 'md',
                     }}
-                    className="flex justify-center space-x-8 max-h-96 overflow-y-auto"
+                    className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 max-h-96 overflow-y-auto"
                   >
                     {codeName === 'Component' ? <ViewComponent /> : null}
                     {codeName === 'Custom Hook' ? <ViewTimer /> : null}
@@ -150,7 +133,7 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
                 </BlockContainer>
               </motion.div>
             ) : null}
-            <div className="grid grid-cols-2 gap-4 w-full">
+            <div className="hidden md:grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
               {textMap[codeName].codeMap.map((text, index) => (
                 <motion.div
                   key={`${codeName}-${text.name}`}
@@ -176,6 +159,42 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
                   </BlockContainer>
                 </motion.div>
               ))}
+            </div>
+            <div className="flex md:hidden flex-col gap-2 w-full">
+              <Pagination
+                length={textMap[codeName].codeMap.length}
+                unit={unit}
+                page={page}
+                setPage={setPage}
+              />
+              <div className="grid grid-cols-1 w-full">
+                {getPageItems.map(text => (
+                  <motion.div
+                    key={`${codeName}-${text.name}`}
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={
+                      inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
+                    }
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    className="w-full"
+                  >
+                    <BlockContainer
+                      variants={{ variant: 'black' }}
+                      className="flex flex-col gap-2 w-full pt-2"
+                    >
+                      <h4
+                        className={cn(
+                          montserrat.className,
+                          'leading-none text-center text-lg text-blue-200',
+                        )}
+                      >
+                        {text.name}
+                      </h4>
+                      <CodeEditor value={text.code} height="400px" />
+                    </BlockContainer>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </article>
         </div>

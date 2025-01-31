@@ -11,8 +11,8 @@ import { RadioGroup, InputTab } from '@repo/ui/components';
 
 export default function Page(): JSX.Element {
 return (
-    <main className="flex justify-center space-x-8">
-      <div className="flex flex-col space-y-4">
+    <main className="flex justify-center gap-x-8">
+      <div className="flex flex-col gap-y-4">
         <CheckboxGroup
           name="기본체크박스"
           className="flex gap-2"
@@ -56,7 +56,7 @@ return (
           <InputTab value="바나나">바나나</InputTab>
         </CheckboxGroup>
       </div>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col gap-y-4">
         <RadioGroup
           name="기본라디오"
           selectvalue="하트"

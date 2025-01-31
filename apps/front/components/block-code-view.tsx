@@ -16,7 +16,7 @@ import type { IconNames } from '@repo/ui/interface';
 export const ViewComponent = () => {
   return (
     <>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col gap-y-4">
         <CheckboxGroup
           name="기본체크박스"
           className="flex gap-2"
@@ -64,7 +64,7 @@ export const ViewComponent = () => {
           <InputTab value="바나나">바나나</InputTab>
         </CheckboxGroup>
       </div>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col gap-y-4">
         <RadioGroup name="기본라디오" selectvalue="하트" className="flex gap-2">
           <InputTab value="하트">❤️ 하트</InputTab>
           <InputTab value="병아리">🐥 병아리</InputTab>
@@ -134,7 +134,7 @@ const DisplayData = () => {
 
   return (
     <>
-      <div className="w-20 h-20 grid place-items-center bg-white bg-opacity-20 border border-white border-opacity-20 rounded-md">
+      <div className="w-16 sm:w-20 h-16 sm:h-20 grid place-items-center bg-white bg-opacity-20 border border-white border-opacity-20 rounded-md">
         <Icon name={icon} size="xl" alt="인풋" />
       </div>
       <IconButtons iconMap={IconMap} />
@@ -153,7 +153,7 @@ export const IconButtons = ({ iconMap }: { iconMap: Array<IconNames> }) => {
             type="button"
             onClick={() => setIcon(iconName)}
             className={cn(
-              'px-2 py-1 text-black rounded-md',
+              'px-1.5 sm:px-2 py-0.5 sm:py-1 text-sm sm:text-base text-black rounded-md',
               icon === iconName ? '!bg-blue-300' : '!bg-gray-200',
             )}
           >

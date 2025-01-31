@@ -15,11 +15,11 @@ export interface CareerMap {
   name: string;
   href: string;
   position: string;
-  scope: Scope[];
+  scope: Array<Scope>;
   startDate: string;
   endDate: string;
-  stack: Stack[];
-  work: string[];
+  stack: Array<Stack>;
+  work: Array<string>;
 }
 
 export interface StackMap {
@@ -37,10 +37,10 @@ export interface ProjectMap {
   endDate: string;
   period: string;
   desc: string;
-  stack: Stack[];
+  stack: Array<Stack>;
   imageUrl: string;
   imageName: string;
-  scope: ProjectScope[];
+  scope: Array<ProjectScope>;
 }
 
 export type CodeName =
@@ -55,15 +55,15 @@ interface CodeType {
   code: string;
 }
 interface CodeList {
-  codeMap: CodeType[];
-  stack: Stack[];
+  codeMap: Array<CodeType>;
+  stack: Array<Stack>;
   view?: boolean;
 }
 
 export type CodeListType = Record<CodeName, CodeList>;
 
 export interface PostFetchReturnType {
-  posts: PostType[];
+  posts: Array<PostType>;
   total: number;
 }
 

@@ -26,9 +26,10 @@ export const SectionInfo = (props: HTMLAttributes<HTMLDivElement>) => {
     <section
       ref={sectionRef}
       {...props}
-      className="w-full h-screen flex items-center justify-center relative"
+      className="w-full min-h-screen h-fit flex flex-col items-center justify-center relative"
     >
-      <div className="grid grid-cols-[max-content_1fr] gap-16 absolute z-10">
+      <div className="h-24" />
+      <div className="grid grid-cols-1 lg:grid-cols-[max-content_1fr] place-items-center gap-6 dm:gap-16 relative sm:absolute z-10">
         <motion.div
           style={{
             x: leftX,
@@ -44,22 +45,22 @@ export const SectionInfo = (props: HTMLAttributes<HTMLDivElement>) => {
               height: 400,
             }}
             rounded="none"
-            className="relative w-[400px] h-[400px]"
+            className="relative w-[180px] sm:w-[250px] md:w-[300px] xl:w-[400px] h-[180px] sm:h-[250px] md:h-[300px] xl:h-[400px]"
           />
         </motion.div>
         <motion.ul
-          className="grid gap-20"
+          className="grid gap-6 md:gap-10 xl:gap-20"
           style={{
             x: rightX,
             y,
             scale,
           }}
         >
-          <li className="flex flex-col gap-4">
-            <h3 className="text-3xl font-bold">
+          <li className="flex flex-col gap-2 md:gap-4">
+            <h3 className="text-xl md:text-2xl xl:text-3xl font-bold">
               ❤️‍🔥 내 삶의 원동력 프론트엔드 개발 ❤️‍🔥
             </h3>
-            <p className="text-xl">
+            <p className="text-base md:text-lg xl:text-xl">
               살면서 하고 싶은 게 생기면 그&nbsp;
               <span className="text-blue-200">
                 꿈에 근처에라도 가보기 전까진 단 한 번도 포기한 적 없었습니다.
@@ -80,11 +81,11 @@ export const SectionInfo = (props: HTMLAttributes<HTMLDivElement>) => {
               있습니다.
             </p>
           </li>
-          <li className="flex flex-col gap-4">
-            <h3 className="text-3xl font-bold">
+          <li className="flex flex-col gap-2 md:gap-4">
+            <h3 className="text-xl md:text-2xl xl:text-3xl font-bold">
               🪡 섬세한 퍼블리싱이 가능한 프론트엔드 개발자 🪡
             </h3>
-            <p className="text-xl">
+            <p className="text-base md:text-lg xl:text-xl">
               3년 차의 프론트 및 퍼블리셔 직무 경험으로&nbsp;
               <span className="text-blue-200">
                 반응형과 스타일 모듈화를 시켜 섬세한 퍼블리싱이 가능
@@ -107,7 +108,8 @@ export const SectionInfo = (props: HTMLAttributes<HTMLDivElement>) => {
           </li>
         </motion.ul>
       </div>
-      <BackgroundStars className="w-screen h-screen" />
+      <div className="block sm:hidden h-48" />
+      <BackgroundStars className="w-screen h-full sm:h-screen absolute sm:relative -z-10 sm:z-0" />
     </section>
   );
 };

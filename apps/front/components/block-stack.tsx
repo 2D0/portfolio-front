@@ -7,7 +7,7 @@ import { BlockContainer } from './block-container';
 import type { StackMap } from '@/interface';
 import type { IconStack } from '@repo/ui/interface';
 
-const stackBadgeVariants = cva('text-2xl font-bold', {
+const stackBadgeVariants = cva('text-lg sm:text-xl md:text-2xl font-bold', {
   variants: {
     variant: {
       'Next.js14': 'text-[#FEABF1]',
@@ -78,7 +78,7 @@ export const StackBlock = ({ text }: { text: StackMap }) => {
 
   return (
     <BlockContainer
-      className="grid grid-cols-[max-content_1fr] items-center gap-x-3 gap-y-1 w-full relative whitespace-nowrap"
+      className="grid grid-cols-[max-content_1fr] items-center gap-x-2 sm:gap-x-3 gap-y-0 sm:gap-y-1 w-full relative"
       variants={{ height: 'fit', padding: 'md' }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => {
@@ -88,13 +88,20 @@ export const StackBlock = ({ text }: { text: StackMap }) => {
         setIsVisiable(false);
       }}
     >
-      <div className="grid place-content-center w-14 h-14 rounded-full overflow-hidden row-span-2 bg-black !bg-opacity-60 border border-white border-opacity-40">
-        <Icon
-          name={text.name as IconStack}
-          width={28}
-          height={28}
-          alt={text.name}
-        />
+      <div className="grid place-content-center w-12 sm:w-14 h-12 sm:!h-14 rounded-full overflow-hidden row-span-2 bg-black !bg-opacity-60 border border-white border-opacity-40">
+        <div className="w-6 sm:!w-10 h-6 sm:h-10 relative">
+          <Icon
+            name={text.name as IconStack}
+            width={28}
+            height={28}
+            alt={text.name}
+            className="w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{
+              objectFit: 'cover',
+              objectPosition: 'center',
+            }}
+          />
+        </div>
       </div>
       <h3
         className={cn(
@@ -109,7 +116,7 @@ export const StackBlock = ({ text }: { text: StackMap }) => {
       {isVisiable ? (
         <div
           ref={tooltipRef}
-          className="w-1/3 p-3 fixed z-10 text-lg text-wrap rounded-md text-blue-200 border border-white border-opacity-20 bg-black bg-opacity-80"
+          className="w-3/4 sm:w-1/3 p-3 fixed z-10 text-base sm:text-lg text-wrap rounded-md text-blue-200 border border-white border-opacity-20 bg-black bg-opacity-80"
           style={{
             top: `${tooltipPosition.y + 10}px`,
             left: `${tooltipPosition.x + 10}px`,

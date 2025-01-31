@@ -8,6 +8,7 @@ interface SelectBoxProps<T> {
   setName: React.Dispatch<React.SetStateAction<T>>;
   selected: boolean;
   setSelected: React.Dispatch<React.SetStateAction<boolean>>;
+  onClick?: () => void;
   height?: string;
 }
 
@@ -17,6 +18,7 @@ export const SelectBox = <T extends string>({
   setName,
   selected,
   setSelected,
+  onClick,
   height = 'h-60',
 }: SelectBoxProps<T>) => {
   return (
@@ -42,6 +44,7 @@ export const SelectBox = <T extends string>({
               onClick={() => {
                 setName(selectName as T);
                 setSelected(false);
+                onClick?.();
               }}
               className="w-full h-7 px-2 text-left hover:bg-blue-200 hover:text-black"
             >

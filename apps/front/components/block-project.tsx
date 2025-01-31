@@ -41,7 +41,7 @@ export const BlockProject = ({ text }: BlockProjectProps) => {
         </span>
         <span>&nbsp;({text.period})</span>
       </div>
-      <ul className="flex gap-2">
+      <ul className="flex gap-2 flex-wrap">
         {text.scope.map(scope => (
           <StackBadge key={scope} variant={scope} size="sm" />
         ))}

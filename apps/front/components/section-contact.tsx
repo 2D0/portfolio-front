@@ -1,14 +1,13 @@
 import { useRef, type HTMLAttributes } from 'react';
+import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 import { cantique, montserrat } from '@/public/fonts';
 import { BackgroundStars } from '@components/background-stars';
 import { LetterSpin } from '@components/letter-spin';
+import { LetterMove } from './letter-move';
 import { Icon, ImageBox } from '@repo/ui/components';
 import type { ContactMapType } from '@/interface';
-import Link from 'next/link';
-import { div } from 'framer-motion/client';
-import { LetterMove } from './letter-move';
 
 interface SectionContactProps extends HTMLAttributes<HTMLDivElement> {
   textMap: ContactMapType;

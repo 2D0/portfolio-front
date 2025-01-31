@@ -1,8 +1,8 @@
-import type { HTMLAttributes } from 'react';
+import { useEffect, useState, type HTMLAttributes } from 'react';
 import { motion, useTransform, type MotionValue } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 
-interface LetterSpinProps
+export interface LetterSpinProps
   extends Pick<HTMLAttributes<HTMLSpanElement>, 'className'> {
   scrollYProgress: MotionValue<number>;
   char: string;
@@ -15,6 +15,12 @@ export const LetterWave = ({
   index,
   className,
 }: LetterSpinProps) => {
+  const [isServer, setIsServer] = useState(true);
+
+  useEffect(() => {
+    setIsServer(true);
+  }, []);
+
   const waveOffset = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, 0]);
   const rotate = useTransform(
     waveOffset,

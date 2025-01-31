@@ -31,9 +31,9 @@ const containerVariants = cva('w-full border', {
       none: 'border-none',
     },
     padding: {
-      default: 'p-4',
-      sm: 'p-2',
-      md: 'p-3',
+      default: 'p-3 md:p-4',
+      sm: 'p-1.5 md:p-2',
+      md: 'p-2 md:p-3',
     },
     height: {
       default: 'h-full',

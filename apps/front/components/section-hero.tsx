@@ -24,7 +24,7 @@ export const SectionHero = (props: HTMLAttributes<HTMLDivElement>) => {
       <motion.div
         className={cn(
           cantique.className,
-          'absolute text-6xl leading-loose text-center',
+          'absolute !leading-loose text-[8vw] sm:text-5xl md:text-6xl text-center',
         )}
       >
         {topLetters.map((char, index) => (

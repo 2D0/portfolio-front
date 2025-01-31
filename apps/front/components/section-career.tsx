@@ -1,26 +1,22 @@
-import { useRef, type HTMLAttributes } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { type HTMLAttributes } from 'react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { cn } from '@repo/commons/cn';
 import { BackgroundStars } from '@components/background-stars';
-import { cantique } from '@/public/fonts';
+import { useGetPageItems } from '@repo/commons/hooks';
+import { BlockTitle } from './block-title';
 import { CareerBlock } from './block-career';
-import { LetterWave } from './letter-wave';
 import type { CareerMap } from '@/interface';
+import { Pagination } from '@repo/ui/components';
 
 interface SectionCareerProps extends HTMLAttributes<HTMLDivElement> {
-  textMap: CareerMap[];
+  textMap: Array<CareerMap>;
 }
 
-const letters = 'WORK HISTORY'.split('');
-
 export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
-  const titleRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: titleRef,
-    offset: ['start end', 'end start'],
+  const { page, setPage, getPageItems, unit } = useGetPageItems<CareerMap>({
+    unit: 4,
+    itemList: textMap,
   });
-  const x = useTransform(scrollYProgress, [0, 0.25, 1], ['50vw', '0vw', '0vw']);
   const { ref, inView } = useInView({
     threshold: 0.3,
   });
@@ -28,36 +24,30 @@ export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
   return (
     <section
       {...props}
-      className="grid place-items-center gap-20 w-full min-h-screen h-fit pb-10 relative"
+      className="grid place-items-center gap-10 sm:gap-20 w-full min-h-screen h-fit pb-10 relative"
     >
       <div className="h-24" />
-      <motion.h2
-        ref={titleRef}
-        className={cn(cantique.className, 'text-6xl')}
-        style={{
-          x,
-        }}
-      >
-        {letters.map((letter, index) => (
-          <LetterWave
-            key={`${letter}-${index}`}
-            scrollYProgress={scrollYProgress}
-            index={index}
-            char={letter}
+      <BlockTitle title="WORK HISTORY" />
+      <article className="flex flex-col gap-2 w-full">
+        <div className="flex flex-col gap-5">
+          <motion.p
+            className="text-right"
+            initial={{ opacity: 0, x: 50 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            블록을 클릭해 보세요.
+          </motion.p>
+
+          <Pagination
+            length={textMap.length}
+            unit={unit}
+            page={page}
+            setPage={setPage}
           />
-        ))}
-      </motion.h2>
-      <article className="flex flex-col gap-2">
-        <motion.p
-          className="text-right"
-          initial={{ opacity: 0, x: 50 }}
-          animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          블록을 클릭해 보세요.
-        </motion.p>
-        <ul ref={ref} className="grid grid-cols-2 gap-4">
-          {textMap.map((text, index) => (
+        </div>
+        <ul ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {getPageItems.map((text, index) => (
             <motion.li
               key={text.name}
               initial={{ opacity: 0, y: -50 }}

@@ -1,9 +1,7 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
-import {
-  useInView,
-  type InViewHookResponse,
-} from 'react-intersection-observer';
+import { useEffect, useRef } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { cn } from '@repo/commons/cn';
 import { SectionHero } from '@components/section-hero';
 import { SectionInfo } from '@components/section-info';
 import { SectionCareer } from '@components/section-career';
@@ -30,7 +28,7 @@ interface UIProps {
 }
 
 export const UI = ({ career, stack, project, code, contact }: UIProps) => {
-  const { setSelectName, navScroll } = useNavEvent();
+  const { setSelectName, navScroll, isMenuOpen, setIsMenuOpen } = useNavEvent();
 
   const { ref: homeInViewRef, inView: homeInView } = useInView({
     threshold: 0.3,
@@ -72,13 +70,15 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
   };
 
   useEffect(() => {
-    if (homeInView) setSelectName('HOME');
-    else if (itsMeInView) setSelectName('IT’S ME');
-    else if (workHistoryInView) setSelectName('WORK HISTORY');
-    else if (stackInView) setSelectName('STACK');
-    else if (projectInView) setSelectName('PROJECT');
-    else if (codeLogicInView) setSelectName('CODE LOGIC');
-    else if (pickMeInView) setSelectName('PICK ME');
+    if (!isMenuOpen) {
+      if (homeInView) setSelectName('HOME');
+      else if (itsMeInView) setSelectName('IT’S ME');
+      else if (workHistoryInView) setSelectName('WORK HISTORY');
+      else if (stackInView) setSelectName('STACK');
+      else if (projectInView) setSelectName('PROJECT');
+      else if (codeLogicInView) setSelectName('CODE LOGIC');
+      else if (pickMeInView) setSelectName('PICK ME');
+    }
   }, [
     homeInView,
     itsMeInView,
@@ -87,41 +87,74 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
     projectInView,
     codeLogicInView,
     pickMeInView,
+    isMenuOpen,
   ]);
 
   useEffect(() => {
-    const targetSection = sectionRefs[navScroll || 'HOME'].current;
-    if (targetSection) {
-      targetSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+    if (!isMenuOpen) {
+      const targetSection = sectionRefs[navScroll || 'HOME'].current;
+      if (targetSection) {
+        targetSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
     }
   }, [navScroll]);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isMenuOpen]);
+
   return (
-    <main className="w-full min-h-screen h-fit">
-      <div ref={sectionRefs.HOME} />
-      <div ref={homeInViewRef} />
-      <SectionHero />
-      <div ref={sectionRefs['IT’S ME']} />
-      <div ref={itsMeInViewRef} />
-      <SectionInfo />
-      <div ref={sectionRefs['WORK HISTORY']} />
-      <div ref={workHistoryInViewRef} />
-      <SectionCareer textMap={career} />
-      <div ref={sectionRefs.STACK} />
-      <div ref={stackInViewRef} />
-      <SectionStack textMap={stack} />
-      <div ref={sectionRefs.PROJECT} />
-      <div ref={projectInViewRef} />
-      <SectionProject textMap={project} />
-      <div ref={sectionRefs['CODE LOGIC']} />
-      <div ref={codeLogicInViewRef} />
-      <SectionCode textMap={code} />
-      <div ref={sectionRefs['PICK ME']} />
-      <div ref={pickMeInViewRef} />
-      <SectionContact textMap={contact} />
+    <main>
+      <div
+        className={cn(
+          'w-full min-h-screen h-fit overflow-x-hidden',
+          isMenuOpen && 'blur-md',
+        )}
+        onClick={e => {
+          isMenuOpen && e.preventDefault();
+          setIsMenuOpen(false);
+        }}
+        role="button"
+        tabIndex={0}
+        onKeyDown={e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            setIsMenuOpen(false);
+          }
+        }}
+      >
+        <div ref={sectionRefs.HOME} />
+        <div ref={homeInViewRef} />
+        <SectionHero />
+        <div ref={sectionRefs['IT’S ME']} />
+        <div ref={itsMeInViewRef} />
+        <SectionInfo />
+        <div ref={sectionRefs['WORK HISTORY']} />
+        <div ref={workHistoryInViewRef} />
+        <SectionCareer textMap={career} />
+        <div ref={sectionRefs.STACK} />
+        <div ref={stackInViewRef} />
+        <SectionStack textMap={stack} />
+        <div ref={sectionRefs.PROJECT} />
+        <div ref={projectInViewRef} />
+        <SectionProject textMap={project} />
+        <div ref={sectionRefs['CODE LOGIC']} />
+        <div ref={codeLogicInViewRef} />
+        <SectionCode textMap={code} />
+        <div ref={sectionRefs['PICK ME']} />
+        <div ref={pickMeInViewRef} />
+        <SectionContact textMap={contact} />
+      </div>
     </main>
   );
 };
