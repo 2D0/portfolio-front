@@ -1,3 +1,6 @@
+import Link from 'next/link';
+import { cn } from '@repo/commons/cn';
+import { montserrat } from '@/public/fonts';
 import { StackBadge } from './stack-badge';
 import { BlockContainer } from './block-container';
 import type { CareerMap } from '@/interface';
@@ -8,11 +11,7 @@ interface CareerBlockProps {
 
 export const CareerBlock = ({ text }: CareerBlockProps) => {
   return (
-    <BlockContainer
-      href={text.href}
-      target="_blank"
-      className="grid grid-rows-[max-content_max-content_max-content_max-content_1fr] gap-2 hover:transform hover:-translate-y-1 transition-transform duration-300"
-    >
+    <BlockContainer className="grid grid-rows-[max-content_max-content_max-content_max-content_1fr] gap-2 hover:transform hover:-translate-y-1 transition-transform duration-300">
       <BlockContainer
         variants={{
           height: 'fit',
@@ -61,6 +60,16 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
           <p key={work}>{work}</p>
         ))}
       </BlockContainer>
+      <Link
+        href={text.href}
+        className={cn(
+          montserrat.className,
+          'grid place-content-center w-full h-9 rounded-md bg-gray-300 hover:bg-gray-100 transition-all duration-300 text-black',
+        )}
+        target="_blank"
+      >
+        Go Detail
+      </Link>
     </BlockContainer>
   );
 };
