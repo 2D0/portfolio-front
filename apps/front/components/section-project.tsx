@@ -18,7 +18,9 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
   const [stack, setStack] = useState<Stack | 'All Stacks'>('All Stacks');
   const [selected, setSelected] = useState<boolean>(false);
   const { ref, inView } = useInView({
-    threshold: 0.2,
+    threshold: 0.3,
+    rootMargin: '0px 0px 50% 0px',
+    triggerOnce: false,
   });
 
   const filterMap =
@@ -36,14 +38,13 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
   ];
 
   return (
-    <section
-      {...props}
-      ref={ref}
-      className="flex flex-col w-full h-fit relative"
-    >
+    <section {...props} className="flex flex-col w-full h-fit relative">
       <div className="h-24" />
-      <div className="grid place-items-center gap-10 sm:gap-20 min-h-screen pb-10">
-        <BlockTitle title="PROJECT" />
+      <div
+        ref={ref}
+        className="grid place-items-center gap-10 sm:gap-20 page-inner min-h-screen pb-10"
+      >
+        <BlockTitle title="PROJECT" inView={inView} />
         <div className="flex flex-col gap-2 w-full">
           <div className="flex flex-col gap-5">
             <motion.div

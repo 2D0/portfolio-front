@@ -1,41 +1,33 @@
-import { useRef, type HTMLAttributes } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { type HTMLAttributes } from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import { ImageBox } from '@repo/ui/components';
 import { BackgroundStars } from '@components/background-stars';
 
 export const SectionInfo = (props: HTMLAttributes<HTMLDivElement>) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
+  const { ref, inView } = useInView({
+    threshold: 0.4,
+    triggerOnce: false,
   });
-  const leftX = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    ['-50vw', '0vw', '0vw'],
-  );
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], ['50vh', '0vh', '0vh']);
-  const rightX = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    ['50vw', '0vw', '0vw'],
-  );
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 1]);
 
   return (
     <section
-      ref={sectionRef}
       {...props}
       className="w-full min-h-screen h-fit flex flex-col items-center justify-center relative"
     >
       <div className="h-24" />
-      <div className="grid grid-cols-1 lg:grid-cols-[max-content_1fr] place-items-center gap-6 dm:gap-16 relative sm:absolute z-10">
+      <div
+        ref={ref}
+        className="grid grid-cols-1 lg:grid-cols-[max-content_1fr] place-items-center gap-6 dm:gap-16 page-inner relative sm:absolute z-10"
+      >
         <motion.div
-          style={{
-            x: leftX,
-            y,
-            scale,
-          }}
+          initial={{ opacity: 0, x: -250, y: -150, scale: 0.5 }}
+          animate={
+            inView
+              ? { opacity: 1, x: 0, y: 0, scale: 1 }
+              : { opacity: 0, x: -250, y: -150, scale: 0.5 }
+          }
+          transition={{ duration: 0.7, delay: 0.4 }}
         >
           <ImageBox
             imagePorps={{
@@ -50,11 +42,13 @@ export const SectionInfo = (props: HTMLAttributes<HTMLDivElement>) => {
         </motion.div>
         <motion.ul
           className="grid gap-6 md:gap-10 xl:gap-20"
-          style={{
-            x: rightX,
-            y,
-            scale,
-          }}
+          initial={{ opacity: 0, x: 250, y: -150, scale: 0.5 }}
+          animate={
+            inView
+              ? { opacity: 1, x: 0, y: 0, scale: 1 }
+              : { opacity: 0, x: 250, y: -150, scale: 0.5 }
+          }
+          transition={{ duration: 0.7, delay: 0.4 }}
         >
           <li className="flex flex-col gap-2 md:gap-4">
             <h3 className="text-xl md:text-2xl xl:text-3xl font-bold">
