@@ -54,10 +54,10 @@ export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <span className="hidden sm:!block">
+            <span className="hidden md:!block">
               블록에 마우스를 올려보세요.
             </span>
-            <span className="block sm:!hidden">블록을 클릭해 보세요.</span>
+            <span className="block md:!hidden">블록을 터치해 보세요.</span>
           </motion.p>
           <div className="grid grid-cols-1 sm:grid-cols-[max-content_1fr] gap-6 md:gap-8 w-full">
             <motion.div

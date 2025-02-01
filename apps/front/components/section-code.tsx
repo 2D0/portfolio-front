@@ -64,8 +64,8 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
             className="grid grid-cols-1 grid-rows-[max-content_1fr] gap-4 w-full"
           >
             <motion.div
-              initial={{ opacity: 0, y: -50 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
+              initial={{ opacity: 0, y: 50 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="w-full"
             >
@@ -106,8 +106,8 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
             </motion.div>
             {textMap[codeName].view ? (
               <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <BlockContainer
@@ -142,9 +142,9 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
               {textMap[codeName].codeMap.map((text, index) => (
                 <motion.div
                   key={`${codeName}-${text.name}`}
-                  initial={{ opacity: 0, y: -50 }}
+                  initial={{ opacity: 0, y: 50 }}
                   animate={
-                    inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
+                    inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
                   }
                   transition={{ duration: 0.5, delay: 0.2 * (index + 1) + 0.4 }}
                 >
@@ -166,21 +166,27 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
               ))}
             </div>
             <div className="flex md:hidden flex-col gap-2 w-full">
-              <Pagination
-                length={textMap[codeName].codeMap.length}
-                unit={unit}
-                page={page}
-                setPage={setPage}
-              />
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+              >
+                <Pagination
+                  length={textMap[codeName].codeMap.length}
+                  unit={unit}
+                  page={page}
+                  setPage={setPage}
+                />
+              </motion.div>
               <div className="grid grid-cols-1 w-full">
                 {getPageItems.map(text => (
                   <motion.div
                     key={`${codeName}-${text.name}`}
-                    initial={{ opacity: 0, y: -50 }}
+                    initial={{ opacity: 0, y: 50 }}
                     animate={
-                      inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
+                      inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
                     }
-                    transition={{ duration: 0.5, delay: 0.6 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
                     className="w-full"
                   >
                     <BlockContainer

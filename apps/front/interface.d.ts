@@ -38,7 +38,6 @@ export interface ProjectMap {
   period: string;
   desc: string;
   stack: Array<Stack>;
-  imageUrl: string;
   imageName: string;
   scope: Array<ProjectScope>;
 }

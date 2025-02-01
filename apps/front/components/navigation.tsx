@@ -1,6 +1,6 @@
 'use client';
 import { cn } from '@repo/commons/cn';
-import { montserrat } from '@/public/fonts';
+import { montserrat, jua } from '@/public/fonts';
 import { motion } from 'framer-motion';
 import { useNavEvent } from '@/contexts/nav.context';
 import { ImageBox } from '@repo/ui/components';
@@ -28,7 +28,7 @@ export const Navigation = () => {
   return (
     <motion.header
       className={cn(
-        montserrat.className,
+        jua.className,
         'flex items-center justify-between h-16 px-4 fixed top-0 left-0 w-full z-30 bg-transparent backdrop-blur-md',
       )}
     >

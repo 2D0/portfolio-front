@@ -61,20 +61,26 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
                 onClick={() => setPage(0)}
               />
             </motion.div>
-            <Pagination
-              length={filterMap.length}
-              unit={unit}
-              page={page}
-              setPage={setPage}
-            />
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Pagination
+                length={filterMap.length}
+                unit={unit}
+                page={page}
+                setPage={setPage}
+              />
+            </motion.div>
           </div>
           <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             {getPageItems.map((text, index) => (
               <motion.li
                 key={text.name}
-                initial={{ opacity: 0, y: -50 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-                transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                transition={{ duration: 0.5, delay: 0.4 * (index + 1) }}
               >
                 <BlockProject text={text} />
               </motion.li>
