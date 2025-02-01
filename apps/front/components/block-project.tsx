@@ -20,7 +20,7 @@ export const BlockProject = ({ text }: BlockProjectProps) => {
     >
       <ImageBox
         imagePorps={{
-          src: text.imageUrl,
+          src: `/images/source/pj-${text.imageName}.jpg`,
           width: 450,
           height: 450,
           alt: text.name,

@@ -22,8 +22,6 @@ export const ProjectList = [
       'StyledComponents',
       'Figma',
     ],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2Fde2d2b1d-094c-402e-8277-646511a419bf%2FUntitled.png/size/w=450?exp=1737881956&sig=kNInRdDWB0Ryzsix9w4oStheUexKWhzXl1QEI9-RlL8',
     imageName: 'puppy-ti',
     scope: ['기획 및 총괄', '프론트 개발', '백엔드 개발', 'UI/UX 디자인'],
   },
@@ -46,8 +44,6 @@ export const ProjectList = [
       'TailwindCSS',
       'Figma',
     ],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F34f6455a-283b-469b-9a9b-3ed7cb8478ce%2FLayout.png/size/w=450?exp=1737882379&sig=mBagcTCjuhPi0ZuI-tUnhxWqUfv-RXvtsejkG3DTnkc',
     imageName: 'inner-color',
     scope: ['기획 및 총괄', '프론트 개발', 'UI/UX 디자인'],
   },
@@ -68,9 +64,7 @@ export const ProjectList = [
       'Vercel',
       'TailwindCSS',
     ],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2Fe04c7166-2dda-4147-9ee5-e997ae3c4cfa%2Fimage.png/size/w=450?exp=1737882459&sig=gxSyN876xFh0l2XyvRjvZrtVSrwYB4r1Y-90qQihScw',
-    imageName: 'hyper-site',
+    imageName: 'hypr-site',
     scope: ['프론트 개발', 'UI/UX 디자인'],
   },
   {
@@ -83,9 +77,7 @@ export const ProjectList = [
     period: '약 3개월',
     desc: '얼굴 사진을 찍어 원하는 유명인과 매칭하여 나온 점수로 순위를 매기는 이벤트 페이지',
     stack: ['React', 'TypeScript', 'StyledComponents', 'Figma'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F222e1b91-17f4-4212-85b2-1a2bc30d0d4d%2FUntitled.png/size/w=450?exp=1737882481&sig=Ne7LB1S0nclhCPgkMSYqBH4xeX5dULtS6quSqMHSxdM',
-    imageName: 'wouldu',
+    imageName: 'would-u',
     scope: ['프론트 개발', 'UI/UX 디자인'],
   },
   {
@@ -97,8 +89,6 @@ export const ProjectList = [
     period: '약 3주',
     desc: '얼굴 인식을 통한 방범 솔루션을 구독한 유치원 혹은 학교 등의 업체에서 고객들의 정보를 등록 및 수정하고 데이터 사용량을 확인할 수 있는 대시보드 관리자 페이지',
     stack: ['Next.js14', 'TypeScript', 'Supabase', 'TailwindCSS', 'Figma'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F6248574a-7b84-419f-8020-46bc44af33ec%2FUntitled.jpeg/size/w=450?exp=1737882510&sig=9vJAoniBKurEL166o0uKmhLppDfMbEGSWymfDjsHFjM',
     imageName: 'spaceguard-owner',
     scope: ['프론트 개발', 'UI/UX 디자인'],
   },
@@ -111,8 +101,6 @@ export const ProjectList = [
     period: '약 1개월',
     desc: '얼굴 인식을 통한 방범 솔루션을 구독한 유치원 혹은 학교의 고객(보호자)들이 직접 얼굴 정보 등록 및 수정 등의 관리를 할 수 있도록 개발한 시스템',
     stack: ['Next.js14', 'TypeScript', 'Supabase', 'StyledComponents', 'Figma'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F2632ee6f-2cca-4f62-9992-868e0f9b7285%2FUntitled.jpeg/size/w=450?exp=1737882534&sig=iS83aDK3cXHmT38AHqjsVTkiife6HdMg7u3K5uCQuTo',
     imageName: 'spaceguard-customer',
     scope: ['프론트 개발', 'UI/UX 디자인'],
   },
@@ -126,8 +114,6 @@ export const ProjectList = [
     period: '약 3개월',
     desc: 'nft 거래소',
     stack: ['Nuxt.js', 'Vue', 'JavaScript', 'SCSS', 'Figma'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F453c04c3-3dab-4011-ab95-b3081683dbb0%2FUntitled.png/size/w=450?exp=1737882554&sig=srUYCwk7lnfRKsEKElbRz1mZPNrLgiznoPADCjc9deQ',
     imageName: 'mint-ocean',
     scope: ['프론트 개발', 'UI/UX 디자인'],
   },
@@ -141,8 +127,6 @@ export const ProjectList = [
     period: '약 3개월',
     desc: '여러 브랜드의 물 및 해외 식품 등 한국에서 흔하지 않은 식품을 파는 쇼핑몰',
     stack: ['HTML', 'Cafe24Module', 'jQuery', 'CSS'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F474207dc-2237-4916-ad5c-5a7e5eefa6dc%2FUntitled.png/size/w=450?exp=1737882572&sig=_CSUnYsnvIW0Jaw1wmoUooGSgxSE0Cv-AjEFnoY9n6Y',
     imageName: 'gangnamkong',
     scope: ['프론트 개발'],
   },
@@ -155,8 +139,6 @@ export const ProjectList = [
     period: '약 2주',
     desc: '카테고리를 선택해 원하는 술집 위치를 찾을 수 있는 술집 추천 커뮤니티',
     stack: ['PHP', 'jQuery', 'CSS', 'Figma'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2Fb76753d8-de57-438b-a181-76225a0cdf5c%2FUntitled.png/size/w=450?exp=1737882591&sig=VC8FixsB8uAB2vQHTWAh51FciaAt9LVzrMS7Dtp3x6c',
     imageName: 'sulbam',
     scope: ['프론트 개발', 'UI/UX 디자인'],
   },
@@ -170,8 +152,6 @@ export const ProjectList = [
     period: '약 2주',
     desc: '클릭만으로 홈페이지 만들기 솔루션 제공',
     stack: ['PHP', 'jQuery', 'CSS'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F796e5468-6e4d-4d2a-901a-4b2233011ace%2FUntitled.png/size/w=450?exp=1737882609&sig=146NCqFEg19xoVvXj1_r2Swzv4XvpBdR-bIOGbCnUi4',
     imageName: 'uppage',
     scope: ['프론트 개발'],
   },
@@ -185,8 +165,6 @@ export const ProjectList = [
     period: '약 3개월',
     desc: 'sns 커뮤니티와 쇼핑몰을 합쳐놓은 하이브리드 쇼핑몰',
     stack: ['PHP', 'jQuery', 'CSS'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F91d2d7ed-6cf2-4370-a973-8a717d1d8367%2FUntitled.png/size/w=450?exp=1737882628&sig=TdMr_tdCa5wISGF8UUA0vKvckSQ9Dij3gERSuQN6Bh4',
     imageName: 'doobuying',
     scope: ['프론트 개발'],
   },
@@ -200,8 +178,6 @@ export const ProjectList = [
     period: '약 2개월',
     desc: '골프복 렌탈 서비스 제공 및 골프 관련 쇼핑몰',
     stack: ['PHP', 'jQuery', 'CSS'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F879fce2b-ba0d-4022-a048-77181148ef1c%2FUntitled.png/size/w=450?exp=1737882645&sig=fpU73nJRhVJ77TCtumjSkg4lrD1GMA2foxzKO6PKZ_8',
     imageName: 'adress-golf',
     scope: ['프론트 개발'],
   },
@@ -214,8 +190,6 @@ export const ProjectList = [
     period: '약 2주',
     desc: '빈티지 옷들을 컨셉으로 한 sns 커뮤니티와 쇼핑몰을 합쳐놓은 하이브리드 쇼핑몰 어플리케이션',
     stack: ['React', 'JavaScript', 'PHP', 'CSS'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2Fb9bd6538-470d-4054-b8b5-40dfb2a0d776%2FUntitled.png/size/w=450?exp=1737882665&sig=33aMnczcwFtvN-guEh9WSsGppki3Gnj3UXXKJ7CSS-c',
     imageName: 'osbin',
     scope: ['프론트 개발'],
   },
@@ -229,8 +203,6 @@ export const ProjectList = [
     desc: `카카오톡, 게시판, 메일 등 상담 요청을 한 페이지에서 옴니버스 형식으로 관리하고
 고객과의 통화를 음성인식을 통해 실시간으로 채팅으로 보여주는 ai 솔루션`,
     stack: ['React', 'JavaScript', 'SCSS', 'Figma'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F2f638812-8ff3-4959-ac78-279d3867486c%2FUntitled.png/size/w=450?exp=1737882686&sig=b8YOFnTBrnQBBGGTmS_1dArBNQ8nquMcxwA2sytVNSU',
     imageName: 'smart-aicc',
     scope: ['프론트 개발', 'UI/UX 디자인'],
   },
@@ -244,9 +216,7 @@ export const ProjectList = [
     period: '약 2주',
     desc: '2021년도에 제작한 웹 퍼블리셔 포트폴리오',
     stack: ['HTML', 'jQuery', 'CSS'],
-    imageUrl:
-      'https://img.notionusercontent.com/s3/prod-files-secure%2Fff8bd0da-e3f4-4867-bccc-dfabec2e55e8%2F1aff2080-eaec-4a92-8338-d15f0a00abff%2FUntitled.png/size/w=450?exp=1737882738&sig=G8DjLN5kWxv5y8osjakan5kHJUhMbYY2I1q4ssf7Cw0',
     imageName: 'portfolio-publisher',
     scope: ['기획 및 총괄', '프론트 개발', 'UI/UX 디자인'],
   },
-] as ProjectMap[];
+] as Array<ProjectMap>;

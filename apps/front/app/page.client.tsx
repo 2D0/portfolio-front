@@ -118,7 +118,7 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
     <main>
       <div
         className={cn(
-          'w-full min-h-screen h-fit overflow-x-hidden',
+          'w-full min-h-screen h-fit overflow-x-hidden !cursor-default',
           isMenuOpen && 'blur-md',
         )}
         onClick={e => {
