@@ -1,11 +1,11 @@
-import { useRef, type HTMLAttributes } from 'react';
+import { type HTMLAttributes } from 'react';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 import { cantique, montserrat } from '@/public/fonts';
 import { BackgroundStars } from '@components/background-stars';
 import { LetterSpin } from '@components/letter-spin';
-import { LetterMove } from './letter-move';
 import { Icon, ImageBox } from '@repo/ui/components';
 import type { ContactMapType } from '@/interface';
 
@@ -16,37 +16,30 @@ interface SectionContactProps extends HTMLAttributes<HTMLDivElement> {
 const topLetters = 'LEE DAYOUNG'.split('');
 
 export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['10vh 50vh', 'end'],
+  const { ref, inView } = useInView({
+    threshold: 0.4,
+    triggerOnce: false,
   });
-  const rightX = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    ['50vw', '0vw', '0vw'],
-  );
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 1]);
 
   return (
     <section
       {...props}
-      ref={sectionRef}
+      ref={ref}
       className="w-full h-screen flex items-center justify-center relative"
     >
-      <div className="absolute grid grid-cols-[max-content_1fr] gap-x-32 gap-y-24">
+      <div className="absolute grid gird-cols-1 sm:grid-cols-[max-content_1fr] place-items-center sm:place-items-start  gap-x-20 md:gap-x-32 gap-y-10 sm:gap-y-14 md:gap-y-24">
         <motion.div
           className={cn(
             cantique.className,
-            'text-4xl leading-loose text-center',
+            'text-3xl md:text-4xl leading-loose text-center',
           )}
         >
-          {topLetters.map((char, index) => (
+          {topLetters.map((letter, index) => (
             <LetterSpin
-              key={`${char}${index}`}
-              scrollYProgress={scrollYProgress}
+              key={`${letter}-${index}`}
+              inView={inView}
               index={index}
-              char={char}
+              char={letter}
               total={topLetters.length}
               reverse
             />
@@ -54,65 +47,93 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
         </motion.div>
         <motion.div
           className="row-span-2 w-full"
-          style={{
-            x: rightX,
-            scale,
-          }}
+          initial={{ opacity: 0, x: 250, scale: 0.5 }}
+          animate={
+            inView
+              ? { opacity: 1, x: 0, scale: 1 }
+              : { opacity: 0, x: 250, scale: 0.5 }
+          }
+          transition={{ duration: 0.7, delay: 0.4 }}
         >
           <ImageBox
             imagePorps={{
               src: '/images/source/qr-code.svg',
               alt: 'QR코드',
-              aspectSize: { size: 200 },
+              width: 200,
+              height: 200,
             }}
-            className="w-full"
+            className="w-[130px] md:w-[200px] h-[130px] md:h-[200px] mx-auto sm:mx-0"
           />
         </motion.div>
-        <div className={cn(cantique.className, 'flex flex-col text-xl')}>
+        <ul
+          className={cn(
+            cantique.className,
+            'flex flex-col text-center sm:text-left text-base md:text-xl',
+          )}
+        >
           {textMap.info.map((info, index) => (
-            <LetterMove
+            <motion.li
               key={info.name}
-              scrollYProgress={scrollYProgress}
-              index={index}
-              total={textMap.info.length}
+              initial={{ opacity: 0, x: -250, scale: 0.5 }}
+              animate={
+                inView
+                  ? { opacity: 1, x: 0, scale: 1 }
+                  : { opacity: 0, x: -250, scale: 0.5 }
+              }
+              transition={{ duration: 0.7, delay: 0.2 * index + 0.4 }}
               className={cn(montserrat.className)}
             >
-              {info.name}:{' '}
-              <span className={cn(montserrat.className)}>{info.content}</span>
-            </LetterMove>
+              {info.name}:&nbsp;
+              <span>{info.content}</span>
+            </motion.li>
           ))}
-        </div>
-        <div className="flex gap-5">
+        </ul>
+        <ul className="flex gap-5">
           {textMap.sns.map((sns, index) => (
-            <LetterMove
+            <motion.li
               key={sns.name}
-              scrollYProgress={scrollYProgress}
-              styleY
-              index={index}
-              total={textMap.info.length}
+              initial={{ opacity: 0, x: -250, y: 150, scale: 0.5 }}
+              animate={
+                inView
+                  ? { opacity: 1, x: 0, y: 0, scale: 1 }
+                  : { opacity: 0, x: -250, y: 150, scale: 0.5 }
+              }
+              transition={{ duration: 0.7, delay: 0.2 * index + 0.4 }}
               className={cn(montserrat.className)}
             >
-              <Link href={sns.href} target="_blank">
-                <Icon name={sns.name} alt={sns.name} />
+              <Link
+                href={sns.href}
+                target="_blank"
+                className="block w-11 md:w-14 h-11 md:h-14 relative"
+              >
+                <Icon
+                  name={sns.name}
+                  alt={sns.name}
+                  className="w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  style={{
+                    objectFit: 'cover',
+                    objectPosition: 'center',
+                  }}
+                />
               </Link>
-            </LetterMove>
+            </motion.li>
           ))}
-        </div>
-        <motion.div>
-          <LetterMove
-            scrollYProgress={scrollYProgress}
-            rightX
-            styleY
-            index={0}
-            total={textMap.info.length}
+        </ul>
+        <motion.div
+          initial={{ opacity: 0, x: 250, y: 150, scale: 0.5 }}
+          animate={
+            inView
+              ? { opacity: 1, x: 0, y: 0, scale: 1 }
+              : { opacity: 0, x: 250, y: 150, scale: 0.5 }
+          }
+          transition={{ duration: 0.7, delay: 0.4 }}
+        >
+          <Link
+            href={textMap.resumeUrl}
+            className="underline underline-offset-4 text-center my-auto"
           >
-            <Link
-              href={textMap.resumeUrl}
-              className="underline underline-offset-4 text-center my-auto"
-            >
-              노션 이력서 바로가기
-            </Link>
-          </LetterMove>
+            노션 이력서 바로가기
+          </Link>
         </motion.div>
       </div>
       <BackgroundStars className="w-screen h-screen" />

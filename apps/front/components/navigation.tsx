@@ -73,7 +73,7 @@ export const Navigation = () => {
       </button>
       <nav
         className={cn(
-          isMenuOpen ? 'right-0' : '-right-full',
+          isMenuOpen ? 'right-0' : '-right-full lg:right-0',
           'flex items-center justify-end w-2/3 lg:w-full h-screen lg:h-fit absolute lg:!relative top-0 z-40 bg-black lg:!bg-transparent !bg-opacity-80 transition-all duration-300',
         )}
       >

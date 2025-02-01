@@ -1,5 +1,6 @@
-import { useRef, type HTMLAttributes } from 'react';
-import { motion, useScroll } from 'framer-motion';
+import { type HTMLAttributes } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { motion } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 import { cantique } from '@/public/fonts';
 import { BackgroundStars } from '@components/background-stars';
@@ -9,40 +10,39 @@ const topLetters = 'FRONTEND'.split('');
 const bottomLetters = 'DIANE'.split('');
 
 export const SectionHero = (props: HTMLAttributes<HTMLDivElement>) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start', '100vh 50vh'],
+  const { ref, inView } = useInView({
+    threshold: 0.4,
+    triggerOnce: false,
   });
 
   return (
     <section
       {...props}
-      ref={sectionRef}
       className="w-full h-screen flex items-center justify-center relative"
     >
       <motion.div
+        ref={ref}
         className={cn(
           cantique.className,
-          'absolute !leading-loose text-[8vw] sm:text-5xl md:text-6xl text-center',
+          'page-inner absolute !leading-loose text-[8vw] sm:text-5xl md:text-6xl text-center',
         )}
       >
-        {topLetters.map((char, index) => (
+        {topLetters.map((letter, index) => (
           <LetterSpin
-            key={`${char}${index}`}
-            scrollYProgress={scrollYProgress}
+            key={`${letter}-${index}`}
+            inView={inView}
             index={index}
-            char={char}
+            char={letter}
             total={topLetters.length}
           />
         ))}
         <br />
-        {bottomLetters.map((char, index) => (
+        {bottomLetters.map((letter, index) => (
           <LetterSpin
-            key={`${char}${index}`}
-            scrollYProgress={scrollYProgress}
+            key={`${letter}-${index}`}
+            inView={inView}
             index={index}
-            char={char}
+            char={letter}
             total={bottomLetters.length}
           />
         ))}

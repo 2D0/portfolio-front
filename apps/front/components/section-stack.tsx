@@ -16,7 +16,8 @@ interface SectionStackProps extends HTMLAttributes<HTMLDivElement> {
 export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
   const [stackType, setStackType] = useState<StackType>('language');
   const { ref, inView } = useInView({
-    threshold: 0.3,
+    threshold: 0.4,
+    triggerOnce: false,
   });
 
   const stackTypeVariants = cva(
@@ -41,9 +42,12 @@ export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
   return (
     <section {...props} className="flex flex-col w-full h-fit relative top-">
       <div className="h-24" />
-      <div className="flex flex-col gap-10 sm:gap-20 min-h-screen pb-10">
-        <BlockTitle title="STACK" />
-        <article ref={ref} className="flex flex-col gap-2">
+      <div
+        ref={ref}
+        className="flex flex-col gap-10 sm:gap-20 page-inner min-h-screen pb-10"
+      >
+        <BlockTitle title="STACK" inView={inView} />
+        <article className="flex flex-col gap-2">
           <motion.p
             className="text-right"
             initial={{ opacity: 0, x: 50 }}
@@ -56,12 +60,22 @@ export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
             <span className="block sm:!hidden">블록을 클릭해 보세요.</span>
           </motion.p>
           <div className="grid grid-cols-1 sm:grid-cols-[max-content_1fr] gap-6 md:gap-8 w-full">
-            <div className="grid grid-cols-4 sm:grid-cols-1 h-fit relative">
+            <motion.div
+              initial={{ opacity: 0, x: -150 }}
+              animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -150 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="grid grid-cols-4 sm:grid-cols-1 h-fit relative"
+            >
               <span className={cn(stackTypeVariants({ variant: stackType }))} />
-              {Object.keys(textMap).map(text => (
-                <div
+              {Object.keys(textMap).map((text, index) => (
+                <motion.div
                   key={text}
                   className="border-b sm:border-b-0 border-l-0 sm:border-l border-slate-500 pl-2 md:pl-4"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={
+                    inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+                  }
+                  transition={{ duration: 0.5, delay: 0.2 * (index + 1) + 0.2 }}
                 >
                   <input
                     type="radio"
@@ -83,16 +97,16 @@ export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
                   >
                     {text}
                   </label>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
             <ul className="grid gap-4">
               {textMap[stackType].map((text, index) => (
                 <motion.li
                   key={`${text.name}-${index}`}
-                  initial={{ opacity: 0, x: 50 }}
+                  initial={{ opacity: 0, x: 150 }}
                   animate={
-                    inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }
+                    inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 150 }
                   }
                   transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
                 >

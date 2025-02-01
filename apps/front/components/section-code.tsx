@@ -30,14 +30,19 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
     itemList: textMap[codeName].codeMap,
   });
   const { ref, inView } = useInView({
-    threshold: 0.3,
+    threshold: 0.4,
+    rootMargin: '0px 0px 40% 0px',
+    triggerOnce: false,
   });
 
   return (
     <section {...props} className="flex flex-col w-full h-fit relative">
       <div className="h-24" />
-      <div className="flex flex-col gap-10 sm:gap-20 min-h-screen pb-10">
-        <BlockTitle title="CODE LOGIC" />
+      <div
+        ref={ref}
+        className="flex flex-col gap-10 sm:gap-20 page-inner min-h-screen pb-10"
+      >
+        <BlockTitle title="CODE LOGIC" inView={inView} />
         <div className="flex flex-col gap-5">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -61,7 +66,7 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
             <motion.div
               initial={{ opacity: 0, y: -50 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
               className="w-full"
             >
               <BlockContainer
@@ -103,7 +108,7 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
               <motion.div
                 initial={{ opacity: 0, y: -50 }}
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <BlockContainer
                   variants={{ height: 'fit', variant: 'black' }}
@@ -141,7 +146,7 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
                   animate={
                     inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
                   }
-                  transition={{ duration: 0.5, delay: 0.2 * (index + 1) }}
+                  transition={{ duration: 0.5, delay: 0.2 * (index + 1) + 0.4 }}
                 >
                   <BlockContainer
                     variants={{ variant: 'black' }}
@@ -175,7 +180,7 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
                     animate={
                       inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }
                     }
-                    transition={{ duration: 0.5, delay: 0.2 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
                     className="w-full"
                   >
                     <BlockContainer

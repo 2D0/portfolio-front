@@ -1,44 +1,46 @@
 import { useEffect, useState, type HTMLAttributes } from 'react';
-import { motion, useTransform, type MotionValue } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 
 export interface LetterSpinProps
   extends Pick<HTMLAttributes<HTMLSpanElement>, 'className'> {
-  scrollYProgress: MotionValue<number>;
+  inView: boolean;
   char: string;
   index: number;
 }
 
 export const LetterWave = ({
-  scrollYProgress,
+  inView,
   char,
   index,
   className,
 }: LetterSpinProps) => {
-  const [isServer, setIsServer] = useState(true);
+  const [animationTrigger, setAnimationTrigger] = useState(false);
 
   useEffect(() => {
-    setIsServer(true);
-  }, []);
-
-  const waveOffset = useTransform(scrollYProgress, [0, 0.5, 1], [50, 0, 0]);
-  const rotate = useTransform(
-    waveOffset,
-    offset =>
-      Math.sin((index + offset) * 0.5) * (scrollYProgress.get() < 0.5 ? 15 : 0),
-  );
-  const y = useTransform(
-    waveOffset,
-    offset =>
-      Math.sin((index + offset) * 0.5) * (scrollYProgress.get() < 0.5 ? 10 : 0),
-  );
+    if (inView) {
+      setTimeout(() => setAnimationTrigger(true), index * 100);
+    } else {
+      setAnimationTrigger(false);
+    }
+  }, [inView, index]);
 
   return (
     <motion.span
-      style={{
-        rotate,
-        y,
-      }}
+      initial={{ y: 0, rotate: 0, opacity: 1 }}
+      animate={
+        animationTrigger
+          ? {
+              y: [0, -10, 0, 5, 0],
+              rotate: [0, 10, -10, 5, 0],
+              transition: {
+                duration: 1.5,
+                ease: 'easeInOut',
+                delay: index * 0.1 + 0.4,
+              },
+            }
+          : { y: 0, rotate: 0, opacity: 1 }
+      }
       className={cn(className, 'inline-block')}
     >
       {char === ' ' ? '\u00A0' : char}
