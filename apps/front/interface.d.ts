@@ -71,3 +71,14 @@ export interface ContactMapType {
   sns: Array<{ name: IconNames; href: string }>;
   resumeUrl: string;
 }
+
+export interface UseGetPageItems<T> {
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+  getPageItems: Array<T>;
+  unit: number;
+  handleDragPage: (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: { offset: { x: number; y: number } },
+  ) => void;
+}
