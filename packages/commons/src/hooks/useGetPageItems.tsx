@@ -9,6 +9,10 @@ interface UseGetPageItems<T> {
   setPage: React.Dispatch<React.SetStateAction<number>>;
   unit: number;
   getPageItems: Array<T>;
+  handleDragPage: (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: { offset: { x: number } },
+  ) => void;
 }
 
 export const useGetPageItems = <T,>({
@@ -19,10 +23,25 @@ export const useGetPageItems = <T,>({
 
   const getPageItems = itemList.slice(page * unit, (page + 1) * unit);
 
+  const handleDragPage = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: { offset: { x: number } },
+  ) => {
+    const { x } = info.offset;
+    const dragOffset = x;
+    const totalPages = Math.ceil(itemList.length / unit);
+    if (dragOffset > 50) {
+      setPage(prev => (prev === 0 ? totalPages - 1 : prev - 1));
+    } else if (dragOffset < -50) {
+      setPage(prev => (prev === totalPages - 1 ? 0 : prev + 1));
+    }
+  };
+
   return {
     page,
     setPage,
     unit,
     getPageItems,
+    handleDragPage,
   };
 };

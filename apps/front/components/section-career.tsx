@@ -5,7 +5,7 @@ import { BackgroundStars } from '@components/background-stars';
 import { useGetPageItems } from '@repo/commons/hooks';
 import { BlockTitle } from './block-title';
 import { CareerBlock } from './block-career';
-import type { CareerMap } from '@/interface';
+import type { CareerMap, UseGetPageItems } from '@/interface';
 import { Pagination } from '@repo/ui/components';
 
 interface SectionCareerProps extends HTMLAttributes<HTMLDivElement> {
@@ -13,7 +13,13 @@ interface SectionCareerProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
-  const { page, setPage, getPageItems, unit } = useGetPageItems<CareerMap>({
+  const {
+    page,
+    setPage,
+    getPageItems,
+    unit,
+    handleDragPage,
+  }: UseGetPageItems<CareerMap> = useGetPageItems<CareerMap>({
     unit: 4,
     itemList: textMap,
   });
@@ -55,7 +61,12 @@ export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
               />
             </motion.div>
           </div>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <motion.ul
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 cursor-grab active:cursor-grabbing"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={handleDragPage}
+          >
             {getPageItems.map((text, index) => (
               <motion.li
                 key={text.name}
@@ -66,7 +77,7 @@ export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
                 <CareerBlock text={text} />
               </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </article>
       </div>
       <div className="h-48" />

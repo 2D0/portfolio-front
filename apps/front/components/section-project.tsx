@@ -7,7 +7,7 @@ import { useGetPageItems } from '@repo/commons/hooks';
 import { BlockTitle } from './block-title';
 import { BlockProject } from './block-project';
 import type { Stack } from '@repo/ui/interface';
-import type { ProjectMap } from '@/interface';
+import type { ProjectMap, UseGetPageItems } from '@/interface';
 
 interface SectionProjectProps extends HTMLAttributes<HTMLDivElement> {
   textMap: Array<ProjectMap>;
@@ -28,7 +28,13 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
       ? textMap
       : textMap.filter(text => text.stack.includes(stack));
 
-  const { page, setPage, getPageItems, unit } = useGetPageItems<ProjectMap>({
+  const {
+    page,
+    setPage,
+    getPageItems,
+    unit,
+    handleDragPage,
+  }: UseGetPageItems<ProjectMap> = useGetPageItems<ProjectMap>({
     unit: 3,
     itemList: filterMap,
   });
@@ -74,7 +80,12 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
               />
             </motion.div>
           </div>
-          <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <motion.ul
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 cursor-grab active:cursor-grabbing"
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            onDragEnd={handleDragPage}
+          >
             {getPageItems.map((text, index) => (
               <motion.li
                 key={text.name}
@@ -85,7 +96,7 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
                 <BlockProject text={text} />
               </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </div>
       </div>
       <div className="h-48" />

@@ -5,11 +5,16 @@ import { montserrat } from '@/public/fonts';
 import { cn } from '@repo/commons/cn';
 import { CodeEditor, Pagination, SelectBox } from '@repo/ui/components';
 import { BackgroundStars } from '@components/background-stars';
+import { useGetPageItems } from '@repo/commons/hooks';
 import { BlockTitle } from './block-title';
 import { BlockContainer } from './block-container';
 import { ViewComponent, ViewContext, ViewTimer } from './block-code-view';
-import type { CodeListType, CodeName, CodeType } from '@/interface';
-import { useGetPageItems } from '@repo/commons/hooks';
+import type {
+  CodeListType,
+  CodeName,
+  CodeType,
+  UseGetPageItems,
+} from '@/interface';
 
 interface SectionCodekProps extends HTMLAttributes<HTMLDivElement> {
   textMap: CodeListType;
@@ -25,7 +30,13 @@ const codeNameList = [
 export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
   const [codeName, setCodeName] = useState<CodeName>('Component');
   const [selected, setSelected] = useState<boolean>(false);
-  const { page, setPage, getPageItems, unit } = useGetPageItems<CodeType>({
+  const {
+    page,
+    setPage,
+    getPageItems,
+    unit,
+    handleDragPage,
+  }: UseGetPageItems<CodeType> = useGetPageItems<CodeType>({
     unit: 1,
     itemList: textMap[codeName].codeMap,
   });
@@ -178,9 +189,14 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
                   setPage={setPage}
                 />
               </motion.div>
-              <div className="grid grid-cols-1 w-full">
+              <motion.ul
+                className="grid grid-cols-1 w-full cursor-grab active:cursor-grabbing"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                onDragEnd={handleDragPage}
+              >
                 {getPageItems.map(text => (
-                  <motion.div
+                  <motion.li
                     key={`${codeName}-${text.name}`}
                     initial={{ opacity: 0, y: 50 }}
                     animate={
@@ -203,9 +219,9 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
                       </h4>
                       <CodeEditor value={text.code} height="400px" />
                     </BlockContainer>
-                  </motion.div>
+                  </motion.li>
                 ))}
-              </div>
+              </motion.ul>
             </div>
           </article>
         </div>
