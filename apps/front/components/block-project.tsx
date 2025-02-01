@@ -16,7 +16,7 @@ export const BlockProject = ({ text }: BlockProjectProps) => {
       variants={{
         variant: 'black',
       }}
-      className="grid grid-rows-[max-content_max-content_max-content_max-content_auto_max-content_max-content] gap-4"
+      className="grid grid-rows-[max-content_max-content_max-content_max-content_auto_max-content_max-content] gap-4 hover:transform hover:-translate-y-1 transition-transform duration-300"
     >
       <ImageBox
         imagePorps={{
