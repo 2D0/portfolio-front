@@ -7,10 +7,10 @@ export interface DateReturnType {
   month: number;
   date: number;
   day: number;
-  hours: string;
-  minutes: string;
-  seconds: string;
-  milliseconds: string;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  milliseconds: number;
 }
 
 export const useDate = (): DateReturnType => {
@@ -23,13 +23,18 @@ export const useDate = (): DateReturnType => {
   const date = today.getDate();
   const day = today.getDay();
 
-  const hours = today.getHours().toString().padStart(2, '0');
-  const minutes = today.getMinutes().toString().padStart(2, '0');
-  const seconds = today.getSeconds().toString().padStart(2, '0');
-  const milliseconds = today.getMilliseconds().toString().padStart(2, '0');
+  const hours = today.getHours();
+  const minutes = today.getMinutes();
+  const seconds = today.getSeconds();
+  const milliseconds = today.getMilliseconds();
+
+  const hoursString = hours.toString().padStart(2, '0');
+  const minutesSting = minutes.toString().padStart(2, '0');
+  const secondsSting = seconds.toString().padStart(2, '0');
+  const millisecondsSting = milliseconds.toString().padStart(2, '0');
 
   const dateValue = `${year}-${month}-${date}`;
-  const timeAllValue = `${hours}:${minutes}:${seconds}`;
+  const timeAllValue = `${hoursString}:${minutesSting}:${secondsSting}`;
   const timeValue = `${hours}:${minutes}`;
   const fullDateValue = `${dateValue} ${timeValue}`;
 
