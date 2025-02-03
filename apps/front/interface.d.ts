@@ -82,3 +82,33 @@ export interface UseGetPageItems<T> {
     info: { offset: { x: number; y: number } },
   ) => void;
 }
+
+type Visitor = 'career' | 'watch' | 'curious' | '';
+type Thought = 'cool' | 'beautiful' | 'interest' | '';
+type Score = 'yes' | 'ofcourse' | 'hum' | '';
+
+export interface SelectMapType {
+  visitor: Visitor;
+  thought: Thought;
+  score: Score;
+}
+
+interface ContentList<T> {
+  type: 'text' | 'input' | 'select' | 'name';
+  content?: string;
+  selectName?: T;
+  selectList?: Array<{ id: SelectMapType[T]; content: string }>;
+  selectMap?: Partial<Record<SelectMapType[T], string>>;
+  nextStep?: number;
+}
+
+export interface ModalList<
+  T extends keyof SelectMapType = keyof SelectMapType,
+> {
+  id: number | string;
+  senderId: string;
+  receiverId: string;
+  contentList: Array<ContentList<T>>;
+}
+
+export type ModalListType = Record<number, Array<ModalList>>;
