@@ -14,9 +14,9 @@ export default function ProviderLayout({
     <NavChangeProvider>
       <ModalProvider>
         <body className={gowunDodum.className}>
-          <ModalChatbot />
           <Navigation />
           {children}
+          <ModalChatbot />
         </body>
       </ModalProvider>
     </NavChangeProvider>

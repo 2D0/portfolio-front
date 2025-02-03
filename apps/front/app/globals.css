@@ -22,6 +22,12 @@ body {
     rgb(var(--background-end-rgb)) 100%
   );
 }
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
 .page-inner {
   @apply px-4 w-full max-w-full sm:max-w-5xl md:max-w-7xl mx-auto;
 }
