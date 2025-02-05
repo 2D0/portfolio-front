@@ -1,0 +1,12 @@
+
+
+> @repo/ui@0.0.0 build /Users/dianelee/Documents/workspace/engimeow/portfolio/packages/ui
+> tailwindcss -i ./src/styles.css -o ./dist/index.css
+
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+
+Rebuilding...
+
+Done in 371ms.

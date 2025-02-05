@@ -1,0 +1,37 @@
+
+
+> @repo/commons@0.0.0 type-check /Users/dianelee/Documents/workspace/engimeow/portfolio/packages/commons
+> tsc --noEmit
+
+[96msrc/hooks/useFormatTime.tsx[0m:[93m10[0m:[93m31[0m - [91merror[0m[90m TS2550: [0mProperty 'padStart' does not exist on type 'string'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2017' or later.
+
+[7m10[0m     displayMinutes.toString().padStart(2, '0') +
+[7m  [0m [91m                              ~~~~~~~~[0m
+
+[96msrc/hooks/useFormatTime.tsx[0m:[93m12[0m:[93m31[0m - [91merror[0m[90m TS2550: [0mProperty 'padStart' does not exist on type 'string'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2017' or later.
+
+[7m12[0m     displaySeconds.toString().padStart(2, '0');
+[7m  [0m [91m                              ~~~~~~~~[0m
+
+[96msrc/hooks/useFormatTime.tsx[0m:[93m15[0m:[93m38[0m - [91merror[0m[90m TS2550: [0mProperty 'padStart' does not exist on type 'string'. Do you need to change your target library? Try changing the 'lib' compiler option to 'es2017' or later.
+
+[7m15[0m     formattedTime = hours.toString().padStart(2, '0') + ':' + formattedTime;
+[7m  [0m [91m                                     ~~~~~~~~[0m
+
+[96msrc/hooks/useTimer.tsx[0m:[93m16[0m:[93m19[0m - [91merror[0m[90m TS2503: [0mCannot find namespace 'NodeJS'.
+
+[7m16[0m     let interval: NodeJS.Timeout | undefined = undefined;
+[7m  [0m [91m                  ~~~~~~[0m
+
+[96msrc/hooks/useTimer.tsx[0m:[93m33[0m:[93m24[0m - [91merror[0m[90m TS7006: [0mParameter 'timeState' implicitly has an 'any' type.
+
+[7m33[0m   const timerHandler = timeState => {
+[7m  [0m [91m                       ~~~~~~~~~[0m
+
+
+Found 5 errors in 2 files.
+
+Errors  Files
+     3  src/hooks/useFormatTime.tsx[90m:10[0m
+     2  src/hooks/useTimer.tsx[90m:16[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 2.[39m

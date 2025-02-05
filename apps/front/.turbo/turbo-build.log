@@ -1,0 +1,140 @@
+
+
+> front@1.0.0 build /Users/dianelee/Documents/workspace/engimeow/portfolio/apps/front
+> next build
+
+ [33m[1m⚠[22m[39m Invalid next.config.js options detected: 
+ [33m[1m⚠[22m[39m     Unrecognized key(s) in object: 'appDir' at "experimental"
+ [33m[1m⚠[22m[39m See more info here: https://nextjs.org/docs/messages/invalid-next-config
+  [1m[38;2;173;127;168m▲ Next.js 14.2.23[39m[22m
+
+ [37m[1m [22m[39m Creating an optimized production build ...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+ [32m[1m✓[22m[39m Compiled successfully
+[?25l [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m...[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G [37m[1m [22m[39m Linting and checking validity of types  [36m..[39m[2K[1G[?25h
+./app/layout.tsx
+27:70  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./app/page.client.tsx
+30:72  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+82:6  Warning: React Hook useEffect has a missing dependency: 'setSelectName'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+103:6  Warning: React Hook useEffect has missing dependencies: 'isMenuOpen' and 'sectionRefs'. Either include them or remove the dependency array.  react-hooks/exhaustive-deps
+
+./app/page.tsx
+10:5  Warning: Imported JSX component UI must be in PascalCase  react/jsx-pascal-case
+
+./components/background-stars.tsx
+12:75  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+41:28  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+47:15  Warning: Assignments to the 'stars' variable from inside React Hook useEffect will be lost after each render. To preserve the value over time, store it in a useRef Hook and keep the mutable value in the '.current' property. Otherwise, you can move this variable directly inside useEffect.  react-hooks/exhaustive-deps
+50:29  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+67:49  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+73:35  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+156:24  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/block-career.tsx
+3:1  Warning: `@/interface` type import should occur before import of `./stack-badge`  import/order
+9:57  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/block-code-view.tsx
+14:1  Warning: `@repo/ui/interface` type import should occur before import of `@/contexts/icon.context`  import/order
+16:33  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+90:29  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+121:31  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+132:24  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+145:73  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/block-container.tsx
+62:44  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+76:68  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+79:66  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/block-project.tsx
+6:1  Warning: `@repo/ui/components` import should occur before import of `@/public/fonts`  import/order
+7:1  Warning: `@/interface` type import should occur before import of `./stack-badge`  import/order
+13:59  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/block-stack.tsx
+5:1  Warning: `@repo/ui/components` import should occur before import of `@/public/fonts`  import/order
+7:1  Warning: `@/interface` type import should occur before import of `./block-container`  import/order
+8:1  Warning: `@repo/ui/interface` type import should occur before import of `@/public/fonts`  import/order
+38:58  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+46:65  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/block-title.tsx
+19:64  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/letter-move.tsx
+22:21  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/letter-spin.tsx
+21:21  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/letter-wave.tsx
+17:21  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/navigation.tsx
+4:1  Warning: `framer-motion` import should occur before import of `@/public/fonts`  import/order
+6:1  Warning: `@repo/ui/components` import should occur before import of `@/public/fonts`  import/order
+24:30  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+107:9  Warning: Missing an explicit type attribute for button  react/button-has-type
+
+./components/section-career.tsx
+5:1  Warning: `@repo/commons/hooks` import should occur before import of `@components/background-stars`  import/order
+8:1  Warning: `@/interface` type import should occur before import of `./block-title`  import/order
+9:1  Warning: `@repo/ui/components` import should occur before import of `@components/background-stars`  import/order
+15:74  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/section-code.tsx
+5:1  Warning: `@repo/commons/cn` import should occur before import of `@/public/fonts`  import/order
+6:1  Warning: `@repo/ui/components` import should occur before import of `@/public/fonts`  import/order
+11:1  Warning: `@/interface` type import should occur before import of `./block-title`  import/order
+12:1  Warning: `@repo/commons/hooks` import should occur before import of `@/public/fonts`  import/order
+25:71  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/section-contact.tsx
+9:1  Warning: `@repo/ui/components` import should occur before import of `@/public/fonts`  import/order
+18:76  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/section-hero.tsx
+12:68  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/section-info.tsx
+7:68  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/section-project.tsx
+4:1  Warning: `@components/background-stars` import should occur after type import of `@repo/ui/interface`  import/order
+7:1  Warning: `./block-title` import should occur after type import of `@/interface`  import/order
+8:1  Warning: `./block-project` import should occur after type import of `@/interface`  import/order
+17:76  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/section-stack.tsx
+10:1  Warning: Expected 1 empty line after import statement not followed by another import.  import/newline-after-import
+10:1  Warning: `@/interface` type import should occur before import of `./block-title`  import/order
+16:72  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+./components/stack-badge.tsx
+1:1  Warning: `@/public/fonts` import should occur after import of `@repo/commons/cn`  import/order
+48:60  Warning: Missing return type on function.  @typescript-eslint/explicit-function-return-type
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+[?25l [37m[1m [22m[39m Linting and checking validity of types  [36m.[39m[2K[1G[?25h [37m[1m [22m[39m Linting and checking validity of types     [32m[1m✓[22m[39m Linting and checking validity of types 
+[?25l [37m[1m [22m[39m Collecting page data  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting page data  [36m...[39m[2K[1G[?25h [37m[1m [22m[39m Collecting page data     [32m[1m✓[22m[39m Collecting page data 
+[?25l [37m[1m [22m[39m Generating static pages (0/5)  [36m[    ][39m[2K[1G [37m[1m [22m[39m Generating static pages (0/5)  [36m[=   ][39m[2K[1G [37m[1m [22m[39m Generating static pages (4/5)  [36m[==  ][39m[2K[1G[?25h [32m[1m✓[22m[39m Generating static pages (5/5)
+[?25l [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[?25l [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m.[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m.[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m..[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m..[39m[2K[1G [37m[1m [22m[39m Finalizing page optimization  [36m...[39m[2K[1G [37m[1m [22m[39m Collecting build traces  [36m...[39m[2K[1G[?25h [37m[1m [22m[39m Collecting build traces     [32m[1m✓[22m[39m Collecting build traces 
+[2K[1G[?25h [37m[1m [22m[39m Finalizing page optimization     [32m[1m✓[22m[39m Finalizing page optimization 
+
+[4mRoute (app)[24m                              [4mSize[24m     [4mFirst Load JS[24m
+┌ ○ /                                    185 kB          [37m[1m320 kB[22m[39m
+└ ○ /_not-found                          873 B          [37m[1m88.1 kB[22m[39m
++ First Load JS shared by all            [37m[1m87.3 kB[22m[39m
+  ├ chunks/487-51c3ff031bbbdc12.js       31.6 kB
+  ├ chunks/c320319f-91dc142562d4a85a.js  53.7 kB
+  └ other shared chunks (total)          2 kB
+
+
+○  (Static)  prerendered as static content
+
+[?25h
