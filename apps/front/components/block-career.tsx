@@ -32,7 +32,6 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
           </li>
         ))}
       </ul>
-
       <BlockContainer
         variants={{
           height: 'fit',
@@ -68,11 +67,13 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
           'grid place-content-center w-full h-9 rounded-md bg-gray-300 hover:bg-gray-100 transition-all duration-300 text-black',
         )}
         target="_blank"
-        onClick={() =>
+        onClick={event => {
+          event.preventDefault();
           track('회사 경력 디테일 클릭', {
             name: text.name,
-          })
-        }
+          });
+          window.open(text.href, '_blank');
+        }}
       >
         Go Detail
       </Link>
