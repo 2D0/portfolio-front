@@ -1,4 +1,5 @@
 import { type HTMLAttributes } from 'react';
+import { track } from '@vercel/analytics';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
@@ -105,6 +106,7 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
                 href={sns.href}
                 target="_blank"
                 className="block w-11 md:w-14 h-11 md:h-14 relative"
+                onClick={() => track('SNS 클릭', { name: sns.name })}
               >
                 <Icon
                   name={sns.name}
@@ -131,6 +133,7 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
           <Link
             href={textMap.resumeUrl}
             className="underline underline-offset-4 text-center my-auto"
+            onClick={() => track('노션 이력서 클릭')}
           >
             노션 이력서 바로가기
           </Link>

@@ -7,7 +7,7 @@ export const ModalList: ModalListType = {
       senderId: '2d0',
       receiverId: 'anon',
       contentList: [
-        { type: 'text', content: '반갑습니다. 우주 로봇 2D0 입니다.' },
+        { type: 'text', content: '반갑습니다. 우주 챗봇 2D0 입니다.' },
         {
           type: 'text',
           content: '이름 어떻게 되시나요?',

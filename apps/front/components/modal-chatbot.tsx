@@ -1,11 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { track } from '@vercel/analytics';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { montserrat } from '@/public/fonts';
 import { useModal } from '@/contexts/modal.context';
 import { ModalList } from '@/lib/textStorage/modal';
 import { Icon } from '@repo/ui/components';
 import { BlockChat } from './block-chat';
 import type { SelectMapType, ContentList } from '@/interface';
+import { cn } from '@repo/commons/cn';
 
 export const ModalChatbot = () => {
   const {
@@ -53,6 +56,7 @@ export const ModalChatbot = () => {
   useEffect(() => {
     scrollToBottomWhenMounted();
   }, [chatHistory]);
+
   const scrollToBottomWhenMounted = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, []);
@@ -64,6 +68,13 @@ export const ModalChatbot = () => {
             className="grid place-content-center w-5 h-5 absolute top-0.5 right-0.5"
             onClick={() => {
               setIsModal(false);
+
+              track('챗봇 닫기', {
+                name: nameValue,
+                visitor: selectId.visitor,
+                thought: selectId.thought,
+                score: selectId.score,
+              });
               setChatHistory(ModalList[1]);
               setStep(1);
               setNameValue('');
@@ -101,10 +112,29 @@ export const ModalChatbot = () => {
       ) : (
         <button
           type="button"
-          onClick={() => setIsModal(true)}
-          className="fixed bottom-4 left-4 z-50"
+          onClick={() => {
+            setIsModal(true);
+            track('챗봇 오픈');
+          }}
+          className="flex flex-col items-center fixed bottom-4 left-4 z-50"
         >
-          <Icon name="Moon" alt="챗봇 버튼" />
+          <div className={cn(montserrat.className, 'animate-bounce relative')}>
+            <div className="relative w-fit min-w-8 sm:min-w-10 px-1.5 py-1.5 sm:px-2.5 sm:py-2 text-white text-center text-xs font-semibold rounded-full z-10 bg-red-500 after:block after:content-[''] after:absolute  after:left-1/2  after:-bottom-2  after:w-0  after:h-0  after:border-l-8  after:border-l-transparent  after:border-r-8  after:border-r-transparent  after:border-t-8  after:border-t-red-500  after:transform  after:-translate-x-1/2">
+              CHATBOT
+            </div>
+            <div className="absolute left-1/2 -bottom-2 w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-8 border-t-red-500 transform -translate-x-1/2" />
+          </div>
+          <div className="w-11 sm:w-14 h-11 sm:h-14 relative">
+            <Icon
+              name="Moon"
+              alt="챗봇 버튼"
+              className="w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
+            />
+          </div>
         </button>
       )}
     </>

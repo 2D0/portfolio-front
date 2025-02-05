@@ -5,7 +5,4 @@ module.exports = {
   experimental: {
     appDir: true,
   },
-  images: {
-    domains: ['img.notionusercontent.com', 'github.com'],
-  },
 };

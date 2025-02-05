@@ -1,4 +1,5 @@
 import React, { useState, type HTMLAttributes } from 'react';
+import { track } from '@vercel/analytics';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { montserrat } from '@/public/fonts';
@@ -66,7 +67,10 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
               setName={setCodeName}
               selected={selected}
               setSelected={setSelected}
-              onClick={() => setPage(0)}
+              onClick={() => {
+                setPage(0);
+                track('코드 로직 종류 선택', { name: codeName });
+              }}
               height="h-40"
             />
           </motion.div>

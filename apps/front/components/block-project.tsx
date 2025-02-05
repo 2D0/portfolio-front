@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { track } from '@vercel/analytics';
 import { cn } from '@repo/commons/cn';
 import { montserrat } from '@/public/fonts';
 import { StackBadge } from './stack-badge';
@@ -66,6 +67,11 @@ export const BlockProject = ({ text }: BlockProjectProps) => {
             href={text.site}
             className="grid place-content-center w-full h-9 rounded-md bg-gray-500 hover:bg-gray-600 transition-all duration-300"
             target="_blank"
+            onClick={() =>
+              track('프로젝트 사이트 클릭', {
+                name: text.name,
+              })
+            }
           >
             Go Site
           </Link>
@@ -74,6 +80,11 @@ export const BlockProject = ({ text }: BlockProjectProps) => {
           href={text.href}
           className="grid place-content-center w-full h-9 rounded-md bg-gray-300 hover:bg-gray-100 transition-all duration-300 text-black"
           target="_blank"
+          onClick={() =>
+            track('프로젝트 디테일 클릭', {
+              name: text.name,
+            })
+          }
         >
           Go Detail
         </Link>

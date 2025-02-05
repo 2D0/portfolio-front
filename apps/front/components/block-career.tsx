@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { track } from '@vercel/analytics';
 import { cn } from '@repo/commons/cn';
 import { montserrat } from '@/public/fonts';
 import { StackBadge } from './stack-badge';
@@ -67,6 +68,11 @@ export const CareerBlock = ({ text }: CareerBlockProps) => {
           'grid place-content-center w-full h-9 rounded-md bg-gray-300 hover:bg-gray-100 transition-all duration-300 text-black',
         )}
         target="_blank"
+        onClick={() =>
+          track('회사 경력 디테일 클릭', {
+            name: text.name,
+          })
+        }
       >
         Go Detail
       </Link>
