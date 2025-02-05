@@ -22,7 +22,7 @@ export const SelectBox = <T extends string>({
   height = 'h-60',
 }: SelectBoxProps<T>) => {
   return (
-    <div>
+    <div onBlur={() => setSelected(false)}>
       <button
         type="button"
         className="flex justify-between items-center w-40 h-8 px-2 rounded-md !bg-white !bg-opacity-20 border border-white border-opacity-20"
