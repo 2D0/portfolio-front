@@ -33,7 +33,7 @@ pnpm-debug.log*
 .env.production.local
 
 # turbo
-.turbo
+.turbo/
 
 # vercel
 .vercel
