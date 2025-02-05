@@ -68,7 +68,6 @@ export const ModalChatbot = () => {
             className="grid place-content-center w-5 h-5 absolute top-0.5 right-0.5"
             onClick={() => {
               setIsModal(false);
-
               track('챗봇 닫기', {
                 name: nameValue,
                 visitor: selectId.visitor,

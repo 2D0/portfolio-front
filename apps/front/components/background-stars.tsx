@@ -39,12 +39,14 @@ export const BackgroundStars = (props: HTMLAttributes<HTMLCanvasElement>) => {
     };
 
     const createStars = () => {
-      const numStars =
-        (Math.min(canvas.width, canvas.height) /
-          Math.max(canvas.width, canvas.height)) *
-        300;
+      const baseDensity = 0.0001;
+      const screenArea = canvas.width * canvas.height;
+      const densityFactor = window.innerWidth < 768 ? 0.5 : 1;
 
-      stars = Array.from({ length: Math.floor(numStars) }, () => createStar());
+      let numStars = Math.floor(screenArea * baseDensity * densityFactor);
+      numStars = Math.max(50, Math.min(numStars, 500));
+
+      stars = Array.from({ length: numStars }, () => createStar());
     };
 
     const resizeCanvas = () => {
