@@ -16,8 +16,6 @@ export interface DateReturnType {
 export const useDate = (): DateReturnType => {
   const today = new Date();
 
-  const timeStemp = today.toLocaleTimeString();
-
   const year = today.getFullYear();
   const month = today.getMonth() + 1;
   const date = today.getDate();

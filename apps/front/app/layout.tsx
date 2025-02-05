@@ -1,5 +1,6 @@
 import './globals.css';
 import '@repo/ui/styles.css';
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import ProviderLayout from './provider.layout';
 
@@ -15,7 +16,10 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <ProviderLayout>{children}</ProviderLayout>
+      <ProviderLayout>
+        {children}
+        <Analytics />
+      </ProviderLayout>
     </html>
   );
 }

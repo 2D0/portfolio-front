@@ -126,6 +126,7 @@ export const BlockChat = ({
                       type="button"
                       className="flex items-center gap-1 px-2 py-1 rounded-full !bg-white before:block before:content-[''] before:w-3 before:h-3 before:rounded-full before:bg-[#7A93C5]"
                       onClick={() => {
+                        if (step === chat.nextStep) return;
                         chat.selectName &&
                           setSelectId(prev => ({
                             ...prev,
@@ -134,6 +135,7 @@ export const BlockChat = ({
                         setAnswear(select.content);
                         chat.nextStep && setStep(chat.nextStep);
                       }}
+                      disabled={step === chat.nextStep}
                     >
                       {select.content}
                     </button>
