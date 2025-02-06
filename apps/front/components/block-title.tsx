@@ -1,6 +1,4 @@
-import { useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { type InViewHookResponse } from 'react-intersection-observer';
 import { motion } from 'framer-motion';
 import { cn } from '@repo/commons/cn';
 import { cantique } from '@/public/fonts';
