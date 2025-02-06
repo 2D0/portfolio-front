@@ -149,6 +149,11 @@ export const BlockChat = ({
                   value={nameValue}
                   placeholder="이름을 입력해 주세요."
                   onChange={e => setNameValue(e.target.value)}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' && nameValue && chat.nextStep) {
+                      setStep(chat.nextStep);
+                    }
+                  }}
                   readOnly={step !== 1}
                   className={cn(inputVariants({ disabled: step !== 1 }))}
                 />
