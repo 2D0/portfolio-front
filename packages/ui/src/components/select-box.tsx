@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { cn } from '@repo/commons/cn';
 
 interface SelectBoxProps<T> {
@@ -21,8 +21,28 @@ export const SelectBox = <T extends string>({
   onClick,
   height = 'h-60',
 }: SelectBoxProps<T>) => {
+
+  const selectRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (
+        selectRef.current &&
+        !selectRef.current.contains(event.target as Node)
+      ) {
+        setSelected(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+    };
+  }, [setSelected]);
+
   return (
-    <div onBlur={() => setSelected(false)}>
+    <div ref={selectRef} className="w-fit">
       <button
         type="button"
         className="flex justify-between items-center w-40 h-8 px-2 rounded-md !bg-white !bg-opacity-20 border border-white border-opacity-20"
