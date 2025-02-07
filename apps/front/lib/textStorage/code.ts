@@ -92,7 +92,7 @@ import type { InputBoxPorps } from '@repo/ui/interface';
 interface RadioProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   selectvalue: string;
-  children: ReactElement[];
+  children: Array<ReactElement>;
 }
 type RadioGroupProps = RadioProps &
   Pick<InputBoxPorps, 'labelProps' | 'typeProps'>;
@@ -578,7 +578,7 @@ export const FormSnsLogin = ({
       buttonDefaultData?: TypeButton | undefined;
       contentData?: TypeButton | undefined;
     }) => JSX.Element;
-    blockListTable: TypeButton[];
+    blockListTable: Array<TypeButton>;
     lastButtonData: Partial<TypeButton>;
   };
 }) => {
@@ -900,7 +900,8 @@ export const IconButtons = ({ iconMap }: { iconMap: Array<IconNames> }) => {
       },
       {
         name: 'Icon.tsx',
-        code: `import Image from 'next/image';
+        code: `import React from 'react';
+import Image from 'next/image';
 import type { IconProps } from '@repo/ui/interface';
 
 const IconSizeMap = {
@@ -911,7 +912,7 @@ const IconSizeMap = {
   '2xl': 50,
 };
 
-export const Icon = (props: IconProps) => {
+export const Icon = React.memo((props: IconProps) => {
   const { name, size, width, height, ...ohterProps } = props;
   const iconSize = IconSizeMap[size ?? 'lg'];
   const IconSourceMap: Record<IconProps['name'], string> = {
@@ -953,7 +954,7 @@ export const Icon = (props: IconProps) => {
       }}
     />
   );
-};`,
+});`,
       },
     ],
     stack: ['Next.js14', 'TypeScript', 'Context', 'TailwindCSS'],

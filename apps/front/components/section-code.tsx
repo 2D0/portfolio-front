@@ -1,4 +1,4 @@
-import React, { useState, type HTMLAttributes } from 'react';
+import React, { useMemo, useState, type HTMLAttributes } from 'react';
 import { track } from '@vercel/analytics';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -46,6 +46,10 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
     rootMargin: '0px 0px 40% 0px',
     triggerOnce: true,
   });
+  const codeNameList = useMemo(
+    () => ['Component', 'Next.js14', 'Atomic System', 'Custom Hook', 'Context'],
+    [],
+  );
 
   return (
     <section {...props} className="flex flex-col w-full h-fit relative">

@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import type { IconProps } from '@repo/ui/interface';
 
@@ -9,7 +10,7 @@ const IconSizeMap = {
   '2xl': 50,
 };
 
-export const Icon = (props: IconProps) => {
+export const Icon = React.memo((props: IconProps) => {
   const { name, size, width, height, ...ohterProps } = props;
   const iconSize = IconSizeMap[size ?? 'lg'];
   const IconSourceMap: Record<IconProps['name'], string> = {
@@ -51,4 +52,4 @@ export const Icon = (props: IconProps) => {
       }}
     />
   );
-};
+});

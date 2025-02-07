@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image, { type ImageProps } from 'next/image';
 import { cn } from '@repo/commons/cn';
@@ -98,6 +98,11 @@ export const ImageBox = (props: ImageBoxProps) => {
     }
   }, [src, aspectSize]);
 
+  const handleImageError = useCallback(
+    () => setImageSrc(defaultImage),
+    [defaultImage],
+  );
+
   return (
     <div
       ref={imageRef}
@@ -121,7 +126,7 @@ export const ImageBox = (props: ImageBoxProps) => {
           <Image
             {...image}
             src={imageSrc}
-            onError={() => setImageSrc(defaultImage)}
+            onError={handleImageError}
             width={aspectSize?.size}
             height={aspectSize?.size}
             style={{
@@ -135,7 +140,7 @@ export const ImageBox = (props: ImageBoxProps) => {
         <Image
           {...image}
           src={imageSrc}
-          onError={() => setImageSrc(defaultImage)}
+          onError={handleImageError}
           className={cn([
             imageSrc === defaultImage ? 'h-[50%]' : 'w-full',
             'h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',

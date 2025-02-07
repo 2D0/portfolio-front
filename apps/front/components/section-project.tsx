@@ -1,4 +1,4 @@
-import { useState, type HTMLAttributes } from 'react';
+import { useMemo, useState, type HTMLAttributes } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { BackgroundStars } from '@components/background-stars';
@@ -38,10 +38,13 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
     unit: 3,
     itemList: filterMap,
   });
-  const setText: SetText[] = [
-    'All Stacks',
-    ...Array.from(new Set<Stack>(textMap.map(text => text.stack).flat())),
-  ];
+  const setText: Array<SetText> = useMemo(
+    () => [
+      'All Stacks',
+      ...Array.from(new Set<Stack>(textMap.map(text => text.stack).flat())),
+    ],
+    [],
+  );
 
   return (
     <section {...props} className="flex flex-col w-full h-fit relative">
