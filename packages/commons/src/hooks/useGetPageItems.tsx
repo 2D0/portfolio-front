@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 interface UseGetPageItemsProps<T> {
   unit: number;
@@ -21,21 +21,27 @@ export const useGetPageItems = <T,>({
 }: UseGetPageItemsProps<T>): UseGetPageItems<T> => {
   const [page, setPage] = useState(0);
 
-  const getPageItems = itemList.slice(page * unit, (page + 1) * unit);
+  const getPageItems = useMemo(
+    () => itemList.slice(page * unit, (page + 1) * unit),
+    [page, unit, itemList],
+  );
 
-  const handleDragPage = (
-    event: MouseEvent | TouchEvent | PointerEvent,
-    info: { offset: { x: number } },
-  ) => {
-    const { x } = info.offset;
-    const dragOffset = x;
-    const totalPages = Math.ceil(itemList.length / unit);
-    if (dragOffset > 50) {
-      setPage(prev => (prev === 0 ? totalPages - 1 : prev - 1));
-    } else if (dragOffset < -50) {
-      setPage(prev => (prev === totalPages - 1 ? 0 : prev + 1));
-    }
-  };
+  const handleDragPage = useCallback(
+    (
+      event: MouseEvent | TouchEvent | PointerEvent,
+      info: { offset: { x: number } },
+    ) => {
+      const { x } = info.offset;
+      const dragOffset = x;
+      const totalPages = Math.ceil(itemList.length / unit);
+      if (dragOffset > 50) {
+        setPage(prev => (prev === 0 ? totalPages - 1 : prev - 1));
+      } else if (dragOffset < -50) {
+        setPage(prev => (prev === totalPages - 1 ? 0 : prev + 1));
+      }
+    },
+    [itemList, unit],
+  );
 
   return {
     page,
