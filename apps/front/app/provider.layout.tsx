@@ -1,9 +1,8 @@
 'use client';
 import { gowunDodum } from '@/public/fonts';
-import { ModalProvider } from '@/contexts/modal.context';
-import { NavChangeProvider } from '@/contexts/nav.context';
+import { RecoilRoot } from 'recoil';
 import { Navigation } from '@components/navigation';
-import { ModalChatbot } from '@/components/modal-chatbot';
+import { ModalChatbot } from '@components/modal-chatbot';
 
 export default function ProviderLayout({
   children,
@@ -11,14 +10,12 @@ export default function ProviderLayout({
   children: React.ReactNode;
 }): JSX.Element {
   return (
-    <NavChangeProvider>
-      <ModalProvider>
-        <body className={gowunDodum.className}>
-          <Navigation />
-          {children}
-          <ModalChatbot />
-        </body>
-      </ModalProvider>
-    </NavChangeProvider>
+    <RecoilRoot>
+      <body className={gowunDodum.className}>
+        <Navigation />
+        {children}
+        <ModalChatbot />
+      </body>
+    </RecoilRoot>
   );
 }

@@ -1,8 +1,13 @@
 'use client';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {
+  menuOpenState,
+  navSelectNameState,
+  scrollNameNameState,
+} from '@lib/constraints/atoms/nav.atom';
 import { cn } from '@repo/commons/cn';
 import { montserrat, jua } from '@/public/fonts';
 import { motion } from 'framer-motion';
-import { useNavEvent } from '@/contexts/nav.context';
 import { ImageBox } from '@repo/ui/components';
 import { NavList } from '@lib/textStorage/navigation';
 
@@ -22,8 +27,9 @@ const letterVariants = {
 };
 
 export const Navigation = () => {
-  const { selectName, setSelectName, setNavScroll, isMenuOpen, setIsMenuOpen } =
-    useNavEvent();
+  const [selectName, setSelectName] = useRecoilState(navSelectNameState);
+  const setScrollName = useSetRecoilState(scrollNameNameState);
+  const [isMenuOpen, setIsMenuOpen] = useRecoilState(menuOpenState);
 
   return (
     <motion.header
@@ -95,7 +101,7 @@ export const Navigation = () => {
                 )}
                 onClick={() => {
                   setSelectName(nav);
-                  setNavScroll(nav);
+                  setScrollName(nav);
                   setIsMenuOpen(false);
                 }}
               >
