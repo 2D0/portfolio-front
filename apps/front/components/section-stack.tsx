@@ -17,7 +17,7 @@ export const SectionStack = ({ textMap, ...props }: SectionStackProps) => {
   const [stackType, setStackType] = useState<StackType>('language');
   const { ref, inView } = useInView({
     threshold: 0.4,
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   const stackTypeVariants = cva(

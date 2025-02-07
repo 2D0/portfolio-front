@@ -20,7 +20,7 @@ export const SectionProject = ({ textMap, ...props }: SectionProjectProps) => {
   const { ref, inView } = useInView({
     threshold: 0.3,
     rootMargin: '0px 0px 50% 0px',
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   const filterMap =

@@ -47,7 +47,7 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
           ))}
         </motion.div>
         <motion.div
-          className="row-span-2 w-full"
+          className="grid place-items-center gap-2 row-span-2 w-full"
           initial={{ opacity: 0, x: 250, scale: 0.5 }}
           animate={
             inView
@@ -58,18 +58,21 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
         >
           <ImageBox
             imagePorps={{
-              src: '/images/source/qr-code.svg',
+              src: '/images/source/qr-code.jpg',
               alt: 'QR코드',
               width: 200,
               height: 200,
             }}
             className="w-[130px] md:w-[200px] h-[130px] md:h-[200px] mx-auto sm:mx-0"
           />
+          <span className="text-xs text-gray-400">
+            카카오톡 1:1 채팅 QR코드
+          </span>
         </motion.div>
         <ul
           className={cn(
             cantique.className,
-            'flex flex-col text-center sm:text-left text-base md:text-xl',
+            'flex flex-col gap-2 text-center sm:text-left text-base md:text-xl',
           )}
         >
           {textMap.info.map((info, index) => (
@@ -84,8 +87,17 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
               transition={{ duration: 0.7, delay: 0.2 * index + 0.4 }}
               className={cn(montserrat.className)}
             >
-              {info.name}:&nbsp;
-              <span>{info.content}</span>
+              {info.href ? (
+                <Link
+                  href={info.href}
+                  target="_blank"
+                  className="py-1 px-2 rounded-md bg-gray-500 hover:bg-gray-600 transition-all duration-300 text-gray-200"
+                >
+                  {info.content}
+                </Link>
+              ) : (
+                <span>{info.content}</span>
+              )}
             </motion.li>
           ))}
         </ul>

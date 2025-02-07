@@ -3,7 +3,11 @@ import type { ContactMapType } from '@/interface';
 export const ContactMap: ContactMapType = {
   info: [
     { name: 'EMAIL', content: 'dablisher@gmail.com' },
-    { name: 'TEL', content: '010.2938.7732' },
+    {
+      name: 'TEL',
+      href: 'https://open.kakao.com/o/sWkiqMeh',
+      content: '카카오톡 1:1 채팅 바로가기',
+    },
   ],
   sns: [
     {

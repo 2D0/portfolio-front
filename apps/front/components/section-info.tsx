@@ -7,7 +7,7 @@ import { BackgroundStars } from '@components/background-stars';
 export const SectionInfo = (props: HTMLAttributes<HTMLDivElement>) => {
   const { ref, inView } = useInView({
     threshold: 0.4,
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   return (
