@@ -318,8 +318,9 @@ import Image from 'next/image';
 interface UIProps {
   handleSubmit: (event: FormData) => Promise<{ message?: string } | undefined>;
   count: number;
-  text: {
-    [key: string]: {
+  text: Record< 
+    string,
+    {
       title: {
         deep: string;
         accent: string;
@@ -331,8 +332,8 @@ interface UIProps {
         placeholder: string;
         startButton: string;
       };
-    };
-  };
+    }
+  >;
 }
 
 export const UI = ({ count, text, handleSubmit }: UIProps) => {
