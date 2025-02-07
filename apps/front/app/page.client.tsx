@@ -1,5 +1,11 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  menuOpenState,
+  navSelectNameState,
+  scrollNameNameState,
+} from '@lib/constraints/atoms/nav.atom';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@repo/commons/cn';
 import { SectionHero } from '@components/section-hero';
@@ -9,7 +15,6 @@ import { SectionStack } from '@/components/section-stack';
 import { SectionProject } from '@/components/section-project';
 import { SectionCode } from '@/components/section-code';
 import { SectionContact } from '@/components/section-contact';
-import { useNavEvent } from '@/contexts/nav.context';
 import type {
   CareerMap,
   StackMap,
@@ -28,7 +33,9 @@ interface UIProps {
 }
 
 export const UI = ({ career, stack, project, code, contact }: UIProps) => {
-  const { setSelectName, navScroll, isMenuOpen, setIsMenuOpen } = useNavEvent();
+  const setSelectName = useSetRecoilState(navSelectNameState);
+  const scrollName = useRecoilValue(scrollNameNameState);
+  const [isMenuOpen, setIsMenuOpen] = useRecoilState(menuOpenState);
 
   const { ref: homeInViewRef, inView: homeInView } = useInView({
     threshold: 0.3,
@@ -62,7 +69,6 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
     HOME: useRef<HTMLDivElement>(null),
     'IT’S ME': useRef<HTMLDivElement>(null),
     'WORK HISTORY': useRef<HTMLDivElement>(null),
-
     STACK: useRef<HTMLDivElement>(null),
     PROJECT: useRef<HTMLDivElement>(null),
     'CODE LOGIC': useRef<HTMLDivElement>(null),
@@ -92,7 +98,7 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
 
   useEffect(() => {
     if (!isMenuOpen) {
-      const targetSection = sectionRefs[navScroll || 'HOME'].current;
+      const targetSection = sectionRefs[scrollName || 'HOME'].current;
       if (targetSection) {
         targetSection.scrollIntoView({
           behavior: 'smooth',
@@ -100,7 +106,7 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
         });
       }
     }
-  }, [navScroll]);
+  }, [scrollName]);
 
   useEffect(() => {
     if (isMenuOpen) {

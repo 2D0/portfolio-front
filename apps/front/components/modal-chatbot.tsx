@@ -1,28 +1,29 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import {
+  chatStepState,
+  userNameState,
+  chatAnswearState,
+  selectMapState,
+  modalOpenState,
+} from '@lib/constraints/atoms/modal.atom';
 import { track } from '@vercel/analytics';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { montserrat } from '@/public/fonts';
-import { useModal } from '@/contexts/modal.context';
+import { cn } from '@repo/commons/cn';
 import { ModalList } from '@/lib/textStorage/modal';
 import { Icon } from '@repo/ui/components';
 import { BlockChat } from './block-chat';
 import type { SelectMapType, ContentList } from '@/interface';
-import { cn } from '@repo/commons/cn';
 
 export const ModalChatbot = () => {
-  const {
-    isModal,
-    setIsModal,
-    step,
-    setStep,
-    nameValue,
-    setNameValue,
-    answear,
-    setAnswear,
-    selectId,
-    setSelectId,
-  } = useModal();
+  const [isModal, setIsModal] = useRecoilState(modalOpenState);
+  const [step, setStep] = useRecoilState(chatStepState);
+  const [userName, setUserName] = useRecoilState(userNameState);
+  const [answear, setAnswear] = useRecoilState(chatAnswearState);
+  const [selectMap, setSelectMap] = useRecoilState(selectMapState);
+
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const [chatHistory, setChatHistory] = useState(ModalList[1]);
   const { ref, inView } = useInView({
@@ -69,16 +70,16 @@ export const ModalChatbot = () => {
             onClick={() => {
               setIsModal(false);
               track('챗봇 닫기', {
-                name: nameValue,
-                visitor: selectId.visitor,
-                thought: selectId.thought,
-                score: selectId.score,
+                name: userName,
+                visitor: selectMap.visitor,
+                thought: selectMap.thought,
+                score: selectMap.score,
               });
               setChatHistory(ModalList[1]);
               setStep(1);
-              setNameValue('');
+              setUserName('');
               setAnswear('');
-              setSelectId({ visitor: '', thought: '', score: '' });
+              setSelectMap({ visitor: '', thought: '', score: '' });
             }}
           >
             <span className="block relative w-3 h-0.5 before:block before:content-[''] before:w-full before:h-full before:absolute before:bg-[#222] before:rounded-md before:-rotate-45 after:block after:content-[''] after:w-full after:h-full after:absolute after:bg-[#222] after:rounded-md after:rotate-45" />
@@ -99,8 +100,8 @@ export const ModalChatbot = () => {
               >
                 <BlockChat
                   {...chat}
-                  nameValue={nameValue}
-                  selectId={selectId}
+                  userName={userName}
+                  selectMap={selectMap}
                   inView={inView}
                 />
               </motion.div>

@@ -1,16 +1,22 @@
 'use client';
 import { Fragment, useState } from 'react';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {
+  chatAnswearState,
+  chatStepState,
+  selectMapState,
+  userNameState,
+} from '@lib/constraints/atoms/modal.atom';
 import { motion } from 'framer-motion';
 import { cva } from 'class-variance-authority';
 import { useDate } from '@repo/commons/hooks';
 import { ImageBox } from '@repo/ui/components';
 import { cn } from '@repo/commons/cn';
-import { useModal } from '@/contexts/modal.context';
 import type { ModalList, SelectMapType } from '@/interface';
 
 interface BlockChatProps extends ModalList {
-  nameValue: string;
-  selectId: Record<keyof SelectMapType, SelectMapType[keyof SelectMapType]>;
+  userName: string;
+  selectMap: Record<keyof SelectMapType, SelectMapType[keyof SelectMapType]>;
   inView: boolean;
 }
 
@@ -72,11 +78,14 @@ const Time = (time: string) => <span className="mt-auto text-sm">{time}</span>;
 export const BlockChat = ({
   senderId,
   contentList,
-  nameValue,
-  selectId,
+  userName,
+  selectMap,
   inView,
 }: BlockChatProps) => {
-  const { step, setStep, setNameValue, setAnswear, setSelectId } = useModal();
+  const [step, setStep] = useRecoilState(chatStepState);
+  const setUserName = useSetRecoilState(userNameState);
+  const setAnswear = useSetRecoilState(chatAnswearState);
+  const setSelectMap = useSetRecoilState(selectMapState);
   const { timeValue } = useDate();
   const [time] = useState<string>(timeValue);
   const isSender = senderId === '2d0';
@@ -108,10 +117,10 @@ export const BlockChat = ({
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
             transition={{ duration: 0.5, delay: 0.3 * index }}
           >
-            {chat.type === 'name' ? nameValue : ''}
+            {chat.type === 'name' ? userName : ''}
             {chat.selectMap && chat.selectName ? (
               <>
-                {Object.entries(selectId).map(([key, value]) => (
+                {Object.entries(selectMap).map(([key, value]) => (
                   <Fragment key={key}>{chat.selectMap?.[value]}</Fragment>
                 ))}
                 <br />
@@ -126,16 +135,16 @@ export const BlockChat = ({
                       type="button"
                       className="flex items-center gap-1 px-2 py-1 rounded-full !bg-white before:block before:content-[''] before:w-3 before:h-3 before:rounded-full before:bg-[#7A93C5]"
                       onClick={() => {
-                        if (step === chat.nextStep) return;
+                        if (step >= (chat.nextStep ?? 0)) return;
                         chat.selectName &&
-                          setSelectId(prev => ({
+                          setSelectMap(prev => ({
                             ...prev,
                             [chat.selectName as string]: select.id,
                           }));
                         setAnswear(select.content);
                         chat.nextStep && setStep(chat.nextStep);
                       }}
-                      disabled={step === chat.nextStep}
+                      disabled={step >= (chat.nextStep ?? 0)}
                     >
                       {select.content}
                     </button>
@@ -146,11 +155,11 @@ export const BlockChat = ({
             {chat.type === 'input' ? (
               <div className="flex gap-x-1.5">
                 <input
-                  value={nameValue}
+                  value={userName}
                   placeholder="이름을 입력해 주세요."
-                  onChange={e => setNameValue(e.target.value)}
+                  onChange={e => setUserName(e.target.value)}
                   onKeyDown={e => {
-                    if (e.key === 'Enter' && nameValue && chat.nextStep) {
+                    if (e.key === 'Enter' && userName && chat.nextStep) {
                       setStep(chat.nextStep);
                     }
                   }}
@@ -160,11 +169,11 @@ export const BlockChat = ({
                 <button
                   type="button"
                   onClick={() =>
-                    nameValue && chat.nextStep && setStep(chat.nextStep)
+                    userName && chat.nextStep && setStep(chat.nextStep)
                   }
-                  disabled={!nameValue}
+                  disabled={!userName}
                   className={cn(
-                    inputContainerVariants({ disabled: !nameValue }),
+                    inputContainerVariants({ disabled: !userName }),
                   )}
                 />
               </div>
