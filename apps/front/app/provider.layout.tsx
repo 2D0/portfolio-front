@@ -3,6 +3,7 @@ import { gowunDodum } from '@/public/fonts';
 import { RecoilRoot } from 'recoil';
 import { Navigation } from '@components/navigation';
 import { ModalChatbot } from '@components/modal-chatbot';
+import { Footer } from '@components/footer';
 
 export default function ProviderLayout({
   children,
@@ -15,6 +16,7 @@ export default function ProviderLayout({
         <Navigation />
         {children}
         <ModalChatbot />
+        <Footer />
       </body>
     </RecoilRoot>
   );
