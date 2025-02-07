@@ -58,7 +58,7 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
         >
           <ImageBox
             imagePorps={{
-              src: '/images/source/qr-code.svg',
+              src: '/images/source/qr-code.jpg',
               alt: 'QR코드',
               width: 200,
               height: 200,
@@ -84,8 +84,17 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
               transition={{ duration: 0.7, delay: 0.2 * index + 0.4 }}
               className={cn(montserrat.className)}
             >
-              {info.name}:&nbsp;
-              <span>{info.content}</span>
+              {info.href ? (
+                <Link
+                  href={info.href}
+                  target="_blank"
+                  className="py-1 px-2 rounded-md bg-gray-500 hover:bg-gray-600 transition-all duration-300 text-gray-200"
+                >
+                  {info.content}
+                </Link>
+              ) : (
+                <span>{info.content}</span>
+              )}
             </motion.li>
           ))}
         </ul>

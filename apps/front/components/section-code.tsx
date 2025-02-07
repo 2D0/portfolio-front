@@ -44,7 +44,7 @@ export const SectionCode = ({ textMap, ...props }: SectionCodekProps) => {
   const { ref, inView } = useInView({
     threshold: 0.4,
     rootMargin: '0px 0px 40% 0px',
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   return (

@@ -26,7 +26,7 @@ export const SectionCareer = ({ textMap, ...props }: SectionCareerProps) => {
   const { ref, inView } = useInView({
     threshold: 0.4,
     rootMargin: '0px 0px 40% 0px',
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   return (

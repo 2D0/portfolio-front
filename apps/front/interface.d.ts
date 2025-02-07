@@ -67,7 +67,7 @@ export interface PostFetchReturnType {
 }
 
 export interface ContactMapType {
-  info: Array<{ name: string; content: string }>;
+  info: Array<{ name: string; href?: string; content: string }>;
   sns: Array<{ name: IconNames; href: string }>;
   resumeUrl: string;
 }
