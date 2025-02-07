@@ -47,7 +47,7 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
           ))}
         </motion.div>
         <motion.div
-          className="row-span-2 w-full"
+          className="grid place-items-center gap-2 row-span-2 w-full"
           initial={{ opacity: 0, x: 250, scale: 0.5 }}
           animate={
             inView
@@ -65,11 +65,14 @@ export const SectionContact = ({ textMap, ...props }: SectionContactProps) => {
             }}
             className="w-[130px] md:w-[200px] h-[130px] md:h-[200px] mx-auto sm:mx-0"
           />
+          <span className="text-xs text-gray-400">
+            카카오톡 1:1 채팅 QR코드
+          </span>
         </motion.div>
         <ul
           className={cn(
             cantique.className,
-            'flex flex-col text-center sm:text-left text-base md:text-xl',
+            'flex flex-col gap-2 text-center sm:text-left text-base md:text-xl',
           )}
         >
           {textMap.info.map((info, index) => (
