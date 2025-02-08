@@ -1,17 +1,19 @@
 import { memo, useMemo } from 'react';
 import Image from 'next/image';
-import type { IconProps } from '@repo/ui/interface';
-
-const IconSizeMap = {
-  sm: 12,
-  md: 16,
-  lg: 20,
-  xl: 40,
-  '2xl': 50,
-};
+import type { IconProps, IconSizes } from '@repo/ui/interface';
 
 export const Icon = memo((props: IconProps) => {
   const { name, size, width, height, ...ohterProps } = props;
+  const IconSizeMap: Record<IconSizes, number> = useMemo(
+    () => ({
+      sm: 12,
+      md: 16,
+      lg: 20,
+      xl: 40,
+      '2xl': 50,
+    }),
+    [],
+  );
   const iconSize = IconSizeMap[size ?? 'lg'];
   const IconSourceMap: Record<IconProps['name'], string> = useMemo(
     () => ({

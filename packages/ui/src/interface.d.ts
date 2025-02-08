@@ -31,6 +31,7 @@ export type IconSizeOptions =
       height?: ImageProps['height'];
     };
 
+export type IconSizes = 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 export type IconProps = {
   name: IconNames;
 } & Omit<ImageProps, 'src' | 'width' | 'height'> &
