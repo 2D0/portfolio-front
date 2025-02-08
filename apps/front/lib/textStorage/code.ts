@@ -901,7 +901,7 @@ export const IconButtons = ({ iconMap }: { iconMap: Array<IconNames> }) => {
       },
       {
         name: 'Icon.tsx',
-        code: `import React from 'react';
+        code: `import { memo, useMemo } from 'react';
 import Image from 'next/image';
 import type { IconProps } from '@repo/ui/interface';
 
@@ -913,31 +913,34 @@ const IconSizeMap = {
   '2xl': 50,
 };
 
-export const Icon = React.memo((props: IconProps) => {
+export const Icon = memo((props: IconProps) => {
   const { name, size, width, height, ...ohterProps } = props;
   const iconSize = IconSizeMap[size ?? 'lg'];
-  const IconSourceMap: Record<IconProps['name'], string> = {
-    Global: require('./../images/icons/ico-global.svg'),
-    GitHub: require('./../images/icons/ico-github.svg'),
-    Notion: require('./../images/icons/ico-notion.svg'),
-    Youtube: require('./../images/icons/ico-youtube.svg'),
-    Moon: require('./../images/icons/ico-moon.svg'),
-    JavaScript: require('./../images/icons/stacks/JavaScript.svg'),
-    TypeScript: require('./../images/icons/stacks/TypeScript.svg'),
-    jQuery: require('./../images/icons/stacks/jQuery.svg'),
-    HTML: require('./../images/icons/stacks/HTML.svg'),
-    CSS: require('./../images/icons/stacks/CSS.svg'),
-    Figma: require('./../images/icons/stacks/Figma.svg'),
-    Jira: require('./../images/icons/stacks/Jira.svg'),
-    React: require('./../images/icons/stacks/React.svg'),
-    SCSS: require('./../images/icons/stacks/SCSS.svg'),
-    StyledComponents: require('./../images/icons/stacks/StyledComponents.png'),
-    Supabase: require('./../images/icons/stacks/Supabase.svg'),
-    TailwindCSS: require('./../images/icons/stacks/TailwindCSS.svg'),
-    Turborepo: require('./../images/icons/stacks/Turborepo.svg'),
-    Vue: require('./../images/icons/stacks/Vue.svg'),
-    'Next.js14': require('./../images/icons/stacks/Next.js14.svg'),
-  };
+  const IconSourceMap: Record<IconProps['name'], string> = useMemo(
+    () => ({
+      Global: require('./images/icons/ico-global.svg'),
+      GitHub: require('./images/icons/ico-github.svg'),
+      Notion: require('./images/icons/ico-notion.svg'),
+      Youtube: require('./images/icons/ico-youtube.svg'),
+      Moon: require('./images/icons/ico-moon.svg'),
+      JavaScript: require('./images/icons/stacks/JavaScript.svg'),
+      TypeScript: require('./images/icons/stacks/TypeScript.svg'),
+      jQuery: require('./images/icons/stacks/jQuery.svg'),
+      HTML: require('./images/icons/stacks/HTML.svg'),
+      CSS: require('./images/icons/stacks/CSS.svg'),
+      Figma: require('./images/icons/stacks/Figma.svg'),
+      Jira: require('./images/icons/stacks/Jira.svg'),
+      React: require('./images/icons/stacks/React.svg'),
+      SCSS: require('./images/icons/stacks/SCSS.svg'),
+      StyledComponents: require('./images/icons/stacks/StyledComponents.png'),
+      Supabase: require('./images/icons/stacks/Supabase.svg'),
+      TailwindCSS: require('./images/icons/stacks/TailwindCSS.svg'),
+      Turborepo: require('./images/icons/stacks/Turborepo.svg'),
+      Vue: require('./images/icons/stacks/Vue.svg'),
+      'Next.js14': require('./images/icons/stacks/Next.js14.svg'),
+    }),
+    [],
+  );
 
   return (
     <Image
