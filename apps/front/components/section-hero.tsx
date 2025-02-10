@@ -24,7 +24,7 @@ export const SectionHero = (props: HTMLAttributes<HTMLDivElement>) => {
         ref={ref}
         className={cn(
           cantique.className,
-          'page-inner absolute !leading-loose text-[8vw] sm:text-5xl md:text-6xl text-center',
+          'w-fit absolute !leading-loose text-[8vw] sm:text-5xl md:text-6xl text-center',
         )}
       >
         {topLetters.map((letter, index) => (
