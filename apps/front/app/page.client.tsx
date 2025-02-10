@@ -1,11 +1,10 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useAppDispatch, useAppSelector } from '@repo/commons/hooks';
 import {
-  menuOpenState,
-  navSelectNameState,
-  scrollNameNameState,
-} from '@lib/constraints/atoms/nav.atom';
+  setNavSelectName,
+  setIsMenuOpen,
+} from '@repo/commons/store/slices/front.slice.ts';
 import { useInView } from 'react-intersection-observer';
 import { cn } from '@repo/commons/cn';
 import { SectionHero } from '@components/section-hero';
@@ -33,9 +32,8 @@ interface UIProps {
 }
 
 export const UI = ({ career, stack, project, code, contact }: UIProps) => {
-  const setSelectName = useSetRecoilState(navSelectNameState);
-  const scrollName = useRecoilValue(scrollNameNameState);
-  const [isMenuOpen, setIsMenuOpen] = useRecoilState(menuOpenState);
+  const dispatch = useAppDispatch();
+  const { navScrollName, isMenuOpen } = useAppSelector(state => state.front);
 
   const { ref: homeInViewRef, inView: homeInView } = useInView({
     threshold: 0.3,
@@ -77,13 +75,13 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
 
   useEffect(() => {
     if (!isMenuOpen) {
-      if (homeInView) setSelectName('HOME');
-      else if (itsMeInView) setSelectName('IT’S ME');
-      else if (workHistoryInView) setSelectName('WORK HISTORY');
-      else if (stackInView) setSelectName('STACK');
-      else if (projectInView) setSelectName('PROJECT');
-      else if (codeLogicInView) setSelectName('CODE LOGIC');
-      else if (pickMeInView) setSelectName('PICK ME');
+      if (homeInView) dispatch(setNavSelectName('HOME'));
+      else if (itsMeInView) dispatch(setNavSelectName('IT’S ME'));
+      else if (workHistoryInView) dispatch(setNavSelectName('WORK HISTORY'));
+      else if (stackInView) dispatch(setNavSelectName('STACK'));
+      else if (projectInView) dispatch(setNavSelectName('PROJECT'));
+      else if (codeLogicInView) dispatch(setNavSelectName('CODE LOGIC'));
+      else if (pickMeInView) dispatch(setNavSelectName('PICK ME'));
     }
   }, [
     homeInView,
@@ -98,7 +96,7 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
 
   useEffect(() => {
     if (!isMenuOpen) {
-      const targetSection = sectionRefs[scrollName || 'HOME'].current;
+      const targetSection = sectionRefs[navScrollName || 'HOME'].current;
       if (targetSection) {
         targetSection.scrollIntoView({
           behavior: 'smooth',
@@ -106,7 +104,7 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
         });
       }
     }
-  }, [scrollName]);
+  }, [navScrollName]);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -129,13 +127,13 @@ export const UI = ({ career, stack, project, code, contact }: UIProps) => {
         )}
         onClick={e => {
           isMenuOpen && e.preventDefault();
-          setIsMenuOpen(false);
+          dispatch(setIsMenuOpen(false));
         }}
         role="button"
         tabIndex={0}
         onKeyDown={e => {
           if (e.key === 'Enter' || e.key === ' ') {
-            setIsMenuOpen(false);
+            dispatch(setIsMenuOpen(false));
           }
         }}
       >

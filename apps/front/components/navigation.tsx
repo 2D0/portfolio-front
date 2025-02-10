@@ -1,10 +1,10 @@
 'use client';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useAppDispatch, useAppSelector } from '@repo/commons/hooks';
 import {
-  menuOpenState,
-  navSelectNameState,
-  scrollNameNameState,
-} from '@lib/constraints/atoms/nav.atom';
+  setNavSelectName,
+  setNavScrollName,
+  setIsMenuOpen,
+} from '@repo/commons/store/slices/front.slice.ts';
 import { cn } from '@repo/commons/cn';
 import { montserrat, jua } from '@/public/fonts';
 import { motion } from 'framer-motion';
@@ -27,9 +27,8 @@ const letterVariants = {
 };
 
 export const Navigation = () => {
-  const [selectName, setSelectName] = useRecoilState(navSelectNameState);
-  const setScrollName = useSetRecoilState(scrollNameNameState);
-  const [isMenuOpen, setIsMenuOpen] = useRecoilState(menuOpenState);
+  const dispatch = useAppDispatch();
+  const { navSelectName, isMenuOpen } = useAppSelector(state => state.front);
 
   return (
     <motion.header
@@ -73,7 +72,7 @@ export const Navigation = () => {
       <button
         type="button"
         className="grid lg:!hidden place-content-center w-7 h-7"
-        onClick={() => setIsMenuOpen(true)}
+        onClick={() => dispatch(setIsMenuOpen(true))}
       >
         <span className="block w-4 h-[1.5px] rounded-full relative bg-gray-100 before:block before:content-[''] before:w-full before:h-full before:rounded-full before:absolute before:-top-[5px] before:bg-gray-100 after:block after:content-[''] after:w-full after:h-full after:rounded-full after:absolute after:-bottom-[5px] after:bg-gray-100" />
       </button>
@@ -94,15 +93,15 @@ export const Navigation = () => {
               <button
                 type="button"
                 className={cn(
-                  selectName === nav
+                  navSelectName === nav
                     ? 'text-blue-200'
                     : 'text-gray-100 lg:text-gray-500',
                   'cursor-pointer transition-all duration-300',
                 )}
                 onClick={() => {
-                  setSelectName(nav);
-                  setScrollName(nav);
-                  setIsMenuOpen(false);
+                  dispatch(setNavSelectName(nav));
+                  dispatch(setNavScrollName(nav));
+                  dispatch(setIsMenuOpen(false));
                 }}
               >
                 {nav}
@@ -112,7 +111,7 @@ export const Navigation = () => {
         </ul>
         <button
           className="grid lg:!hidden place-content-center w-7 h-7 absolute top-4 right-4"
-          onClick={() => setIsMenuOpen(false)}
+          onClick={() => dispatch(setIsMenuOpen(false))}
         >
           <span className="block relative w-4 h-0.5 before:block before:content-[''] before:w-full before:h-full before:absolute before:bg-gray-100 before:rounded-md before:-rotate-45 after:block after:content-[''] after:w-full after:h-full after:absolute after:bg-gray-100 after:rounded-md after:rotate-45" />
         </button>
