@@ -1,6 +1,6 @@
 import type { ProjectMap } from '@/interface';
 
-export const ProjectList = [
+export const ProjectList: Array<ProjectMap> = [
   {
     name: '퍼피티아이',
     company: '개인 프로젝트',
@@ -211,12 +211,12 @@ export const ProjectList = [
     company: '개인 프로젝트',
     href: 'https://2d0.notion.site/2021-874db80518e648b0b7f77318b455e124?pvs=4',
     site: 'https://2d0.github.io/portfolio-publisher/',
-    startDate: '2020.10',
-    endDate: '2020.10',
+    startDate: '2021.05',
+    endDate: '2021.06',
     period: '약 2주',
     desc: '2021년도에 제작한 웹 퍼블리셔 포트폴리오',
     stack: ['HTML', 'jQuery', 'CSS'],
     imageName: 'portfolio-publisher',
     scope: ['기획 및 총괄', '프론트 개발', 'UI/UX 디자인'],
   },
-] as Array<ProjectMap>;
+];
