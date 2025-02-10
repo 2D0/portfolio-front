@@ -1,12 +1,12 @@
 'use client';
 import { Fragment, useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useAppDispatch, useAppSelector } from '@repo/commons/hooks';
 import {
-  chatAnswearState,
-  chatStepState,
-  selectMapState,
-  userNameState,
-} from '@lib/constraints/atoms/modal.atom';
+  setChatStep,
+  setUserName,
+  setChatAnswear,
+  setSelectMap,
+} from '@repo/commons/store/slices/front.slice.ts';
 import { motion } from 'framer-motion';
 import { cva } from 'class-variance-authority';
 import { useDate } from '@repo/commons/hooks';
@@ -82,10 +82,8 @@ export const BlockChat = ({
   selectMap,
   inView,
 }: BlockChatProps) => {
-  const [step, setStep] = useRecoilState(chatStepState);
-  const setUserName = useSetRecoilState(userNameState);
-  const setAnswear = useSetRecoilState(chatAnswearState);
-  const setSelectMap = useSetRecoilState(selectMapState);
+  const dispatch = useAppDispatch();
+  const { chatStep } = useAppSelector(state => state.front);
   const { timeValue } = useDate();
   const [time] = useState<string>(timeValue);
   const isSender = senderId === '2d0';
@@ -135,16 +133,18 @@ export const BlockChat = ({
                       type="button"
                       className="flex items-center gap-1 px-2 py-1 rounded-full !bg-white before:block before:content-[''] before:w-3 before:h-3 before:rounded-full before:bg-[#7A93C5]"
                       onClick={() => {
-                        if (step >= (chat.nextStep ?? 0)) return;
+                        if (chatStep >= (chat.nextStep ?? 0)) return;
                         chat.selectName &&
-                          setSelectMap(prev => ({
-                            ...prev,
-                            [chat.selectName as string]: select.id,
-                          }));
-                        setAnswear(select.content);
-                        chat.nextStep && setStep(chat.nextStep);
+                          dispatch(
+                            setSelectMap({
+                              ...selectMap,
+                              [chat.selectName as string]: select.id,
+                            }),
+                          );
+                        dispatch(setChatAnswear(select.content));
+                        chat.nextStep && dispatch(setChatStep(chat.nextStep));
                       }}
-                      disabled={step >= (chat.nextStep ?? 0)}
+                      disabled={chatStep >= (chat.nextStep ?? 0)}
                     >
                       {select.content}
                     </button>
@@ -157,19 +157,21 @@ export const BlockChat = ({
                 <input
                   value={userName}
                   placeholder="이름을 입력해 주세요."
-                  onChange={e => setUserName(e.target.value)}
+                  onChange={e => dispatch(setUserName(e.target.value))}
                   onKeyDown={e => {
                     if (e.key === 'Enter' && userName && chat.nextStep) {
-                      setStep(chat.nextStep);
+                      dispatch(setChatStep(chat.nextStep));
                     }
                   }}
-                  readOnly={step !== 1}
-                  className={cn(inputVariants({ disabled: step !== 1 }))}
+                  readOnly={chatStep !== 1}
+                  className={cn(inputVariants({ disabled: chatStep !== 1 }))}
                 />
                 <button
                   type="button"
                   onClick={() =>
-                    userName && chat.nextStep && setStep(chat.nextStep)
+                    userName &&
+                    chat.nextStep &&
+                    dispatch(setChatStep(chat.nextStep))
                   }
                   disabled={!userName}
                   className={cn(

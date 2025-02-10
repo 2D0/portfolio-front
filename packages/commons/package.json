@@ -6,7 +6,8 @@
   ],
   "exports": {
     "./cn": "./src/cn.ts",
-    "./hooks": "./src/hooks/index.ts"
+    "./hooks": "./src/hooks/index.ts",
+    "./store/*": "./src/store/*"
   },
   "license": "MIT",
   "scripts": {

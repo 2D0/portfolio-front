@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useAppDispatch, useAppSelector } from '@repo/commons/hooks';
 import {
-  chatStepState,
-  userNameState,
-  chatAnswearState,
-  selectMapState,
-  modalOpenState,
-} from '@lib/constraints/atoms/modal.atom';
+  setIsChatOpen,
+  setChatStep,
+  setUserName,
+  setChatAnswear,
+  setSelectMap,
+} from '@repo/commons/store/slices/front.slice.ts';
 import { track } from '@vercel/analytics';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -18,11 +18,9 @@ import { BlockChat } from './block-chat';
 import type { SelectMapType, ContentList } from '@/interface';
 
 export const ModalChatbot = () => {
-  const [isModal, setIsModal] = useRecoilState(modalOpenState);
-  const [step, setStep] = useRecoilState(chatStepState);
-  const [userName, setUserName] = useRecoilState(userNameState);
-  const [answear, setAnswear] = useRecoilState(chatAnswearState);
-  const [selectMap, setSelectMap] = useRecoilState(selectMapState);
+  const dispatch = useAppDispatch();
+  const { isChatOpen, chatStep, userName, chatAnswear, selectMap } =
+    useAppSelector(state => state.front);
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const [chatHistory, setChatHistory] = useState(ModalList[1]);
@@ -32,27 +30,27 @@ export const ModalChatbot = () => {
   });
 
   useEffect(() => {
-    step !== 1 &&
+    chatStep !== 1 &&
       setChatHistory(prev => [
         ...prev,
-        ...(answear
+        ...(chatAnswear
           ? [
               {
-                id: `${step}-${prev.length}`,
+                id: `${chatStep}-${prev.length}`,
                 senderId: 'anon',
                 receiverId: '2d0',
                 contentList: [
                   {
                     type: 'text' as ContentList<SelectMapType>['type'],
-                    content: answear,
+                    content: chatAnswear,
                   },
                 ],
               },
             ]
           : []),
-        ...ModalList[step],
+        ...ModalList[chatStep],
       ]);
-  }, [step]);
+  }, [chatStep]);
 
   useEffect(() => {
     scrollToBottomWhenMounted();
@@ -61,14 +59,15 @@ export const ModalChatbot = () => {
   const scrollToBottomWhenMounted = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, []);
+
   return (
     <>
-      {isModal ? (
+      {isChatOpen ? (
         <div className="max-w-full sm:max-w-80 w-full max-h-full sm:max-h-[500px] h-full fixed bottom-0 sm:bottom-4 left-0 sm:left-4 z-50 rounded-xl p-4 bg-white">
           <button
             className="grid place-content-center w-5 h-5 absolute top-0.5 right-0.5"
             onClick={() => {
-              setIsModal(false);
+              dispatch(setIsChatOpen(false));
               track('챗봇 닫기', {
                 name: userName,
                 visitor: selectMap.visitor,
@@ -76,10 +75,10 @@ export const ModalChatbot = () => {
                 score: selectMap.score,
               });
               setChatHistory(ModalList[1]);
-              setStep(1);
-              setUserName('');
-              setAnswear('');
-              setSelectMap({ visitor: '', thought: '', score: '' });
+              dispatch(setChatStep(1));
+              dispatch(setUserName(''));
+              dispatch(setChatAnswear(''));
+              dispatch(setSelectMap({ visitor: '', thought: '', score: '' }));
             }}
           >
             <span className="block relative w-3 h-0.5 before:block before:content-[''] before:w-full before:h-full before:absolute before:bg-[#222] before:rounded-md before:-rotate-45 after:block after:content-[''] after:w-full after:h-full after:absolute after:bg-[#222] after:rounded-md after:rotate-45" />
@@ -113,7 +112,7 @@ export const ModalChatbot = () => {
         <button
           type="button"
           onClick={() => {
-            setIsModal(true);
+            dispatch(setIsChatOpen(true));
             track('챗봇 오픈');
           }}
           className="flex flex-col items-center fixed bottom-4 left-4 z-50"
