@@ -306,8 +306,7 @@ export default async function Home() {
       {
         name: 'page.client.tsx',
         code: `'use client';
-import { useRecoilValue } from 'recoil';
-import { languageState } from '@repo/commons/atoms';
+import { useAppSelector } from '@repo/commons/hooks';
 import { cn } from '@repo/commons/cn';
 import { gugi, mochiyPopOne } from '@repo/ui/fonts';
 import { Share } from '@repo/ui/components';
@@ -337,7 +336,7 @@ interface UIProps {
 }
 
 export const UI = ({ count, text, handleSubmit }: UIProps) => {
-  const language = useRecoilValue(languageState);
+  const { language } = useAppSelector(state => state.common);
   const { title, caption, count: countText, unit, formText } = text[language];
 
   return (
