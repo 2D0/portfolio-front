@@ -1,6 +1,6 @@
 import type { CodeListType } from '@/interface';
 
-export const CodeList = {
+export const CodeList: CodeListType = {
   Component: {
     codeMap: [
       {
@@ -965,4 +965,4 @@ export const Icon = memo((props: IconProps) => {
     stack: ['Next.js14', 'TypeScript', 'Context', 'TailwindCSS'],
     view: true,
   },
-} as CodeListType;
+};

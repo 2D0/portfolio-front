@@ -21,6 +21,7 @@ export type IconStack =
   | 'Jira';
 
 export type Stack = IconStack | 'PHP' | 'Nuxt.js' | 'Cafe24Module' | 'Vercel';
+export type ProjectStack = Stack | 'Context';
 export type IconNames = 'Youtube' | 'Notion' | 'Moon' | 'Global' | IconStack;
 
 export type IconSizeOptions =

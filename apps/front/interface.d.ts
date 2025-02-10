@@ -1,4 +1,10 @@
-import type { Stack, IconStack, PostType, IconNames } from '@repo/ui/interface';
+import type {
+  Stack,
+  ProjectStack,
+  IconStack,
+  PostType,
+  IconNames,
+} from '@repo/ui/interface';
 
 export type NavNames =
   | 'HOME'
@@ -55,7 +61,7 @@ interface CodeType {
 }
 interface CodeList {
   codeMap: Array<CodeType>;
-  stack: Array<Stack>;
+  stack: Array<ProjectStack>;
   view?: boolean;
 }
 
